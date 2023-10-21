@@ -29,23 +29,23 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 100, // tinggi appbar,
 
         // sesuaikan dengan light mode / dark mode
-        backgroundColor: lightMode ? Colors.white : colors["cinder"],
+        backgroundColor: lightMode ? colors["soapstone"] : colors["cinder"],
 
         title: Row(
           children: [
             Container(
               width: 50,
               height: 50,
-              margin: const EdgeInsets.only(right: 15),
+              margin: const EdgeInsets.only(left: 10, right: 20),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: lightMode ? Colors.black : Colors.white,
+                color: lightMode ? colors["cinder"] : colors["soapstone"],
               ),
             ),
             Text(
               "Robert Pattinson",
               style: TextStyle(
-                  fontSize: 18, color: lightMode ? Colors.black : Colors.white),
+                  fontSize: 18, color: lightMode ? colors["cinder"] : colors["soapstone"]),
             ),
           ],
         ),
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       // body ===================================================================================
       body: SingleChildScrollView(
         child: Container(
-          color: lightMode ? Colors.white : colors["cinder"],
+          color: lightMode ? colors["soapstone"] : colors["cinder"],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 width: width(context),
                 height: 230,
                 decoration: BoxDecoration(
-                    color: lightMode ? Colors.black : Colors.white,
+                    color: lightMode ? colors["cinder"] : colors["soapstone"],
                     image: null),
               ),
 
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                   "Now Playing",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? Colors.black : Colors.white),
+                      color: lightMode ? colors["cinder"] : colors["soapstone"]),
                 ),
               ),
 
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                   "Category",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? Colors.black : Colors.white),
+                      color: lightMode ? colors["cinder"] : colors["soapstone"]),
                 ),
               ),
 
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                   "Coming Soon",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? Colors.black : Colors.white),
+                      color: lightMode ? colors["cinder"] : colors["soapstone"]),
                 ),
               ),
 
@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                   "Get your voucher here!",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? Colors.black : Colors.white,
+                      color: lightMode ? colors["cinder"] : colors["soapstone"],
                       fontStyle: FontStyle.italic),
                 ),
               ),
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                   width: width(context),
                   height: 200,
                   decoration: BoxDecoration(
-                      color: lightMode ? Colors.black : Colors.white,
+                      color: lightMode ? colors["cinder"] : colors["soapstone"],
                       image: null),
                 ),
               ),
