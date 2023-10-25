@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutix/models/models.dart';
+import 'package:flutix/ui/pages/pages.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: const HomePage(),
     );
   }
 }
