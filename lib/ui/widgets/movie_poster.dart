@@ -37,7 +37,6 @@ class _MoviePosterState extends State<MoviePoster> {
           return MovieDetailPage(movie: widget.movie);
         }));
       },
-      
       child: Container(
         margin: const EdgeInsets.only(right: 20),
         child: Column(

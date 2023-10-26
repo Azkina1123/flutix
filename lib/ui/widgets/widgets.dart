@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutix/models/models.dart';
@@ -12,3 +13,4 @@ part 'ticket_tile.dart';
 part 'setting_tile.dart';
 part 'cast_photo.dart';
 // part 'bottom_navigation.dart';
+part 'text_field.dart';

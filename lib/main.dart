@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutix/models/models.dart';
+import 'package:flutix/ui/pages/pages.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutix',
+
 
       // // dark mode
       // darkTheme: ThemeData(
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         ),
         
       ),
-      home: const MainPage(),
+      home: Success_Checkout_Page(),
     );
   }
 }
