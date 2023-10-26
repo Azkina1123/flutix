@@ -49,24 +49,39 @@ class _Success_Checkout_PageState extends State<Success_Checkout_Page> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => MainPage(),
                       ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colors["cerulean-blue"]!),
-                  child: Column(
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset('assets/ticket.png'),
-                      Text('My Ticket'),
+                      SizedBox(width: 20),
+                      Text(
+                        'My Ticket',
+                        style: TextStyle(color: colors['soapstone']!),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(height: 10),
-                Text(
-                  "Back to Home",
-                  style: TextStyle(fontSize: 18),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainPage(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Back to Home",
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ],
             ),

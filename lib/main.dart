@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: Success_Checkout_Page(),
     );
   }
 }
