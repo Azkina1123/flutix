@@ -71,7 +71,7 @@ class _MoviePosterState extends State<MoviePoster> {
                           children: [
                             const Icon(
                               Icons.star,
-                              color: Colors.green,
+                              color: Colors.amber,
                             ),
                             Text(
                               widget.movie.rate.toString(),

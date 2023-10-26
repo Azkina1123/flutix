@@ -15,23 +15,40 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutix',
-      theme: ThemeData(
 
+      // // dark mode
+      // darkTheme: ThemeData(
+      //     useMaterial3: true,
+      //     colorScheme: ColorScheme(
+      //       brightness: Brightness.dark,
+      //       background: colors["cinder"]!,     // warna background halaman
+      //       onBackground: colors["soapstone"]!,// warna text dalam halaman
+      //       primary: colors["cerulean-blue"]!, // warna background primary (tombol biru)
+      //       onPrimary: colors["soapstone"]!,   // warna text dalam primary (warna text dalam tombol biru)
+      //       secondary: colors["dark-jungle-green"]!,  // warna background secondary (tombol hitam terang)
+      //       onSecondary: colors["dove-grey"]!, // warna text dalam secondary (warna text dalam tombol abu-abu)
+      //       error: colors["red-brown"]!,       // warna background error
+      //       onError: colors["red-brown"]!,     // warna text dalam error
+      //       surface: colors["cinder"]!,        // warna background permukaan widget
+      //       onSurface: colors["soapstone"]!,   // warna text dalam permukaan widget
+      //     )),
+
+      // light mode
+      theme: ThemeData(
+        useMaterial3: true,
         colorScheme: ColorScheme(
-          brightness: lightMode ? Brightness.light : Brightness.dark,
-          background: lightMode ? colors["soapstone"]! : colors["cinder"]!, // warna background halaman
-          onBackground: lightMode ? colors["cinder"]! : colors["soapstone"]!, // warna text dalam halaman
-          primary: colors["cerulean-blue"]!,  // warna background primary
-          onPrimary: colors["soapstone"]!,    // warna text dalam primary
-          secondary: colors["light-grey"]!,   // warna background secondary -> kotak abu-abu
-          onSecondary: colors["dove-grey"]!,  // warna text dalam secondary
+          brightness: Brightness.light,
+          background: colors["soapstone"]!,   // warna background halaman
+          onBackground: colors["cinder"]!,    // warna text dalam halaman
+          primary: colors["cerulean-blue"]!,  // warna background primary (tombol biru)
+          onPrimary: colors["soapstone"]!,    // warna text dalam primary (warna text dalam tombol biru)
+          secondary: colors["light-grey"]!,   // warna background secondary (tombol abu-abu)
+          onSecondary: colors["dove-grey"]!,  // warna text dalam secondary (warna text dalam tombol abu-abu)
           error: colors["red-brown"]!,        // warna background error
           onError: colors["red-brown"]!,      // warna text dalam error
-          surface: lightMode ? colors["soapstone"]! : colors["cinder"]!,  // warna background card
-          onSurface: lightMode ? colors["cinder"]! : colors["soapstone"]!,  // warna text dalam card
+          surface: colors["soapstone"]!,      // warna background permukaan widget
+          onSurface: colors["cinder"]!,       // warna text dalam permukaan widget
         ),
-
-        useMaterial3: true,
         
       ),
       home: const MainPage(),

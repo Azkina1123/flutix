@@ -102,6 +102,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     onTap: () {},
                   ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.people,
+                      size: 32,
+                    ),
+                    title: const Text(
+                      "Log Out",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    onTap: () {},
+                  ),
                 ],
               ),
             )
