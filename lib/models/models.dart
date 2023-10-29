@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 part 'user.dart';
 part 'movie.dart';
 part 'ticket.dart';
+part 'movie_api.dart';
 
 // NANTI HAPUSSS
 bool lightMode = true;

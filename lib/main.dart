@@ -12,27 +12,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutix',
 
 
-      // // dark mode
-      // darkTheme: ThemeData(
-      //     useMaterial3: true,
-      //     colorScheme: ColorScheme(
-      //       brightness: Brightness.dark,
-      //       background: colors["cinder"]!,     // warna background halaman
-      //       onBackground: colors["soapstone"]!,// warna text dalam halaman
-      //       primary: colors["cerulean-blue"]!, // warna background primary (tombol biru)
-      //       onPrimary: colors["soapstone"]!,   // warna text dalam primary (warna text dalam tombol biru)
-      //       secondary: colors["dark-jungle-green"]!,  // warna background secondary (tombol hitam terang)
-      //       onSecondary: colors["dove-grey"]!, // warna text dalam secondary (warna text dalam tombol abu-abu)
-      //       error: colors["red-brown"]!,       // warna background error
-      //       onError: colors["red-brown"]!,     // warna text dalam error
-      //       surface: colors["cinder"]!,        // warna background permukaan widget
-      //       onSurface: colors["soapstone"]!,   // warna text dalam permukaan widget
-      //     )),
+      // dark mode
+      darkTheme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme(
+            brightness: Brightness.dark,
+            background: colors["cinder"]!,     // warna background halaman
+            onBackground: colors["soapstone"]!,// warna text dalam halaman
+            primary: colors["cerulean-blue"]!, // warna background primary (tombol biru)
+            onPrimary: colors["soapstone"]!,   // warna text dalam primary (warna text dalam tombol biru)
+            secondary: colors["dark-jungle-green"]!,  // warna background secondary (tombol hitam terang)
+            onSecondary: colors["dove-grey"]!, // warna text dalam secondary (warna text dalam tombol abu-abu)
+            error: colors["red-brown"]!,       // warna background error
+            onError: colors["red-brown"]!,     // warna text dalam error
+            surface: colors["cinder"]!,        // warna background permukaan widget
+            onSurface: colors["soapstone"]!,   // warna text dalam permukaan widget
+          )),
 
       // light mode
       theme: ThemeData(
@@ -51,8 +52,11 @@ class MyApp extends StatelessWidget {
           onSurface: colors["cinder"]!,       // warna text dalam permukaan widget
         ),
         
+        
       ),
-      home: Success_Checkout_Page(),
+
+      themeMode: ThemeMode.light,
+      home: MainPage(),
     );
   }
 }
