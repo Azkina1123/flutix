@@ -12,47 +12,63 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutix',
-
-
-      // dark mode
-      darkTheme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme(
-            brightness: Brightness.dark,
-            background: colors["cinder"]!,     // warna background halaman
-            onBackground: colors["soapstone"]!,// warna text dalam halaman
-            primary: colors["cerulean-blue"]!, // warna background primary (tombol biru)
-            onPrimary: colors["soapstone"]!,   // warna text dalam primary (warna text dalam tombol biru)
-            secondary: colors["dark-jungle-green"]!,  // warna background secondary (tombol hitam terang)
-            onSecondary: colors["dove-grey"]!, // warna text dalam secondary (warna text dalam tombol abu-abu)
-            error: colors["red-brown"]!,       // warna background error
-            onError: colors["red-brown"]!,     // warna text dalam error
-            surface: colors["cinder"]!,        // warna background permukaan widget
-            onSurface: colors["soapstone"]!,   // warna text dalam permukaan widget
-          )),
 
       // light mode
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme(
           brightness: Brightness.light,
-          background: colors["soapstone"]!,   // warna background halaman
-          onBackground: colors["cinder"]!,    // warna text dalam halaman
-          primary: colors["cerulean-blue"]!,  // warna background primary (tombol biru)
-          onPrimary: colors["soapstone"]!,    // warna text dalam primary (warna text dalam tombol biru)
-          secondary: colors["light-grey"]!,   // warna background secondary (tombol abu-abu)
-          onSecondary: colors["dove-grey"]!,  // warna text dalam secondary (warna text dalam tombol abu-abu)
-          error: colors["red-brown"]!,        // warna background error
-          onError: colors["red-brown"]!,      // warna text dalam error
-          surface: colors["soapstone"]!,      // warna background permukaan widget
-          onSurface: colors["cinder"]!,       // warna text dalam permukaan widget
+          background: colors["soapstone"]!, // warna putih background
+          onBackground: colors["cinder"]!, // warna hitam text
+          primary: colors["soapstone"]!, // warna putih background
+          onPrimary: colors["cinder"]!, // warna hitam text
+          secondary: colors["light-grey"]!, // warna abu-abu gelap background
+          onSecondary: colors["dove-grey"]!, // warna abu-abu terang text
+          error: colors["red-brown"]!, // warna merah background error
+          onError: colors["red-brown"]!, // warna merah text error
+          surface: colors["soapstone"]!, // warna putih background
+          onSurface: colors["cinder"]!, // warna hitam text
         ),
-        
-        
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: colors["cerulean-blue"],
+            foregroundColor: colors["soapstone"],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+      ),
+
+      // dark mode
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme(
+          brightness: Brightness.dark,
+          background: colors["cinder"]!, // warna hitam backgrund
+          onBackground: colors["soapstone"]!, // warna putih text
+          primary: colors["cinder"]!, // warna hitam background
+          onPrimary: colors["soapstone"]!, // warna putih text
+          secondary: colors["dark-jungle-green"]!, // warna hitam terang
+          onSecondary: colors["dove-grey"]!, // warna abu-abu gelap text
+          error: colors["red-brown"]!, // warna merah background error
+          onError: colors["red-brown"]!, // warna merah text error
+          surface: colors["cinder"]!, // warna hitam background
+          onSurface: colors["soapstone"]!, // warna putih text
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: colors["cerulean-blue"],
+            foregroundColor: colors["soapstone"],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
       ),
 
       themeMode: ThemeMode.light,

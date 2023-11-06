@@ -45,38 +45,27 @@ class _MyTicketPageState extends State<MyTicketPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                width: 130,
-                child: Button(
-                  onPressed: () {
-                    setState(() {
-                      _switchSubMenu();
-                    });
-                  },
-                  backgroundColor: _index == 0
-                      ? colors["cerulean-blue"]!
-                      : colors["light-grey"]!,
-                  foregroundColor:
-                      _index == 0 ? colors["soapstone"]! : colors["dove-grey"]!,
-                  child: Text(
-                    "New",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
+                  width: 130,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _switchSubMenu();
+                      });
+                    },
+                    child: Text(
+                      "New",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  )),
               SizedBox(
                 width: 130,
-                child: Button(
+                child: ElevatedButton(
                   onPressed: () {
                     setState(() {
                       _switchSubMenu();
                     });
                   },
-                  backgroundColor: _index == 1
-                      ? colors["cerulean-blue"]!
-                      : colors["light-grey"]!,
-                  foregroundColor:
-                      _index == 1 ? colors["soapstone"]! : colors["dove-grey"]!,
-                  child: Text("Used"),
+                  child: const Text("Used"),
                 ),
               ),
             ],

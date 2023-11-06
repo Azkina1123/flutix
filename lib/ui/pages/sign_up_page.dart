@@ -61,31 +61,24 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
             child: Container(
               width: width(context),
-              child: Button(
+              child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
                         // return loginPage();
                         return HomePage();
                       },
-                      ));
+                    ));
                   });
                 },
-                backgroundColor: lightMode
-                    ? colors['cerulean-blue']!
-                    : colors['cerulean-blue']!,
-                foregroundColor: lightMode
-                          ? colors['light-grey']!
-                          : colors['light-grey']!,
                 child: Text(
                   "Sign Up",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Raleway'),
+                  style: TextStyle(fontSize: 20, fontFamily: 'Raleway'),
                 ),
               ),
+
+              // ),
             ),
           )
         ],

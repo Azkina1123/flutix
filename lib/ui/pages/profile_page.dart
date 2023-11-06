@@ -75,6 +75,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       size: 32,
                     ),
                     title: const Text(
+                      "Display Mode",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.people,
+                      size: 32,
+                    ),
+                    title: const Text(
                       "Help",
                       style: TextStyle(fontSize: 16),
                     ),
