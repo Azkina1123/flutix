@@ -35,8 +35,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               width: width(context),
               height: 280,
               decoration: BoxDecoration(
-                  color:
-                      lightMode ? colors["cinder"] : colors["soapstone"]),
+                  color: lightMode ? colors["cinder"] : colors["soapstone"]),
             ),
 
             // rincian film =============================================
@@ -117,8 +116,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               Text(
                                 widget.movie.rate.toString(),
                                 style: TextStyle(
-                                    fontSize: 14,
-                                    color: colors["dove-grey"]!),
+                                    fontSize: 14, color: colors["dove-grey"]!),
                               ),
                             ],
                           ),

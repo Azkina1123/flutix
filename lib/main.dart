@@ -59,7 +59,6 @@ class MyApp extends StatelessWidget {
           surface: colors["cinder"]!, // warna hitam background
           onSurface: colors["soapstone"]!, // warna putih text
         ),
-
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: colors["cerulean-blue"],
