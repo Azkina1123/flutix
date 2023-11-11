@@ -6,11 +6,11 @@ class Movie {
   final DateTime finish;
   final String title;
   final String rating; // R19+ dkk
-  final List<String> genres;
-  final int duration;
-  final String language;
-  final String description;
-  final List<String> casts;
+  final List<dynamic>? genres;
+  final int? duration;
+  final String? language;
+  final String? description;
+  final List<Cast>? casts;
   final String img;
   final double rate;
 
@@ -20,13 +20,35 @@ class Movie {
     required this.finish,
     required this.title,
     required this.rating,
-    required this.genres,
-    required this.duration,
-    required this.language,
-    required this.description,
-    required this.casts,
+    this.genres,
+    this.duration,
+    this.language,
+    this.description,
+    this.casts,
     required this.img,
     this.rate = 0,
   });
 
+  List<String> genreToList() {
+    List<String> genreList = [];
+
+    for (int i = 0; i < genres!.length; i++) {
+      genreList.add(genres![i]["name"]);
+    }
+    return genreList;
+  }
+
+  String languageStr() {
+    switch (language) {
+      case 'ja':
+        return "Japanese";
+      case 'id':
+        return "Indonesian";
+      case 'ko':
+        return "Korean";
+      case 'en':
+        return "English";
+    }
+    return "None";
+  }
 }

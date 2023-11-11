@@ -17,6 +17,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  Future<List<Movie>> nowPlaying = ApiServices.getNowPlaying(3);
+  Future<List<Movie>> comingSoon = ApiServices.getComingSoon(3);
   Widget build(BuildContext context) {
     lightMode = true;
 
@@ -45,11 +47,11 @@ class _HomePageState extends State<HomePage> {
             Text(
               "Robert Pattinson",
               style: TextStyle(
-                  fontSize: 18, color: lightMode ? colors["cinder"] : colors["soapstone"]),
+                  fontSize: 18,
+                  color: lightMode ? colors["cinder"] : colors["soapstone"]),
             ),
           ],
         ),
-
       ),
 
       // body ===================================================================================
@@ -74,23 +76,36 @@ class _HomePageState extends State<HomePage> {
                   "Now Playing",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? colors["cinder"] : colors["soapstone"]),
+                      color:
+                          lightMode ? colors["cinder"] : colors["soapstone"]),
                 ),
               ),
 
               Container(
                 height: 265,
                 padding: const EdgeInsets.only(left: 20),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) {
-                    return MoviePoster(
-                      movie: movies[i],
-                      width: 180,
-                      height: 230,
-                    );
+                child: FutureBuilder<List<Movie>>(
+                  future: nowPlaying,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasData) {
+                      final movies = snapshot.data!;
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, i) {
+                          return MoviePoster(
+                            movie: movies[i],
+                            width: 180,
+                            height: 230,
+                          );
+                        },
+                        itemCount: 3,
+                      );
+                    } else {
+                      return const Text("There's no data.");
+                    }
                   },
-                  itemCount: 3,
                 ),
               ),
 
@@ -101,7 +116,8 @@ class _HomePageState extends State<HomePage> {
                   "Category",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? colors["cinder"] : colors["soapstone"]),
+                      color:
+                          lightMode ? colors["cinder"] : colors["soapstone"]),
                 ),
               ),
 
@@ -124,25 +140,53 @@ class _HomePageState extends State<HomePage> {
                   "Coming Soon",
                   style: TextStyle(
                       fontSize: 20,
-                      color: lightMode ? colors["cinder"] : colors["soapstone"]),
+                      color:
+                          lightMode ? colors["cinder"] : colors["soapstone"]),
                 ),
               ),
 
-              Container(
-                height: 265,
-                padding: const EdgeInsets.only(left: 20),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) {
-                    return MoviePoster(
-                      movie: movies[i],
-                      width: 180,
-                      height: 230,
-                    ).noRate();
-                  },
-                  itemCount: 3,
-                ),
+FutureBuilder<List<Movie>>(
+                future: comingSoon,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasData) {
+                    final ms = snapshot.data!;
+                    return Container(
+                      height: 265,
+                      padding: EdgeInsets.only(left: 20),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, i) {
+                          return MoviePoster(
+                            movie: ms[i],
+                            width: 180,
+                            height: 230,
+                          ).noRate();
+                        },
+                        itemCount: 3,
+                      ),
+                    );
+                  } else {
+                    return const Text("There's no data.");
+                  }
+                },
               ),
+              // Container(
+              //   height: 265,
+              //   padding: const EdgeInsets.only(left: 20),
+              //   child: ListView.builder(
+              //     scrollDirection: Axis.horizontal,
+              //     itemBuilder: (_, i) {
+              //       return MoviePoster(
+              //         movie: movies[i],
+              //         width: 180,
+              //         height: 230,
+              //       ).noRate();
+              //     },
+              //     itemCount: 3,
+              //   ),
+              // ),
 
               // GET YOUR VOUCHER =====================================================
               Container(

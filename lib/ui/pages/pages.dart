@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutix/models/models.dart';
+import 'package:flutix/providers/providers.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/ui/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 part "home_page.dart";
 part 'main_page.dart';

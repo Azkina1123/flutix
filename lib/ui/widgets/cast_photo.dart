@@ -1,8 +1,8 @@
 part of "widgets.dart";
 
 class CastPhoto extends StatelessWidget {
-  String name;
-  CastPhoto({super.key, required this.name});
+  Cast cast;
+  CastPhoto({super.key, required this.cast});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +16,18 @@ class CastPhoto extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
                 color: lightMode ? Colors.black : Colors.white,
-                image: DecorationImage(image: AssetImage("assets/img/"))),
+                image: DecorationImage(image: NetworkImage(ApiServices.imgDir + cast.img))),
           ),
-          Text(
-            name,
-          )
+          SizedBox(
+            width: 80,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                cast.name,
+                softWrap: false,
+              ),
+            ),
+          ),
         ],
       ),
     );

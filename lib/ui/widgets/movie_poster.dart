@@ -34,7 +34,7 @@ class _MoviePosterState extends State<MoviePoster> {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return MovieDetailPage(movie: widget.movie);
+          return MovieDetailPage(id: widget.movie.id);
         }));
       },
       child: Container(
@@ -47,7 +47,12 @@ class _MoviePosterState extends State<MoviePoster> {
               margin: const EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
                   color: lightMode ? Colors.black : Colors.white,
-                  image: DecorationImage(image: AssetImage(widget.movie.img)),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      Provider.of<MovieData>(context).imgDir + widget.movie.img,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                   borderRadius: BorderRadius.circular(10)),
             ),
             Container(
@@ -56,13 +61,16 @@ class _MoviePosterState extends State<MoviePoster> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   widget.isTitle
-                      ? Text(
-                          widget.movie.title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: lightMode ? Colors.black : Colors.white),
+                      ? Container(
+                          width: widget.isRate ? 100 : 170,
+                          child: Text(
+                            widget.movie.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: lightMode ? Colors.black : Colors.white),
+                          ),
                         )
                       : const SizedBox(),
                   widget.isRate

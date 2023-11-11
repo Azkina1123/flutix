@@ -1,10 +1,13 @@
 import 'dart:math';
 
 import 'package:email_validator/email_validator.dart';
+import 'package:flutix/providers/providers.dart';
+import 'package:flutix/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutix/models/models.dart';
 import 'package:flutix/extensions/extensions.dart';
+import 'package:provider/provider.dart';
 
 part 'movie_poster.dart';
 part 'genre_button.dart';

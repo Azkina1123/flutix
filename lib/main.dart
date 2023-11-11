@@ -1,9 +1,21 @@
+
 import 'package:flutix/models/models.dart';
+import 'package:flutix/providers/providers.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MovieData(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
