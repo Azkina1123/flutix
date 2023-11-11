@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
       ),
 
       themeMode: ThemeMode.light,
-      home: MainPage(),
+      home: const SplashPage(),
     );
   }
 }

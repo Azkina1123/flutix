@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class PilihBangku extends StatefulWidget {
-  PilihBangku({super.key});
+  const PilihBangku({super.key});
 
   @override
   State<PilihBangku> createState() => _PilihBangkuState();
@@ -69,7 +69,7 @@ class _PilihBangkuState extends State<PilihBangku> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () {
                     setState(() {
                       Navigator.pop(context);
@@ -77,7 +77,7 @@ class _PilihBangkuState extends State<PilihBangku> {
                   },
                 ),
               ),
-              Text(
+              const Text(
                 "Select Seat",
                 style: TextStyle(
                   fontFamily: 'Raleway',
@@ -101,11 +101,11 @@ class _PilihBangkuState extends State<PilihBangku> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      stops: [0.05, 0.13, 1],
+                      stops: const [0.05, 0.13, 1],
                       colors: [
                         colors['cerulean-blue']!,
-                        Color.fromARGB(0, 189, 196, 239),
-                        Color.fromARGB(0, 79, 92, 175)
+                        const Color.fromARGB(0, 189, 196, 239),
+                        const Color.fromARGB(0, 79, 92, 175)
                       ],
                     ),
                     // color: Colors.transparent
@@ -120,7 +120,7 @@ class _PilihBangkuState extends State<PilihBangku> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(200),
                         // color: Colors.black45,
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           stops: [0, 0.12, 1],
@@ -154,7 +154,7 @@ class _PilihBangkuState extends State<PilihBangku> {
                 left: 20,
                 right: 20,
                 child: Container(
-                  margin: EdgeInsets.only(top: 65, left: 20, right: 20),
+                  margin: const EdgeInsets.only(top: 65, left: 20, right: 20),
                   child: Row(
                     children: [
                       Expanded(
@@ -162,7 +162,7 @@ class _PilihBangkuState extends State<PilihBangku> {
                           alignment: Alignment.center,
                           child: GridView.builder(
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 6),
                             shrinkWrap: true,
                             itemBuilder: (_, i) {
@@ -179,7 +179,7 @@ class _PilihBangkuState extends State<PilihBangku> {
               ),
             ],
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -207,8 +207,8 @@ class _PilihBangkuState extends State<PilihBangku> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Text("Available"),
                   ),
                 ],
@@ -238,8 +238,8 @@ class _PilihBangkuState extends State<PilihBangku> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Text("Selected"),
                   ),
                 ],
@@ -269,15 +269,15 @@ class _PilihBangkuState extends State<PilihBangku> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
                     child: Text("Booked"),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: 45),
+          const SizedBox(height: 45),
           Container(
             height: 120,
             width: double.maxFinite,
@@ -286,12 +286,12 @@ class _PilihBangkuState extends State<PilihBangku> {
                     ? colors['light-grey']
                     : colors['dark-jungle-green'],
                 borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(20.0))),
+                    const BorderRadius.vertical(top: Radius.circular(20.0))),
             child: Padding(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 15),
               child: Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 30, right: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -304,13 +304,13 @@ class _PilihBangkuState extends State<PilihBangku> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   SizedBox(
                     width: width(context) - 50,
                     child: ElevatedButton(
                       onPressed: () {
                       
-                    }, child: Text("Pickup Seat"),
+                    }, child: const Text("Pickup Seat"),
                     ),
                   ),
                 ],

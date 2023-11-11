@@ -22,7 +22,8 @@ class _ProfilePageState extends State<ProfilePage> {
               decoration: BoxDecoration(
                   color: lightMode ? colors["cinder"]! : colors["soapstone"]!,
                   shape: BoxShape.circle,
-                  image: const DecorationImage(image: AssetImage("assets/img/"))),
+                  image:
+                      const DecorationImage(image: AssetImage("assets/img/"))),
             ),
             const SizedBox(
               height: 20,
@@ -41,9 +42,8 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(
               height: 30,
             ),
-
             Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -51,11 +51,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Container(
                       width: 26,
                       height: 26,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/edit-profile.png"),
-                        )
-                      ),
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage("assets/edit-profile.png"),
+                      )),
                     ),
                     title: const Text(
                       "Edit Profile",
@@ -67,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Container(
                       width: 26,
                       height: 26,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage("assets/my-wallet.png"),
                       )),
@@ -93,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Container(
                       width: 26,
                       height: 26,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage("assets/help.png"),
                       )),
@@ -108,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Container(
                       width: 26,
                       height: 26,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage("assets/language.png"),
                       )),
@@ -123,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Container(
                       width: 26,
                       height: 26,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage("assets/rate.png"),
                       )),
@@ -138,7 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Container(
                       width: 26,
                       height: 26,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage("assets/logout.png"),
                       )),
@@ -147,7 +146,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       "Log Out",
                       style: TextStyle(fontSize: 16),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignInPage()));
+                    },
                   ),
                 ],
               ),

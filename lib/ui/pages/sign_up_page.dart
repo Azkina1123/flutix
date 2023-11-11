@@ -18,7 +18,7 @@ class _SignUpPageState extends State<SignUpPage> {
         children: [
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: 51, bottom: 20, left: 37, right: 37),
+              margin: const EdgeInsets.only(top: 51, bottom: 20, left: 37, right: 37),
               width: 90,
               height: 90,
               decoration: BoxDecoration(

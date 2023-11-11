@@ -1,13 +1,13 @@
 part of "pages.dart";
 
-class schedule_place_page extends StatefulWidget {
-  const schedule_place_page({super.key});
+class SchedulePlacePage extends StatefulWidget {
+  const SchedulePlacePage({super.key});
 
   @override
-  State<schedule_place_page> createState() => _schedule_place_pageState();
+  State<SchedulePlacePage> createState() => _SchedulePlacePageState();
 }
 
-class _schedule_place_pageState extends State<schedule_place_page> {
+class _SchedulePlacePageState extends State<SchedulePlacePage> {
   String? selectedBioskop;
   List<String> bioskopList = [
     'Plaza Mulia CGV',
@@ -26,13 +26,13 @@ class _schedule_place_pageState extends State<schedule_place_page> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               CupertinoIcons.back,
               color: Colors.black,
             ),
           ),
         ),
-        title: Text(
+        title: const Text(
           "Schedule & Cinema",
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.normal),
@@ -40,9 +40,9 @@ class _schedule_place_pageState extends State<schedule_place_page> {
       ),
       body: ListView(
         children: [
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.only(left: 30.0),
+          const SizedBox(height: 30),
+          const Padding(
+            padding: EdgeInsets.only(left: 30.0),
             child: Text(
               "Cinema",
               style: TextStyle(
@@ -51,17 +51,17 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   fontWeight: FontWeight.normal),
             ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
             thickness: 1,
             indent: 20.0,
             endIndent: 20.0,
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Selected Cinema:',
                 style: TextStyle(fontSize: 20),
               ),
@@ -82,9 +82,9 @@ class _schedule_place_pageState extends State<schedule_place_page> {
               ),
             ],
           ),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.only(left: 30),
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 30),
             child: Text(
               "Schedule",
               style: TextStyle(
@@ -93,17 +93,17 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   fontWeight: FontWeight.normal),
             ),
           ),
-          Divider(
+          const Divider(
             color: Colors.black,
             thickness: 1,
             indent: 20.0,
             endIndent: 20.0,
           ),
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 30),
+                padding: EdgeInsets.only(left: 30),
                 child: Text(
                   "Sunday",
                   textAlign: TextAlign.left,
@@ -135,10 +135,10 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   Container(
                     width: 80,
                     height: 40,
-                    margin: EdgeInsets.only(left: 7),
+                    margin: const EdgeInsets.only(left: 7),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Color.fromARGB(255, 217, 212, 212),
+                      color: const Color.fromARGB(255, 217, 212, 212),
                     ),
                   ),
               ],
@@ -154,18 +154,18 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color.fromARGB(255, 217, 212, 212),
+                    color: const Color.fromARGB(255, 217, 212, 212),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 10),
-          Row(
+          const SizedBox(height: 10),
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 30),
+                padding: EdgeInsets.only(left: 30),
                 child: Text(
                   "Monday",
                   textAlign: TextAlign.left,
@@ -197,10 +197,10 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   Container(
                     width: 80,
                     height: 40,
-                    margin: EdgeInsets.only(left: 7),
+                    margin: const EdgeInsets.only(left: 7),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Color.fromARGB(255, 217, 212, 212),
+                      color: const Color.fromARGB(255, 217, 212, 212),
                     ),
                   ),
               ],
@@ -216,18 +216,18 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color.fromARGB(255, 217, 212, 212),
+                    color: const Color.fromARGB(255, 217, 212, 212),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 10),
-          Row(
+          const SizedBox(height: 10),
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 30),
+                padding: EdgeInsets.only(left: 30),
                 child: Text(
                   "Tuesday",
                   textAlign: TextAlign.left,
@@ -259,10 +259,10 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   Container(
                     width: 80,
                     height: 40,
-                    margin: EdgeInsets.only(left: 7),
+                    margin: const EdgeInsets.only(left: 7),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Color.fromARGB(255, 217, 212, 212),
+                      color: const Color.fromARGB(255, 217, 212, 212),
                     ),
                   ),
               ],
@@ -278,25 +278,25 @@ class _schedule_place_pageState extends State<schedule_place_page> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color.fromARGB(255, 217, 212, 212),
+                    color: const Color.fromARGB(255, 217, 212, 212),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return schedule_place_page();
+                    return const SchedulePlacePage();
                   },
                 ),
               );
             },
-            child: Text("Get Seat"),
+            child: const Text("Get Seat"),
           )
         ],
       ),

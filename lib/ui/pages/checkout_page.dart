@@ -1,13 +1,13 @@
 part of "pages.dart";
 
-class checkout_page extends StatefulWidget {
-  const checkout_page({super.key});
+class CheckoutPage extends StatefulWidget {
+  const CheckoutPage({super.key});
 
   @override
-  State<checkout_page> createState() => _checkout_pageState();
+  State<CheckoutPage> createState() => _CheckoutPageState();
 }
 
-class _checkout_pageState extends State<checkout_page> {
+class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +20,13 @@ class _checkout_pageState extends State<checkout_page> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               CupertinoIcons.back,
               color: Colors.black,
             ),
           ),
         ),
-        title: Text(
+        title: const Text(
           "Order Detail",
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.normal),
@@ -34,9 +34,9 @@ class _checkout_pageState extends State<checkout_page> {
       ),
       body: ListView(
         children: [
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.only(left: 30.0, bottom: 10.0),
+          const SizedBox(height: 30),
+          const Padding(
+            padding: EdgeInsets.only(left: 30.0, bottom: 10.0),
             child: Text(
               "Movie Name",
               style: TextStyle(
@@ -45,9 +45,9 @@ class _checkout_pageState extends State<checkout_page> {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.only(left: 30, right: 20.0),
+          const SizedBox(height: 10.0),
+          const Padding(
+            padding: EdgeInsets.only(left: 30, right: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -163,22 +163,22 @@ class _checkout_pageState extends State<checkout_page> {
               ],
             ),
           ),
-          SizedBox(height: 10.0),
-          Divider(
+          const SizedBox(height: 10.0),
+          const Divider(
             color: Colors.black,
             thickness: 2,
             indent: 20.0,
             endIndent: 20.0,
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(left: 20),
                     child: Text(
                       "Voucher Added",
                       textAlign: TextAlign.left,
@@ -201,12 +201,12 @@ class _checkout_pageState extends State<checkout_page> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              Row(
+              const SizedBox(height: 10),
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(left: 20),
                     child: Text(
                       "Total",
                       textAlign: TextAlign.left,
@@ -229,17 +229,17 @@ class _checkout_pageState extends State<checkout_page> {
                   ),
                 ],
               ),
-              SizedBox(height: 140),
+              const SizedBox(height: 140),
               Container(
                   width: 500,
                   height: 100,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 230, 229, 229),
                   ),
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
                         child: Column(
                           children: [
                             SizedBox(height: 20),
@@ -265,19 +265,19 @@ class _checkout_pageState extends State<checkout_page> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 140),
+                      const SizedBox(width: 140),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return Success_Checkout_Page();
+                                return const SuccessCheckoutPage();
                               },
                             ),
                           );
                         },
-                        child: Text("Play Now  >"),
+                        child: const Text("Play Now  >"),
                       ),
                     ],
                   )),

@@ -227,7 +227,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const schedule_place_page()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const SchedulePlacePage()));
           },
           child: const Text(
             "Get Ticket",
