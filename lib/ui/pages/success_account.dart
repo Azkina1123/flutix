@@ -1,13 +1,8 @@
 part of "pages.dart";
 
-class SuccessAccountPage extends StatefulWidget {
+class SuccessAccountPage extends StatelessWidget {
   const SuccessAccountPage({super.key});
 
-  @override
-  State<SuccessAccountPage> createState() => _SuccessAccountPageState();
-}
-
-class _SuccessAccountPageState extends State<SuccessAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +52,7 @@ class _SuccessAccountPageState extends State<SuccessAccountPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MainPage()));
+                                  builder: (context) => const SignInPage()));
                         },
                         child: Container(
                           decoration: const BoxDecoration(

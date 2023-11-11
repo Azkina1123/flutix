@@ -1,5 +1,7 @@
 //import 'dart:math';
 
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutix/models/models.dart';
 import 'package:flutix/providers/providers.dart';
@@ -23,3 +25,4 @@ part 'checkout_page.dart';
 part 'schedule_place_page.dart';
 // part 'detail_ticket_page.dart';
 part 'pilih_bangku_page.dart';
+part 'my_wallet.dart';

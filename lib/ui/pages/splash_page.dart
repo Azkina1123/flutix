@@ -12,11 +12,13 @@ class SplashPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: 200,
+              width: 150,
               height: 200,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/flutix-logo.png"))),
+                      image: AssetImage("assets/flutix-logo.png"),
+                      fit: BoxFit.cover),
+                      ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 40, left: 100, right: 100),
