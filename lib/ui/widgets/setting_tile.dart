@@ -12,7 +12,7 @@ class _SettingTileState extends State<SettingTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.people),
+      leading: const Icon(Icons.people),
       title: widget.title,
     );
   }

@@ -166,7 +166,7 @@ class _PilihBangkuState extends State<PilihBangku> {
                                     crossAxisCount: 6),
                             shrinkWrap: true,
                             itemBuilder: (_, i) {
-                              return seatButton(
+                              return SeatButton(
                                   seat: seatNumber[i], selected: false);
                             },
                             itemCount: seatNumber.length,

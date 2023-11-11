@@ -21,12 +21,12 @@ class _SignInPageState extends State<SignInPage> {
               style: TextStyle(fontSize: 40, fontFamily: 'Raleway'),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 90),
+          const Padding(
+            padding: EdgeInsets.only(top: 90),
             child: TextBox(title: "Email Address", type: 1),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 35),
+          const Padding(
+            padding: EdgeInsets.only(top: 35),
             child: TextBox(title: "Password", type: 2),
           ),
           Padding(

@@ -53,10 +53,6 @@ class _MyTicketPageState extends State<MyTicketPage> {
                           _switchSubMenu();
                         });
                       },
-                      child: Text(
-                        "New",
-                        style: TextStyle(fontSize: 16),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _index == 0
                             ? colors["cerulean-blue"]
@@ -64,6 +60,10 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         foregroundColor: _index == 0 ?
                             Colors.white :
                             Theme.of(context).colorScheme.onSecondary,
+                      ),
+                      child: const Text(
+                        "New",
+                        style: TextStyle(fontSize: 16),
                       ),
                     )),
                 SizedBox(
@@ -74,7 +74,6 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         _switchSubMenu();
                       });
                     },
-                    child: const Text("Used"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: _index == 1
                           ? colors["cerulean-blue"]
@@ -83,11 +82,12 @@ class _MyTicketPageState extends State<MyTicketPage> {
                       _index == 1 ? Colors.white :
                           Theme.of(context).colorScheme.onSecondary,
                     ),
+                    child: const Text("Used"),
                   ),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             StreamBuilder<QuerySnapshot>(
@@ -118,7 +118,7 @@ class _MyTicketPageState extends State<MyTicketPage> {
                     );
                   }
 
-                  return Text("There's no data.");
+                  return const Text("There's no data.");
                 })
           ],
         );

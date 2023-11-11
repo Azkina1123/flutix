@@ -27,26 +27,26 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
             child: TextBox(title: "Full Name", type: 3),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 35),
+          const Padding(
+            padding: EdgeInsets.only(top: 35),
             child: TextBox(title: "Email Address", type: 1),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 35),
+          const Padding(
+            padding: EdgeInsets.only(top: 35),
             child: TextBox(title: "Password", type: 2),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 35),
+          const Padding(
+            padding: EdgeInsets.only(top: 35),
             child: TextBox(title: "Confirm Password", type: 2),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: CheckboxListTile(
-              title: Text("I Agree to Privacy Police"),
+              title: const Text("I Agree to Privacy Police"),
               value: checkedValue,
               onChanged: (value) {
                 setState(() {
@@ -59,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
-            child: Container(
+            child: SizedBox(
               width: width(context),
               child: ElevatedButton(
                 onPressed: () {
@@ -67,12 +67,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         // return loginPage();
-                        return HomePage();
+                        return const SuccessAccountPage();
                       },
                     ));
                   });
                 },
-                child: Text(
+                child: const Text(
                   "Sign Up",
                   style: TextStyle(fontSize: 20, fontFamily: 'Raleway'),
                 ),

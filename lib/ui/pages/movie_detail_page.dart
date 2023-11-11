@@ -92,7 +92,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                           ),
 
                                           // jarak antara judul dengan rating film
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
 
@@ -130,7 +130,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                     ),
                                     child: Row(
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.star_rounded,
                                           color: Colors.amber,
                                         ),
@@ -205,7 +205,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               ),
                             ),
 
-                            SizedBox(
+                            const SizedBox(
                               height: 100,
                             ),
                           ],
@@ -222,7 +222,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       ),
       // get ticket ----------------------------------------------
       bottomSheet: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         width: width(context),
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(

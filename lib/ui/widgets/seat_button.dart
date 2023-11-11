@@ -1,19 +1,19 @@
 part of 'widgets.dart';
 
-class seatButton extends StatefulWidget {
+class SeatButton extends StatefulWidget {
   String seat;
   bool selected;
 
-  seatButton(
+  SeatButton(
       {super.key,
       required this.seat,
       required this.selected});
 
   @override
-  State<seatButton> createState() => _seatButtonState();
+  State<SeatButton> createState() => _SeatButtonState();
 }
 
-class _seatButtonState extends State<seatButton> {
+class _SeatButtonState extends State<SeatButton> {
   bool press = false;
   bool available = false;
 

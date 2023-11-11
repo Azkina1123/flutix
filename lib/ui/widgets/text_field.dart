@@ -1,10 +1,10 @@
 part of 'widgets.dart';
 
 class TextBox extends StatefulWidget {
-  String title;
-  int type;
+  final String title;
+  final int type;
 
-  TextBox({super.key, required this.title, required this.type});
+  const TextBox({super.key, required this.title, required this.type});
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -22,9 +22,9 @@ class _TextBoxState extends State<TextBox> {
 }
 
 class NormalTextBox extends StatefulWidget {
-  String title;
+  final String title;
 
-  NormalTextBox({super.key, required this.title});
+  const NormalTextBox({super.key, required this.title});
 
   @override
   State<NormalTextBox> createState() => _NormalTextBoxState();
@@ -81,7 +81,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                 fillColor: lightMode
                     ? colors['soapstone']
                     : colors['dark-jungle-green'],
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color: active
@@ -90,7 +90,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                               ? colors['cinder']!
                               : colors['soapstone']!),
                 ),
-                contentPadding: EdgeInsets.all(5),
+                contentPadding: const EdgeInsets.all(5),
                 hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
@@ -117,9 +117,9 @@ class _NormalTextBoxState extends State<NormalTextBox> {
 }
 
 class EmailTextBox extends StatefulWidget {
-  String title;
+  final String title;
 
-  EmailTextBox({super.key, required this.title});
+  const EmailTextBox({super.key, required this.title});
 
   @override
   State<EmailTextBox> createState() => _EmailTextBoxState();
@@ -200,7 +200,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
                           ? colors['cinder']!
                           : colors['soapstone']!,
                 )),
-                contentPadding: EdgeInsets.all(5),
+                contentPadding: const EdgeInsets.all(5),
                 hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
@@ -223,9 +223,9 @@ class _EmailTextBoxState extends State<EmailTextBox> {
 }
 
 class PasswordTextBox extends StatefulWidget {
-  String title;
+  final String title;
 
-  PasswordTextBox({super.key, required this.title});
+  const PasswordTextBox({super.key, required this.title});
 
   @override
   State<PasswordTextBox> createState() => _PasswordTextBoxState();
@@ -255,7 +255,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 37, right: 37),
+      padding: const EdgeInsets.only(left: 37, right: 37),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -278,14 +278,14 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                 fillColor: lightMode
                     ? colors['soapstone']
                     : colors['dark-jungle-green'],
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color: lightMode
                               ? colors['cinder']!
                               : colors['soapstone']!),
                 ),
-                contentPadding: EdgeInsets.all(5),
+                contentPadding: const EdgeInsets.all(5),
                 suffixIcon: GestureDetector(
                   onTap: () {
                     setState(() {

@@ -15,13 +15,13 @@ class _GenreButtonState extends State<GenreButton> {
   Widget build(BuildContext context) {
     
     return Container(
-      margin: EdgeInsets.only(right: 20),
+      margin: const EdgeInsets.only(right: 20),
       child: Column(
         children: [
           Container(
             width: 70,
             height: 70,
-            margin: EdgeInsets.only(bottom: 10),
+            margin: const EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: lightMode

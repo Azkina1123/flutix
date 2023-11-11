@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 height: 230,
                 decoration: BoxDecoration(
                   color: lightMode ? colors["cinder"] : colors["soapstone"],
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: AssetImage("assets/movie-trailer.png"),
                     fit: BoxFit.cover,
                   ),
@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                     final movies = snapshot.data!;
                     return Container(
                       height: 265,
-                      padding: EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 20),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (_, i) {
@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                   height: 200,
                   decoration: BoxDecoration(
                     color: lightMode ? colors["cinder"] : colors["soapstone"],
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage("assets/promo.png"),
                       fit: BoxFit.cover,
                     ),
