@@ -33,6 +33,7 @@ class NormalTextBox extends StatefulWidget {
 class _NormalTextBoxState extends State<NormalTextBox> {
   final TextEditingController _controllerTextField = TextEditingController();
   bool txtFieldVal = false;
+  bool active = false;
 
   @override
   void initState() {
@@ -43,6 +44,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
       });
     });
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -63,7 +65,11 @@ class _NormalTextBoxState extends State<NormalTextBox> {
               style: TextStyle(
                   fontFamily: 'Raleway',
                   fontSize: 20,
-                  color: lightMode ? colors['cinder'] : colors['soapstone']),
+                  color: active
+                      ? colors["cerulean-blue"]
+                      : lightMode
+                          ? colors['cinder']
+                          : colors['soapstone']),
             ),
           ),
           SizedBox(
@@ -76,6 +82,14 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                     ? colors['soapstone']
                     : colors['dark-jungle-green'],
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: active
+                          ? colors["cerulean-blue"]!
+                          : lightMode
+                              ? colors['cinder']!
+                              : colors['soapstone']!),
+                ),
                 contentPadding: EdgeInsets.all(5),
                 hintText: "Type Here",
                 hintStyle: TextStyle(
@@ -85,8 +99,15 @@ class _NormalTextBoxState extends State<NormalTextBox> {
               ),
               textAlignVertical: TextAlignVertical.center,
               style: TextStyle(
-                color: lightMode ? colors['cinder'] : colors['soapstone'],
+                color: lightMode
+                              ? colors['cinder']
+                              : colors['soapstone'],
               ),
+              onTap: () {
+                setState(() {
+                  active = !active;
+                });
+              },
             ),
           ),
         ],
@@ -118,6 +139,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
       });
     });
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -164,19 +186,19 @@ class _EmailTextBoxState extends State<EmailTextBox> {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: emailCheck == false && _controllerEmail.text != ""
-                    ? colors['red-brown']!
-                    : lightMode
-                        ? colors['cinder']!
-                        : colors['soapstone']!,
+                        ? colors['red-brown']!
+                        : lightMode
+                            ? colors['cinder']!
+                            : colors['soapstone']!,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                   color: emailCheck == false && _controllerEmail.text != ""
-                    ? colors['red-brown']!
-                    : lightMode
-                        ? colors['cinder']!
-                        : colors['soapstone']!,
+                      ? colors['red-brown']!
+                      : lightMode
+                          ? colors['cinder']!
+                          : colors['soapstone']!,
                 )),
                 contentPadding: EdgeInsets.all(5),
                 hintText: "Type Here",
@@ -223,6 +245,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
       });
     });
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -256,6 +279,12 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                     ? colors['soapstone']
                     : colors['dark-jungle-green'],
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: lightMode
+                              ? colors['cinder']!
+                              : colors['soapstone']!),
+                ),
                 contentPadding: EdgeInsets.all(5),
                 suffixIcon: GestureDetector(
                   onTap: () {
@@ -272,6 +301,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                   fontFamily: 'Raleway',
                   color: lightMode ? colors['light-grey'] : colors['dove-grey'],
                 ),
+                errorText: "Your Email or Password is Wrong",
               ),
               obscureText: press ? true : false,
               textAlignVertical: TextAlignVertical.center,
