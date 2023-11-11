@@ -13,32 +13,14 @@ class _GenreButtonState extends State<GenreButton> {
 
   @override
   Widget build(BuildContext context) {
-    switch (widget.genre.toLowerCase()) {
-      case "musical":
-        img = "";
-
-      case "horror":
-        img = "";
-
-      case "romance":
-        img = "";
-
-      case "thriller":
-        img = "";
-
-      case "action":
-        img = "";
-
-      case "drama":
-        img = "";
-    }
+    
     return Container(
       margin: EdgeInsets.only(right: 20),
       child: Column(
         children: [
           Container(
-            width: 100,
-            height: 100,
+            width: 70,
+            height: 70,
             margin: EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -46,7 +28,7 @@ class _GenreButtonState extends State<GenreButton> {
                     ? colors["light-grey"]
                     : colors["dark-jungle-green"],
                 image: DecorationImage(
-                  image: AssetImage("assets/logo/$img")
+                  image: AssetImage("assets/${widget.genre.toLowerCase()}.png")
                 )
             ),
           ),

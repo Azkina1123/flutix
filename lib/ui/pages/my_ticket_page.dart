@@ -14,13 +14,13 @@ class _MyTicketPageState extends State<MyTicketPage> {
   Widget build(BuildContext context) {
     lightMode = true;
 
-    List<Ticket> showedTickets = _index == 0
-        ? tickets
-            .where((ticket) => ticket.userId == login.id && !ticket.used)
-            .toList()
-        : tickets
-            .where((ticket) => ticket.userId == login.id && ticket.used)
-            .toList();
+    // List<Ticket> showedTickets = _index == 0
+    //     ? tickets
+    //         .where((ticket) => ticket.userId == login.id && !ticket.used)
+    //         .toList()
+    //     : tickets
+    //         .where((ticket) => ticket.userId == login.id && ticket.used)
+    //         .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,13 +38,35 @@ class _MyTicketPageState extends State<MyTicketPage> {
               color: lightMode ? colors["cinder"] : colors["soapstone"]),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
+      body: Consumer<TicketData>(builder: (context, ticketData, child) {
+        return ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                    width: 130,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _switchSubMenu();
+                        });
+                      },
+                      child: Text(
+                        "New",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: _index == 0
+                            ? colors["cerulean-blue"]
+                            : Theme.of(context).colorScheme.secondary,
+                        foregroundColor: _index == 0 ?
+                            Colors.white :
+                            Theme.of(context).colorScheme.onSecondary,
+                      ),
+                    )),
+                SizedBox(
                   width: 130,
                   child: ElevatedButton(
                     onPressed: () {
@@ -52,37 +74,55 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         _switchSubMenu();
                       });
                     },
-                    child: Text(
-                      "New",
-                      style: TextStyle(fontSize: 16),
+                    child: const Text("Used"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _index == 1
+                          ? colors["cerulean-blue"]
+                          : Theme.of(context).colorScheme.secondary,
+                      foregroundColor:
+                      _index == 1 ? Colors.white :
+                          Theme.of(context).colorScheme.onSecondary,
                     ),
-                  )),
-              SizedBox(
-                width: 130,
-                child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _switchSubMenu();
-                    });
-                  },
-                  child: const Text("Used"),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (_, i) {
-                return TicketTile(ticket: showedTickets[i]);
-              },
-              itemCount: showedTickets.length,
+              ],
             ),
-          )
-        ],
-      ),
+            SizedBox(
+              height: 30,
+            ),
+            StreamBuilder<QuerySnapshot>(
+                stream: ticketData.tickets
+                    .where("used", isEqualTo: _index == 0 ? false : true)
+                    .snapshots(),
+                builder: (_, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasData) {
+                    return Column(
+                      children: snapshot.data!.docs
+                          .map(
+                            (ticket) => TicketTile(
+                              ticket: Ticket(
+                                id: ticket.get("id"),
+                                createdDate: ticket.get("createdDate").toDate(),
+                                broadcastDate:
+                                    ticket.get("broadcastDate").toDate(),
+                                cinema: ticket.get("cinema"),
+                                movieId: ticket.get("movieId"),
+                                used: ticket.get("used"),
+                                userId: ticket.get("userId"),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    );
+                  }
+
+                  return Text("There's no data.");
+                })
+          ],
+        );
+      }),
     );
   }
 

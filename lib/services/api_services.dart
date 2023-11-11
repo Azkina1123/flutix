@@ -3,7 +3,7 @@ part of "services.dart";
 class ApiServices {
   static String apiKey = "5269eac890bc54b1e79dd28305a70d6d";
 
-  static String imgDir = "https://image.tmdb.org/t/p/w500/";
+  static String imgDir = "https://image.tmdb.org/t/p/w500";
   // static void getMoviesCollection() async {
   //   final response = await http.get(Uri.parse(
   //       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=5&api_key=5269eac890bc54b1e79dd28305a70d6d"));
@@ -107,14 +107,14 @@ class ApiServices {
         id: getMovies["id"],
         start: DateTime.utc(2023, 10, 29),
         finish: DateTime.utc(2023, 11, 05),
-        title: getMovies["title"],
+        title: getMovies["title"] ?? "",
         rating: getMovies["adult"] ? "R19+" : "R14+",
         genres: getMovies["genres"],
         duration: getMovies["runtime"],
-        language: getMovies["original_language"],
-        description: getMovies["overview"],
+        language: getMovies["original_language"] ?? "",
+        description: getMovies["overview"] ?? "",
         casts: await getMovieCasts(id),
-        img: getMovies["poster_path"],
+        img: getMovies["poster_path"] ?? "",
         rate: getMovies["vote_average"],
       );
     }
@@ -131,13 +131,13 @@ class ApiServices {
       var getCasts = json.decode(response.body) as Map<String, dynamic>;
       var results = getCasts["cast"];
       for (int i = 0; i < results.length; i++) {
-                print("=!!!!!!= CAST =!!!!!=");
-        print("results");
+        //         print("=!!!!!!= CAST =!!!!!=");
+        // print("results");
         casts.add(
           Cast(
-            id: results[i]["id"],
-            name: results[i]["name"],
-            img: results[i]["profile_path"],
+            id: results[i]["id"] ?? "",
+            name: results[i]["name"] ?? "",
+            img: results[i]["profile_path"] ?? "",
           ),
         );
 

@@ -1,17 +1,22 @@
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutix/firebase_options.dart';
 import 'package:flutix/models/models.dart';
 import 'package:flutix/providers/providers.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => MovieData(),
-        ),
+        ChangeNotifierProvider(create: (context) => PageData()),
+        ChangeNotifierProvider(create: (context) => MovieData()),
+        ChangeNotifierProvider(create: (context) => TicketData()),
       ],
       child: const MyApp(),
     ),

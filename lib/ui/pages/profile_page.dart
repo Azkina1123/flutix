@@ -48,9 +48,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ListTile(
-                    leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                    leading: Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/edit-profile.png"),
+                        )
+                      ),
                     ),
                     title: const Text(
                       "Edit Profile",
@@ -59,9 +64,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                    leading: Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage("assets/my-wallet.png"),
+                      )),
                     ),
                     title: const Text(
                       "My Wallet",
@@ -71,19 +80,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   ListTile(
                     leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                      Icons.brightness_4_outlined,
+                      size: 26,
                     ),
                     title: const Text(
-                      "Display Mode",
+                      "Theme Mode",
                       style: TextStyle(fontSize: 16),
                     ),
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                    leading: Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage("assets/help.png"),
+                      )),
                     ),
                     title: const Text(
                       "Help",
@@ -92,9 +105,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                    leading: Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage("assets/language.png"),
+                      )),
                     ),
                     title: const Text(
                       "Change Language",
@@ -103,9 +120,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                    leading: Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage("assets/rate.png"),
+                      )),
                     ),
                     title: const Text(
                       "Rate Flutix",
@@ -114,9 +135,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.people,
-                      size: 32,
+                    leading: Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage("assets/logout.png"),
+                      )),
                     ),
                     title: const Text(
                       "Log Out",

@@ -113,8 +113,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                       ),
 
                                       // genre & language --------------------------------------------------------
-                                      // Text("${movie.language}"),
-                                      // Text("genre = " + movie.genreToList().length.toString()),
                                       Text(
                                           "${genres[0]}    ${genres.length >= 2 ? genres[1] + "    " : ""}${genres.length >= 3 ? genres[2] + "    " : ""}|    ${movie.languageStr()}"),
                                     ],
@@ -228,7 +226,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         width: width(context),
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const schedule_place_page()));
+          },
           child: const Text(
             "Get Ticket",
             style: TextStyle(fontSize: 16),

@@ -5,8 +5,8 @@ class Ticket {
   DateTime createdDate;
   DateTime broadcastDate;
   String cinema;
-  String studio;
-  List<String> seats;
+  String? studio;
+  List<String>? seats;
   bool used;
   int movieId;
   String userId;
@@ -16,8 +16,8 @@ class Ticket {
     required this.createdDate,
     required this.broadcastDate,
     required this.cinema,
-    required this.studio,
-    required this.seats,
+    this.studio,
+    this.seats,
     required this.used,
     required this.movieId,
     required this.userId

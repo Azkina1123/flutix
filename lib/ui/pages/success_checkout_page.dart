@@ -59,7 +59,7 @@ class _Success_Checkout_PageState extends State<Success_Checkout_Page> {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset('assets/ticket.png'),
+                      Image.asset('assets/ticket-white.png'),
                       SizedBox(width: 20),
                       Text(
                         'My Ticket',
