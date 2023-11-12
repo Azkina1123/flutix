@@ -23,6 +23,6 @@ part 'profile_page.dart';
 part 'success_checkout_page.dart';
 part 'checkout_page.dart';
 part 'schedule_place_page.dart';
-// part 'detail_ticket_page.dart';
+part 'detail_ticket_page.dart';
 part 'pilih_bangku_page.dart';
 part 'my_wallet.dart';

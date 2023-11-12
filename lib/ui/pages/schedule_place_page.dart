@@ -148,7 +148,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 10),
+                padding: const EdgeInsets.only(left: 0, top: 10, right: 258),
                 child: Container(
                   width: 80,
                   height: 40,
@@ -210,7 +210,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 10),
+                padding: const EdgeInsets.only(left: 0, top: 10, right: 258),
                 child: Container(
                   width: 80,
                   height: 40,
@@ -272,7 +272,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 10),
+                padding: const EdgeInsets.only(left: 0, top: 10, right: 258),
                 child: Container(
                   width: 80,
                   height: 40,
