@@ -5,6 +5,7 @@ part 'user.dart';
 part 'movie.dart';
 part 'ticket.dart';
 part 'cast.dart';
+part 'order.dart';
 // part 'movie_api.dart';
 
 // NANTI HAPUSSS
@@ -196,4 +197,59 @@ List<Ticket> tickets = [
     movieId: 5,
     userId: "user2",
   ),
+];
+
+
+
+
+
+List<Order> orders = [
+  Order(id: 123,
+        idUser: "user1",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 1234567890),
+  Order(id: 782,
+        idUser: "user1",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 7826351906),
+  Order(id: 389,
+        idUser: "user1",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 3892017265),
+  Order(id: 019,
+        idUser: "user2",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 0192736281),
+  Order(id: 372,
+        idUser: "user1",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 37261829371),
+  Order(id: 267,
+        idUser: "user1",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 26718263745),
+  Order(id: 124,
+        idUser: "user1",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 1242256423),
+  Order(id: 753,
+        idUser: "user2",
+        createdDate: DateTime.utc(2023, 10, 21),
+        isTicket: true,
+        totalPembayaran: 5000,
+        ticketId: 7534212344),
 ];

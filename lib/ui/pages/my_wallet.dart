@@ -14,8 +14,6 @@ class _MyWalletPageState extends State<MyWalletPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: null,
         surfaceTintColor: lightMode ? colors["soapstone"] : colors["cinder"],
 
         toolbarHeight: 100, //
@@ -38,7 +36,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
               children: [
                 Container(
                     height: 250,
-                    margin: EdgeInsets.only(left: 50, right: 50),
+                    margin: const EdgeInsets.only(left: 50, right: 50),
                     alignment: Alignment.bottomLeft,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -49,19 +47,19 @@ class _MyWalletPageState extends State<MyWalletPage> {
                   height: 250,
                   margin: const EdgeInsets.only(left: 50, right: 50),
                   padding: const EdgeInsets.only(left: 20, bottom: 20),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "RP 0,00",
-                        style: TextStyle(
+                        "${"RP ${login.balance}"},00",
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 25,
                             fontFamily: 'Oswald',
                             fontWeight: FontWeight.w200),
                       ),
-                      Text(
+                      const Text(
                         "Available Balance",
                         style: TextStyle(
                             color: Colors.white,
@@ -78,45 +76,35 @@ class _MyWalletPageState extends State<MyWalletPage> {
               height: 30,
             ),
             const Padding(
-                padding: EdgeInsets.only(left: 50),
+                padding: EdgeInsets.only(left: 50, bottom: 20),
                 child: Text(
                   "Recent Transcation",
                   style: TextStyle(fontSize: 25, fontFamily: 'Raleway'),
                 )),
-                /*
-            StreamBuilder<QuerySnapshot>(
-                stream: ticketData.tickets
-                    .where("used", isEqualTo: _index == 0 ? false : true)
-                    .snapshots(),
-                builder: (_, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  } else if (snapshot.hasData) {
-                    return Column(
-                      children: snapshot.data!.docs
-                          .map(
-                            (ticket) => TicketTile(
-                              ticket: Ticket(
-                                id: ticket.get("id"),
-                                createdDate: ticket.get("createdDate").toDate(),
-                                broadcastDate:
-                                    ticket.get("broadcastDate").toDate(),
-                                cinema: ticket.get("cinema"),
-                                movieId: ticket.get("movieId"),
-                                used: ticket.get("used"),
-                                userId: ticket.get("userId"),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    );
-                  }
-
-                  return const Text("There's no data.");
-                })*/
+            Container(
+              height: 300,
+              child: OrderTile(),
+            ),
           ],
         );
       }),
+      bottomSheet: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: width(context),
+        margin: const EdgeInsets.only(bottom: 30),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SplashPage()));
+          },
+          child: const Text(
+            "Top Up",
+            style: TextStyle(fontSize: 16, fontFamily: "Raleway"),
+          ),
+        ),
+      ),
     );
   }
 }

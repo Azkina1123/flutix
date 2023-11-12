@@ -75,7 +75,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       "My Wallet",
                       style: TextStyle(fontSize: 16),
                     ),
-                    onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyWalletPage()));
+                },
                   ),
                   ListTile(
                     leading: const Icon(
