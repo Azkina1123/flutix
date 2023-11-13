@@ -57,9 +57,9 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         backgroundColor: _index == 0
                             ? colors["cerulean-blue"]
                             : Theme.of(context).colorScheme.secondary,
-                        foregroundColor: _index == 0 ?
-                            Colors.white :
-                            Theme.of(context).colorScheme.onSecondary,
+                        foregroundColor: _index == 0
+                            ? Colors.white
+                            : Theme.of(context).colorScheme.onSecondary,
                       ),
                       child: const Text(
                         "New",
@@ -78,9 +78,9 @@ class _MyTicketPageState extends State<MyTicketPage> {
                       backgroundColor: _index == 1
                           ? colors["cerulean-blue"]
                           : Theme.of(context).colorScheme.secondary,
-                      foregroundColor:
-                      _index == 1 ? Colors.white :
-                          Theme.of(context).colorScheme.onSecondary,
+                      foregroundColor: _index == 1
+                          ? Colors.white
+                          : Theme.of(context).colorScheme.onSecondary,
                     ),
                     child: const Text("Used"),
                   ),
@@ -101,16 +101,27 @@ class _MyTicketPageState extends State<MyTicketPage> {
                     return Column(
                       children: snapshot.data!.docs
                           .map(
-                            (ticket) => TicketTile(
-                              ticket: Ticket(
-                                id: ticket.get("id"),
-                                createdDate: ticket.get("createdDate").toDate(),
-                                broadcastDate:
-                                    ticket.get("broadcastDate").toDate(),
-                                cinema: ticket.get("cinema"),
-                                movieId: ticket.get("movieId"),
-                                used: ticket.get("used"),
-                                userId: ticket.get("userId"),
+                            (ticket) => GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailTicket(),
+                                  ),
+                                );
+                              },
+                              child: TicketTile(
+                                ticket: Ticket(
+                                  id: ticket.get("id"),
+                                  createdDate:
+                                      ticket.get("createdDate").toDate(),
+                                  broadcastDate:
+                                      ticket.get("broadcastDate").toDate(),
+                                  cinema: ticket.get("cinema"),
+                                  movieId: ticket.get("movieId"),
+                                  used: ticket.get("used"),
+                                  userId: ticket.get("userId"),
+                                ),
                               ),
                             ),
                           )
