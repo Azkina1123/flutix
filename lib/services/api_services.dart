@@ -42,19 +42,23 @@ class ApiServices {
 
   static Future<List<Movie>> getNowPlaying(int count) async {
     final response = await http.get(Uri.parse(
-        "https://api.themoviedb.org/3/movie/now_playing?page=5&api_key=$apiKey"));
+        "https://api.themoviedb.org/3/movie/now_playing?page=6&api_key=$apiKey"));
 
     List<Movie> movies = [];
     if (response.statusCode == 200) {
       var getMovies = json.decode(response.body) as Map<String, dynamic>;
       var results = getMovies["results"];
+       String finish = getMovies["dates"]["maximum"];
 
       for (int i = 0; i < count; i++) {
+
+
+        String start = getMovies["results"][i]["release_date"];
         movies.add(
           Movie(
             id: results[i]["id"],
-            start: DateTime.utc(2023, 10, 29),
-            finish: DateTime.utc(2023, 11, 05),
+            start: DateTime.parse(start),
+            finish: DateTime.parse(finish),
             title: results[i]["title"],
             rating: results[i]["adult"] ? "R19+" : "R14+",
             img: results[i]["poster_path"],
@@ -75,13 +79,14 @@ class ApiServices {
     if (response.statusCode == 200) {
       var getMovies = json.decode(response.body) as Map<String, dynamic>;
       var results = getMovies["results"];
-
+      String finish = getMovies["dates"]["maximum"];
       for (int i = 0; i < count; i++) {
+      String start = getMovies["results"][i]["release_date"];
         movies.add(
           Movie(
             id: results[i]["id"],
-            start: DateTime.utc(2023, 10, 29),
-            finish: DateTime.utc(2023, 11, 05),
+            start: DateTime.parse(start),
+            finish: DateTime.parse(finish),
             title: results[i]["title"],
             rating: results[i]["adult"] ? "R19+" : "R14+",
             img: results[i]["poster_path"],
@@ -105,8 +110,7 @@ class ApiServices {
 
       movie = Movie(
         id: getMovies["id"],
-        start: DateTime.utc(2023, 10, 29),
-        finish: DateTime.utc(2023, 11, 05),
+        start: getMovies["release_date"],
         title: getMovies["title"] ?? "",
         rating: getMovies["adult"] ? "R19+" : "R14+",
         genres: getMovies["genres"],
@@ -123,8 +127,8 @@ class ApiServices {
   }
 
   static Future<List<Cast>> getMovieCasts(int id) async {
-    final response = await http.get(
-        Uri.parse("https://api.themoviedb.org/3/movie/$id/credits?api_key=$apiKey"));
+    final response = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/movie/$id/credits?api_key=$apiKey"));
 
     List<Cast> casts = [];
     if (response.statusCode == 200) {
@@ -140,7 +144,6 @@ class ApiServices {
             img: results[i]["profile_path"] ?? "",
           ),
         );
-
       }
       // print(results);
       // var result = getMovies["results"];

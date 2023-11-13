@@ -13,12 +13,13 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
           Center(
             child: Container(
-              margin: const EdgeInsets.only(top: 51, bottom: 20, left: 37, right: 37),
+              margin: const EdgeInsets.only(bottom: 20, left: 37, right: 37),
               width: 90,
               height: 90,
               decoration: BoxDecoration(
@@ -57,32 +58,28 @@ class _SignUpPageState extends State<SignUpPage> {
                   ListTileControlAffinity.leading, //  <-- leading Checkbox
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
-            child: SizedBox(
-              width: width(context),
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        // return loginPage();
-                        return const SuccessAccountPage();
-                      },
-                    ));
-                  });
-                },
-                child: const Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 20, fontFamily: 'Raleway'),
-                ),
-              ),
-
-              // ),
-            ),
-          )
+          
         ],
       ),
+      bottomSheet: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: width(context),
+        margin: const EdgeInsets.only(bottom: 30),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SuccessAccountPage()));
+          },
+          child: const Text(
+            "Sign Up",
+            style: TextStyle(fontSize: 16, fontFamily: "Raleway"),
+          ),
+        ),
+      ),
+      
     );
+    
   }
 }

@@ -2,8 +2,8 @@ part of "models.dart";
 
 class Movie {
   final int id;
-  final DateTime start;
-  final DateTime finish;
+  final DateTime? start;
+  final DateTime? finish;
   final String title;
   final String rating; // R19+ dkk
   final List<dynamic>? genres;
@@ -16,8 +16,8 @@ class Movie {
 
   Movie({
     required this.id,
-    required this.start,
-    required this.finish,
+    this.start,
+    this.finish,
     required this.title,
     required this.rating,
     this.genres,

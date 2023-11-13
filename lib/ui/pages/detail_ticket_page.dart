@@ -40,12 +40,12 @@ class _DetailTicketState extends State<DetailTicket> {
               children: [
                 Container(
                   width: 400,
-                  height: 230,
+                  height: 280,
                   margin: EdgeInsets.only(left: 40, right: 40, bottom: 0, top: 10),
                   decoration: BoxDecoration(
                     image: const DecorationImage(
                       image: AssetImage("assets/midnight_runners.jpeg"),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                     color: Color.fromARGB(255, 242, 238, 238),
                     borderRadius: BorderRadius.only(

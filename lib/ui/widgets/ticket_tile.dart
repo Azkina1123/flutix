@@ -39,11 +39,7 @@ class TicketTile extends StatelessWidget {
                               color: colors["dove-grey"]),
                         ),
                         Text(
-                          ticket.broadcastDate.day.toString() +
-                              " " +
-                              ticket.broadcastDate.month.toString() +
-                              " " +
-                              ticket.broadcastDate.year.toString(),
+                          DateFormat('EEE, dd MMMM yyyy').format(ticket.broadcastDate),
                           style:
                               TextStyle(fontSize: 16, color: colors["dove-grey"]),
                         ),

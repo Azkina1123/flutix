@@ -16,7 +16,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
       appBar: AppBar(
         surfaceTintColor: lightMode ? colors["soapstone"] : colors["cinder"],
 
-        toolbarHeight: 100, //
+        toolbarHeight: 80, //
 
         backgroundColor: lightMode ? colors["soapstone"] : colors["cinder"],
         title: Text(
@@ -35,7 +35,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
               alignment: Alignment.center,
               children: [
                 Container(
-                    height: 250,
+                    height: 220,
                     margin: const EdgeInsets.only(left: 50, right: 50),
                     alignment: Alignment.bottomLeft,
                     decoration: const BoxDecoration(
@@ -44,7 +44,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
                             fit: BoxFit.fill))),
                 Container(
                   alignment: Alignment.bottomLeft,
-                  height: 250,
+                  height: 220,
                   margin: const EdgeInsets.only(left: 50, right: 50),
                   padding: const EdgeInsets.only(left: 20, bottom: 20),
                   child: Column(
@@ -81,10 +81,8 @@ class _MyWalletPageState extends State<MyWalletPage> {
                   "Recent Transcation",
                   style: TextStyle(fontSize: 25, fontFamily: 'Raleway'),
                 )),
-            Container(
-              height: 300,
-              child: OrderTile(),
-            ),
+            OrderTile(),
+            SizedBox(height: 80,)
           ],
         );
       }),

@@ -22,60 +22,57 @@ class SplashPage extends StatelessWidget {
                           fit: BoxFit.cover),
                           ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, left: 100, right: 100),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text("New Experience",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 25, fontFamily: 'Raleway')),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text("Watch a new movie much easier than any before",
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("New Experience",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 25, fontFamily: 'Raleway')),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: const Text("Watch a new movie much easier than any before",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20, fontFamily: 'Raleway')),
-                      const SizedBox(
-                        height: 20,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      child: const Text(
+                        "Get Started",
+                        style: TextStyle(fontSize: 18, fontFamily: 'Raleway'),
                       ),
-                      SizedBox(
-                        width: 400,
-                        height: 45,
-                        child: ElevatedButton(
-                          child: const Text(
-                            "Get Started",
-                            style: TextStyle(fontSize: 25, fontFamily: 'Raleway'),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SignUpPage()));
-                          },
-                        ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignUpPage()));
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      // width: 400,
+                      child: TextButton(
+                        child: const Text("Sign In to My Account",
+                        textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontFamily: 'Raleway')),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignInPage()));
+                        },
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 400,
-                        child: TextButton(
-                          child: const Text("Sign In to My Account",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontFamily: 'Raleway')),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SignInPage()));
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 )
               ],
             ),

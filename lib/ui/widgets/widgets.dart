@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutix/models/models.dart';
 import 'package:flutix/extensions/extensions.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 part 'movie_poster.dart';
