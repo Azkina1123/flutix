@@ -11,6 +11,7 @@ class MovieDetailPage extends StatefulWidget {
 class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   Widget build(BuildContext context) {
+    bool _isUpcoming = false;
     Future<Movie> movieFuture = ApiServices.getMovieDetails(widget.id);
     lightMode = true;
     return Scaffold(
@@ -39,6 +40,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 } else if (snapshot.hasData) {
                   final movie = snapshot.data!;
                   List<String> genres = movie.genreToList();
+                  if (movie.start!.isAfter(DateTime.now())) {
+                    _isUpcoming = true;
+                  }
                   return Column(
                     children: [
                       // poster film =============================================
@@ -221,20 +225,25 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         ),
       ),
       // get ticket ----------------------------------------------
-      bottomSheet: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        width: width(context),
-        margin: const EdgeInsets.only(bottom: 30),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const SchedulePlacePage()));
-          },
-          child: const Text(
-            "Get Ticket",
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
-      ),
+      bottomSheet: _isUpcoming
+          ? Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: width(context),
+              margin: const EdgeInsets.only(bottom: 30),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SchedulePlacePage()));
+                },
+                child: const Text(
+                  "Get Ticket",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            )
+          : null,
     );
   }
 

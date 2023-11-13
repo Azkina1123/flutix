@@ -110,7 +110,7 @@ class ApiServices {
 
       movie = Movie(
         id: getMovies["id"],
-        start: getMovies["release_date"],
+        start: DateTime.parse(getMovies["release_date"]),
         title: getMovies["title"] ?? "",
         rating: getMovies["adult"] ? "R19+" : "R14+",
         genres: getMovies["genres"],
