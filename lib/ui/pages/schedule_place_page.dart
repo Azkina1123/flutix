@@ -100,7 +100,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             endIndent: 20.0,
           ),
           const Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 30),
@@ -114,7 +114,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                   ),
                 ),
               ),
-              SizedBox(width: 180),
+              // SizedBox(width: 180),
               Text(
                 "IDR 45.000",
                 textAlign: TextAlign.right,
@@ -162,7 +162,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
           ),
           const SizedBox(height: 10),
           const Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 30),
@@ -176,7 +176,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                   ),
                 ),
               ),
-              SizedBox(width: 175),
+              // SizedBox(width: 175),
               Text(
                 "IDR 35.000",
                 textAlign: TextAlign.right,
@@ -224,7 +224,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
           ),
           const SizedBox(height: 10),
           const Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 30),
@@ -238,7 +238,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                   ),
                 ),
               ),
-              SizedBox(width: 170),
+              // SizedBox(width: 170),
               Text(
                 "IDR 35.000",
                 textAlign: TextAlign.right,

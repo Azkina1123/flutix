@@ -41,9 +41,10 @@ class _DetailTicketState extends State<DetailTicket> {
                 Container(
                   width: 400,
                   height: 280,
-                  margin: EdgeInsets.only(left: 40, right: 40, bottom: 0, top: 10),
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
+                  margin:
+                      const EdgeInsets.only(left: 40, right: 40, bottom: 0, top: 10),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
                       image: AssetImage("assets/midnight_runners.jpeg"),
                       fit: BoxFit.cover,
                     ),
@@ -57,16 +58,17 @@ class _DetailTicketState extends State<DetailTicket> {
                 Container(
                   width: 400,
                   height: 280,
-                  margin: EdgeInsets.only(left: 40, right: 40, bottom: 0, top: 0),
-                  decoration: BoxDecoration(
+                  margin:
+                      const EdgeInsets.only(left: 40, right: 40, bottom: 0, top: 0),
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 242, 238, 238),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       children: [
                         SizedBox(height: 20),
@@ -80,7 +82,6 @@ class _DetailTicketState extends State<DetailTicket> {
                         SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
                           children: [
                             Text(
                               "Cinema",
@@ -130,7 +131,6 @@ class _DetailTicketState extends State<DetailTicket> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                  
                           children: [
                             Text(
                               "15:30",
@@ -146,7 +146,6 @@ class _DetailTicketState extends State<DetailTicket> {
                         SizedBox(height: 6),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
                           children: [
                             Text(
                               "Seat",
@@ -172,7 +171,6 @@ class _DetailTicketState extends State<DetailTicket> {
                         SizedBox(height: 6),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
                           children: [
                             Text(
                               "Studio",
@@ -198,7 +196,6 @@ class _DetailTicketState extends State<DetailTicket> {
                         SizedBox(height: 6),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
                           children: [
                             Text(
                               "ID Order",
@@ -230,18 +227,18 @@ class _DetailTicketState extends State<DetailTicket> {
                   thickness: 1,
                   indent: 48.0,
                   endIndent: 48.0,
-                  
                 ),
                 Container(
                   width: 400,
                   height: 70,
-                  margin: EdgeInsets.only(left: 40, right: 40, bottom: 90, top: 0),
+                  margin:
+                      const EdgeInsets.only(left: 40, right: 40, bottom: 90, top: 0),
                   decoration: BoxDecoration(
                     image: const DecorationImage(
                       image: AssetImage("assets/barcode.png"),
                       fit: BoxFit.fill,
                     ),
-                    color: Color.fromARGB(255, 242, 238, 238),
+                    color: const Color.fromARGB(255, 242, 238, 238),
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),

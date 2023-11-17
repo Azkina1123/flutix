@@ -30,8 +30,8 @@ class _SuccessCheckoutPageState extends State<SuccessCheckoutPage> {
             Column(
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(
-                      left: 85, right: 85, top: 25, bottom: 0),
+                  padding:
+                      EdgeInsets.only(left: 85, right: 85, top: 25, bottom: 0),
                   child: Text(
                     "Happy Watching!",
                     style: TextStyle(fontSize: 28),
@@ -70,18 +70,16 @@ class _SuccessCheckoutPageState extends State<SuccessCheckoutPage> {
                 ),
                 const SizedBox(height: 10),
                 TextButton(
+                  child: const Text("Back to Home",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontFamily: 'Raleway')),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MainPage(),
-                      ),
-                    );
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MainPage()));
                   },
-                  child: const Text(
-                    "Back to Home",
-                    style: TextStyle(fontSize: 18),
-                  ),
                 ),
               ],
             ),

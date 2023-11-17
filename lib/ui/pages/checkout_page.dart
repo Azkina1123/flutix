@@ -112,7 +112,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 SizedBox(height: 20),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Ticket",
@@ -123,7 +123,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    SizedBox(width: 190),
+                    // SizedBox(width: 190),
                     Text(
                       "Price",
                       textAlign: TextAlign.right,
@@ -137,7 +137,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 SizedBox(height: 3),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "2 Ticket",
@@ -148,7 +148,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    SizedBox(width: 175),
+                    // SizedBox(width: 175),
                     Text(
                       "IDR 35.000",
                       textAlign: TextAlign.right,
@@ -175,7 +175,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 20),
@@ -189,21 +189,24 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 120),
-                  Text(
-                    "-10%",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  // SizedBox(width: 120),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text(
+                      "-10%",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 10),
               const Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 20),
@@ -217,14 +220,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 200),
-                  Text(
-                    "IDR 63.000",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  // SizedBox(width: 200),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text(
+                      "IDR 63.000",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
