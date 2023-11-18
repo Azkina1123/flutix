@@ -3,8 +3,9 @@ part of 'widgets.dart';
 class TextBox extends StatefulWidget {
   final String title;
   final int type;
+  final String? hint;
 
-  const TextBox({super.key, required this.title, required this.type});
+  const TextBox({super.key, required this.title, required this.type, this.hint});
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -17,14 +18,15 @@ class _TextBoxState extends State<TextBox> {
         ? EmailTextBox(title: widget.title)
         : widget.type == 2
             ? PasswordTextBox(title: widget.title)
-            : NormalTextBox(title: widget.title);
+            : NormalTextBox(title: widget.title, hint: widget.hint);
   }
 }
 
 class NormalTextBox extends StatefulWidget {
   final String title;
+  final String? hint;
 
-  const NormalTextBox({super.key, required this.title});
+  const NormalTextBox({super.key, required this.title, this.hint});
 
   @override
   State<NormalTextBox> createState() => _NormalTextBoxState();
@@ -91,7 +93,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                               : colors['soapstone']!),
                 ),
                 contentPadding: const EdgeInsets.all(5),
-                hintText: "Type Here",
+                hintText: widget.hint ?? "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
                   color: lightMode ? colors['light-grey'] : colors['dove-grey'],

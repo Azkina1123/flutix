@@ -14,5 +14,5 @@ extension FirebaseUserExtension on User {
               "English", // Parameter selectedLanguage dengan nilai default "English"
           int balance =
               50000}) => // Parameter balance dengan nilai default 50000
-      User1(this.uid, email, name, selectedGenres, selectedLanguage, balance);
+      User1(uid, email, name, selectedGenres, selectedLanguage, balance);
 }

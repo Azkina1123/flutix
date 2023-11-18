@@ -31,9 +31,9 @@ class SplashPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const Text("Watch a new movie much easier than any before",
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Text("Watch a new movie much easier than any before",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20, fontFamily: 'Raleway')),
                     ),

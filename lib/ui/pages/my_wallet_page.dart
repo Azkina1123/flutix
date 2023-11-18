@@ -1,14 +1,7 @@
 part of "pages.dart";
 
-class MyWalletPage extends StatefulWidget {
+class MyWalletPage extends StatelessWidget {
   const MyWalletPage({super.key});
-
-  @override
-  State<MyWalletPage> createState() => _MyWalletPageState();
-}
-
-class _MyWalletPageState extends State<MyWalletPage> {
-  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +74,8 @@ class _MyWalletPageState extends State<MyWalletPage> {
                   "Recent Transcation",
                   style: TextStyle(fontSize: 25, fontFamily: 'Raleway'),
                 )),
-            OrderTile(),
-            SizedBox(height: 80,)
+            const OrderTile(),
+            const SizedBox(height: 80)
           ],
         );
       }),
@@ -95,7 +88,7 @@ class _MyWalletPageState extends State<MyWalletPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const SplashPage()));
+                    builder: (context) => const TopUpPage()));
           },
           child: const Text(
             "Top Up",

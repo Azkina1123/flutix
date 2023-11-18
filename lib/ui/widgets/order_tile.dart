@@ -1,7 +1,7 @@
 part of "widgets.dart";
 
 class OrderTile extends StatelessWidget {
-  OrderTile({super.key});
+  const OrderTile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class OrderTile extends StatelessWidget {
           children: [
             for (int i = 0; i < orders.length; i++)
               if (!orders[i].isTicket)
-                Text("")
+                const Text("")
               else if (orders[i].isTicket)
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 20),
@@ -38,13 +38,9 @@ class OrderTile extends StatelessWidget {
                                   color: colors["dove-grey"]),
                             ),
                             Text(
-                              orders[i].createdDate.day.toString() +
-                                  " " +
-                                  orders[i].createdDate.month.toString() +
-                                  " " +
-                                  orders[i].createdDate.year.toString(),
-                              style: TextStyle(
-                                  fontSize: 16, color: colors["dove-grey"]),
+                              DateFormat('EEE, dd MMMM yyyy').format(orders[i].createdDate),
+                              style:
+                                  TextStyle(fontSize: 16, color: colors["dove-grey"]),
                             ),
                             Text(
                               "Harusnya Cinema",
