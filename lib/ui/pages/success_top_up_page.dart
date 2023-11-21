@@ -20,11 +20,11 @@ class SuccessTopUpPage extends StatelessWidget {
                     fit: BoxFit.cover),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 60),
             Column(
               children: [
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 140),
+                  padding: EdgeInsets.symmetric(horizontal: 70),
                   child: Text(
                     "Wallet is Ready!",
                     style: TextStyle(fontSize: 28),
@@ -33,7 +33,7 @@ class SuccessTopUpPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 140),
+                  padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Text(
                     "You have successfully feed your wallet!",
                     style: TextStyle(fontSize: 22),
@@ -44,9 +44,7 @@ class SuccessTopUpPage extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(
-                      context
-                    );
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colors["cerulean-blue"]!),

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, sort_child_properties_last
+
 part of "pages.dart";
 
 class SchedulePlacePage extends StatefulWidget {
@@ -14,6 +16,10 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
     'Samarinda Square XXI',
     'Big Mall XXI'
   ];
+  String selectedTempat = 'Big Mall XXI';
+  List<String> waktuTayang = ['12:00', '13:00', '16:00', '17:00', '19:00'];
+  int selectedIdx = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,11 +72,10 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                 style: TextStyle(fontSize: 20),
               ),
               DropdownButton<String>(
-                value: selectedBioskop,
+                value: selectedTempat,
                 onChanged: (String? newValue) {
-                  // Perubahan tipe data menjadi String?
                   setState(() {
-                    selectedBioskop = newValue;
+                    selectedTempat = newValue!;
                   });
                 },
                 items: bioskopList.map((String bioskop) {
@@ -127,38 +132,32 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                for (int i = 0; i < 4; i++)
-                  Container(
-                    width: 80,
-                    height: 40,
-                    margin: const EdgeInsets.only(left: 7),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: const Color.fromARGB(255, 217, 212, 212),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 10, right: 258),
-                child: Container(
-                  width: 80,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color.fromARGB(255, 217, 212, 212),
-                  ),
-                ),
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                // crossAxisSpacing: 8.0,
+                // mainAxisSpacing: 8.0,
+                mainAxisSpacing: height(context) / 70,
+                crossAxisSpacing: 10,
+                mainAxisExtent: 40,
               ),
-            ],
+              itemCount: waktuTayang.length,
+              itemBuilder: (context, index) {
+                return ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedIdx = index;
+                    });
+                  },
+                  child: Text(waktuTayang[index]),
+                  style: ElevatedButton.styleFrom(
+                    primary: selectedIdx == index ? Colors.blue : null,
+                  ),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 10),
           const Row(
@@ -189,53 +188,44 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                for (int i = 0; i < 4; i++)
-                  Container(
-                    width: 80,
-                    height: 40,
-                    margin: const EdgeInsets.only(left: 7),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: const Color.fromARGB(255, 217, 212, 212),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 10, right: 258),
-                child: Container(
-                  width: 80,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color.fromARGB(255, 217, 212, 212),
-                  ),
-                ),
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                // crossAxisSpacing: 8.0,
+                // mainAxisSpacing: 8.0,
+                mainAxisSpacing: height(context) / 70,
+                crossAxisSpacing: 10,
+                mainAxisExtent: 40,
               ),
-            ],
+              itemCount: waktuTayang.length,
+              itemBuilder: (context, index) {
+                return ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedIdx = index + 5;
+                    });
+                  },
+                  child: Text(waktuTayang[index]),
+                  style: ElevatedButton.styleFrom(
+                    primary: selectedIdx == index + 5 ? Colors.blue : null,
+                  ),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 10),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 30),
-                child: Text(
-                  "Tuesday",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                  ),
+              Text(
+                "Tuesday",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
               // SizedBox(width: 170),
@@ -251,38 +241,32 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                for (int i = 0; i < 4; i++)
-                  Container(
-                    width: 80,
-                    height: 40,
-                    margin: const EdgeInsets.only(left: 7),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: const Color.fromARGB(255, 217, 212, 212),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 10, right: 258),
-                child: Container(
-                  width: 80,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color.fromARGB(255, 217, 212, 212),
-                  ),
-                ),
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                // crossAxisSpacing: 8.0,
+                // mainAxisSpacing: 8.0,
+                mainAxisSpacing: height(context) / 70,
+                crossAxisSpacing: 10,
+                mainAxisExtent: 40,
               ),
-            ],
+              itemCount: waktuTayang.length,
+              itemBuilder: (context, index) {
+                return ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedIdx = index + 10;
+                    });
+                  },
+                  child: Text(waktuTayang[index]),
+                  style: ElevatedButton.styleFrom(
+                    primary: selectedIdx == index + 10 ? Colors.blue : null,
+                  ),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 30),
           ElevatedButton(
@@ -291,7 +275,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SchedulePlacePage();
+                    return const PilihBangku();
                   },
                 ),
               );
