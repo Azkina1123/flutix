@@ -298,19 +298,25 @@ class _PilihBangkuState extends State<PilihBangku> {
                       children: [
                         Text("Selected Seat " + "-"),
                         Text(
-                          //tampilkan jumlah tiket sesuai jumlah bangku yang dipilih
-                          //tiket 0
-                          "0"+" Ticket"),
+                            //tampilkan jumlah tiket sesuai jumlah bangku yang dipilih
+                            //tiket 0
+                            "0" + " Ticket"),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   SizedBox(
                     width: width(context) - 50,
                     child: ElevatedButton(
                       onPressed: () {
-                      
-                    }, child: const Text("Pickup Seat"),
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CheckoutPage()));
+                      },
+                      child: const Text("Pickup Seat"),
                     ),
                   ),
                 ],

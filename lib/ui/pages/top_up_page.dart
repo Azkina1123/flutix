@@ -50,11 +50,10 @@ class _TopUpPageState extends State<TopUpPage> {
               height: 400,
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: height(context)/20,
-                    crossAxisSpacing: 50,
-                    mainAxisExtent: 50
-                  ),
+                      crossAxisCount: 2,
+                      mainAxisSpacing: height(context) / 20,
+                      crossAxisSpacing: 50,
+                      mainAxisExtent: 50),
                   itemCount: recom.length,
                   itemBuilder: (BuildContext context, idx) {
                     return ElevatedButton(
@@ -71,9 +70,10 @@ class _TopUpPageState extends State<TopUpPage> {
                             ? Colors.white
                             : Theme.of(context).colorScheme.onSecondary,
                       ),
-                      child: Text(recom[idx], style: const TextStyle(
-                        fontFamily: 'Oswald'
-                      ),),
+                      child: Text(
+                        recom[idx],
+                        style: const TextStyle(fontFamily: 'Oswald'),
+                      ),
                     );
                   }))
         ],
@@ -84,8 +84,10 @@ class _TopUpPageState extends State<TopUpPage> {
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const SuccessTopUpPage()));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SuccessTopUpPage()));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: _index != -1
