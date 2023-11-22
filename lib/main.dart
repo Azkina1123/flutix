@@ -17,6 +17,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => PageData()),
         ChangeNotifierProvider(create: (context) => MovieData()),
         ChangeNotifierProvider(create: (context) => TicketData()),
+        ChangeNotifierProvider(create: (context) => ThemeModeData()),
       ],
       child: const MyApp(),
     ),
@@ -58,6 +59,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: colors["soapstone"],
+          foregroundColor: colors["cinder"],
+          actionsIconTheme: IconThemeData(color: colors["cinder"]),
+
+        ),
+                bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: colors["soapstone"],
+          )
       ),
 
       // dark mode
@@ -85,9 +95,18 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: colors["cinder"],
+          foregroundColor: colors["soapstone"],
+          actionsIconTheme: IconThemeData(color: colors["soapstone"]),
+          surfaceTintColor: colors["soapstone"],
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: colors["cinder"],
+        )
       ),
 
-      themeMode: ThemeMode.light,
+      themeMode: Provider.of<ThemeModeData>(context).themeMode,
       home: const SplashPage(),
     );
   }

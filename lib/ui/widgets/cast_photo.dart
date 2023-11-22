@@ -15,8 +15,12 @@ class CastPhoto extends StatelessWidget {
             height: 80,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-                color: lightMode ? Colors.black : Colors.white,
-                image: DecorationImage(image: NetworkImage(ApiServices.imgDir + cast.img))),
+              color: lightMode ? Colors.black : Colors.white,
+              image: DecorationImage(
+                image: NetworkImage(ApiServices.imgDir + cast.img),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           SizedBox(
             width: 80,

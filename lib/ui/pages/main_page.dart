@@ -15,7 +15,6 @@ class MainPage extends StatelessWidget {
       return Scaffold(
         body: _pages.elementAt(pageData.currIndex),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: lightMode ? Colors.white : colors["cinder"],
           type: BottomNavigationBarType.fixed,
           selectedItemColor: colors["cerulean-blue"],
           unselectedItemColor: colors["dove-grey"],

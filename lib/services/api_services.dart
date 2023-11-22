@@ -13,11 +13,10 @@ class ApiServices {
     if (response.statusCode == 200) {
       var getMovies = json.decode(response.body) as Map<String, dynamic>;
       var results = getMovies["results"];
+       String start = getMovies["dates"]["minimum"];
        String finish = getMovies["dates"]["maximum"];
 
       for (int i = 0; i < count; i++) {
-
-        String start = getMovies["results"][i]["release_date"];
         movies.add(
           Movie(
             id: results[i]["id"],
@@ -43,9 +42,9 @@ class ApiServices {
     if (response.statusCode == 200) {
       var getMovies = json.decode(response.body) as Map<String, dynamic>;
       var results = getMovies["results"];
+      String start = getMovies["dates"]["minimum"];
       String finish = getMovies["dates"]["maximum"];
       for (int i = 0; i < count; i++) {
-      String start = getMovies["results"][i]["release_date"];
         movies.add(
           Movie(
             id: results[i]["id"],

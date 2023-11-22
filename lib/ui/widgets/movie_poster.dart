@@ -34,7 +34,7 @@ class _MoviePosterState extends State<MoviePoster> {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return MovieDetailPage(id: widget.movie.id);
+          return MovieDetailPage(movie: widget.movie);
         }));
       },
       child: Container(
@@ -46,7 +46,7 @@ class _MoviePosterState extends State<MoviePoster> {
               height: widget.height,
               margin: const EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
-                  color: lightMode ? Colors.black : Colors.white,
+                  color: Theme.of(context).colorScheme.secondary,
                   image: DecorationImage(
                     image: NetworkImage(
                       Provider.of<MovieData>(context).imgDir + widget.movie.img,
@@ -68,8 +68,8 @@ class _MoviePosterState extends State<MoviePoster> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                fontSize: 16,
-                                color: lightMode ? Colors.black : Colors.white),
+                              fontSize: 16,
+                            ),
                           ),
                         )
                       : const SizedBox(),
@@ -83,9 +83,8 @@ class _MoviePosterState extends State<MoviePoster> {
                             Text(
                               widget.movie.rate.toString(),
                               style: TextStyle(
-                                  fontSize: 16,
-                                  color:
-                                      lightMode ? Colors.black : Colors.white),
+                                fontSize: 16,
+                              ),
                             ),
                           ],
                         )

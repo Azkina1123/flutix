@@ -269,18 +269,21 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
             ),
           ),
           const SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const PilihBangku();
-                  },
-                ),
-              );
-            },
-            child: const Text("Get Seat"),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const PilihBangku();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Get Seat"),
+            ),
           )
         ],
       ),

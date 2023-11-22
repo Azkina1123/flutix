@@ -24,9 +24,7 @@ class _GenreButtonState extends State<GenreButton> {
             margin: const EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: lightMode
-                    ? colors["light-grey"]
-                    : colors["dark-jungle-green"],
+                color: Theme.of(context).colorScheme.secondary,
                 image: DecorationImage(
                   image: AssetImage("assets/${widget.genre.toLowerCase()}.png")
                 )
@@ -36,7 +34,7 @@ class _GenreButtonState extends State<GenreButton> {
             widget.genre.toTitleCase(), 
             style: TextStyle(
               fontSize: 16,
-              color: lightMode ? Colors.black : colors["dove-grey"]
+              color: Theme.of(context).colorScheme.onSecondary
             ),
           )
         ],

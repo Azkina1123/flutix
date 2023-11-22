@@ -14,28 +14,15 @@ class _MyTicketPageState extends State<MyTicketPage> {
   Widget build(BuildContext context) {
     lightMode = true;
 
-    // List<Ticket> showedTickets = _index == 0
-    //     ? tickets
-    //         .where((ticket) => ticket.userId == login.id && !ticket.used)
-    //         .toList()
-    //     : tickets
-    //         .where((ticket) => ticket.userId == login.id && ticket.used)
-    //         .toList();
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: null,
-        surfaceTintColor: lightMode ? colors["soapstone"] : colors["cinder"],
-
-        toolbarHeight: 100, //
-
-        backgroundColor: lightMode ? colors["soapstone"] : colors["cinder"],
         title: Text(
           "My Ticket",
           style: TextStyle(
-              fontSize: 24,
-              color: lightMode ? colors["cinder"] : colors["soapstone"]),
+            fontSize: 24,
+          ),
         ),
       ),
       body: Consumer<TicketData>(builder: (context, ticketData, child) {

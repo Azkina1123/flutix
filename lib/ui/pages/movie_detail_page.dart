@@ -1,19 +1,16 @@
 part of "pages.dart";
 
-class MovieDetailPage extends StatefulWidget {
-  int id;
-  MovieDetailPage({super.key, required this.id});
+class MovieDetailPage extends StatelessWidget {
+  Movie movie;
+  MovieDetailPage({super.key, required this.movie});
 
-  @override
-  State<MovieDetailPage> createState() => _MovieDetailPageState();
-}
-
-class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   Widget build(BuildContext context) {
-    bool _isUpcoming = false;
-    Future<Movie> movieFuture = ApiServices.getMovieDetails(widget.id);
     lightMode = true;
+
+    // jika tanggal rilis setelah hari
+    bool isUpcoming = movie.start!.isAfter(DateTime.now());
+    
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -32,17 +29,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FutureBuilder(
-              future: movieFuture,
+            FutureBuilder<Movie>(
+              future: ApiServices.getMovieDetails(movie.id),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 } else if (snapshot.hasData) {
                   final movie = snapshot.data!;
                   List<String> genres = movie.genreToList();
-                  if (movie.start!.isAfter(DateTime.now())) {
-                    _isUpcoming = true;
-                  }
+
                   return Column(
                     children: [
                       // poster film =============================================
@@ -83,11 +78,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                         children: [
                                           // judul
                                           SizedBox(
-                                            width: 43 / 100 * width(context),
+                                            width: 40 / 100 * width(context),
                                             child: SingleChildScrollView(
                                               scrollDirection: Axis.horizontal,
                                               child: Text(
-                                                movie!.title,
+                                                movie.title,
                                                 style: const TextStyle(
                                                     fontSize: 24),
                                                 softWrap: false,
@@ -124,7 +119,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-                                  width: 20 / 100 * width(context),
+                                  // width: 20 / 100 * width(context),
                                   child: Container(
                                     width: 65,
                                     alignment: Alignment.center,
@@ -139,7 +134,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                           color: Colors.amber,
                                         ),
                                         Text(
-                                          movie!.rate.toString(),
+                                          movie.rate.toString(),
                                           style: TextStyle(
                                             fontSize: 14,
                                             color: colors["dove-grey"]!,
@@ -225,11 +220,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         ),
       ),
       // get ticket ----------------------------------------------
-      bottomSheet: _isUpcoming
+      bottomSheet: !isUpcoming
           ? Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               width: width(context),
-              margin: const EdgeInsets.only(bottom: 30),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -246,11 +240,4 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           : null,
     );
   }
-
-  // String _takeOfGenre(int n) {
-  //   String genres = "";
-  //   for (int i = 0; i < movie!.genres.length; i++) {
-  //     genres +
-  //   }
-  // }
 }
