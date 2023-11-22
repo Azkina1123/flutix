@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, i) {
-                  return GenreButton(genre: genres[i]);
+                  return GenreButton(genre: genres[i], pressed: false);
                 },
                 itemCount: genres.length,
               ),

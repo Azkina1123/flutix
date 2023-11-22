@@ -9,9 +9,37 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   bool checkedValue = false;
+  bool validatePass = false;
+
+  String fullName = "";
+  String email = "";
+  String password = "";
+  String confPassword = "";
 
   @override
   Widget build(BuildContext context) {
+    final snackBarPass = SnackBar(
+      content: Text("Confirm Password Must Be Same"),
+      duration: Duration(seconds: 3),
+      padding: EdgeInsets.all(10),
+      backgroundColor: Theme.of(context).colorScheme.error,
+    );
+
+    final snackBarPrivacyPolice = SnackBar(
+      content: Text("Please Agree Privacy Policy"),
+      duration: Duration(seconds: 3),
+      padding: EdgeInsets.all(10),
+      backgroundColor: Colors.amber.shade300,
+    );
+
+    final snackBarPassAndPP = SnackBar(
+      content:
+          Text("Confirm Password Must Be Same & Please Agree Privacy Policy"),
+      duration: Duration(seconds: 3),
+      padding: EdgeInsets.all(10),
+      backgroundColor: Theme.of(context).colorScheme.error,
+    );
+
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
@@ -30,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           const Padding(
             padding: EdgeInsets.only(top: 20),
-            child: TextBox(title: "Full Name", type: 3),
+            child: TextBox(title: "Full Name", type: 4),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 35),
@@ -42,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           const Padding(
             padding: EdgeInsets.only(top: 35),
-            child: TextBox(title: "Confirm Password", type: 2),
+            child: TextBox(title: "Confirm Password", type: 3),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 25),
@@ -58,7 +86,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ListTileControlAffinity.leading, //  <-- leading Checkbox
             ),
           ),
-          
         ],
       ),
       bottomSheet: Container(
@@ -67,10 +94,43 @@ class _SignUpPageState extends State<SignUpPage> {
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const SuccessAccountPage()));
+            setState(() {
+              email = Provider.of<UserData>(context, listen: false).email;
+              fullName = Provider.of<UserData>(context, listen: false).fullName;
+              confPassword =
+                  Provider.of<UserData>(context, listen: false).confPassword;
+              confPassword ==
+                          Provider.of<UserData>(context, listen: false)
+                              .password &&
+                      confPassword != "" &&
+                      Provider.of<UserData>(context, listen: false).password !=
+                          ""
+                  ? validatePass = !validatePass
+                  : validatePass == true
+                      ? password =
+                          Provider.of<UserData>(context, listen: false).password
+                      : password = "";
+            });
+            validatePass == true && checkedValue == true
+                ? Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserProfilePage(
+                              username: email,
+                              name: fullName,
+                              password: password,
+                            )))
+                : validatePass == true && checkedValue == false
+                    ? ScaffoldMessenger.of(context)
+                        .showSnackBar(snackBarPrivacyPolice)
+                    : validatePass == false && checkedValue == true
+                        ? ScaffoldMessenger.of(context)
+                            .showSnackBar(snackBarPass)
+                        : validatePass == false && checkedValue == false
+                            ? ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBarPassAndPP)
+                            : null;
+            ;
           },
           child: const Text(
             "Sign Up",
@@ -78,8 +138,6 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
-      
     );
-    
   }
 }

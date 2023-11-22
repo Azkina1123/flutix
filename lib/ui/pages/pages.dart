@@ -30,3 +30,4 @@ part 'pilih_bangku_page.dart';
 part 'my_wallet_page.dart';
 part 'top_up_page.dart';
 part 'success_top_up_page.dart';
+part 'user_profile_page.dart';

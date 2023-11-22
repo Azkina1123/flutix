@@ -9,3 +9,4 @@ part "movie_data.dart";
 part "page_data.dart";
 part "ticket_data.dart";
 part "theme_mode_data.dart";
+part "user_data.dart";

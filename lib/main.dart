@@ -18,6 +18,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => MovieData()),
         ChangeNotifierProvider(create: (context) => TicketData()),
         ChangeNotifierProvider(create: (context) => ThemeModeData()),
+        ChangeNotifierProvider(create: (context) => UserData()),
       ],
       child: const MyApp(),
     ),
