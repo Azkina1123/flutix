@@ -20,8 +20,7 @@ class MovieDetailPage extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(
-            Icons.arrow_back_ios_rounded,
-            size: 32,
+            CupertinoIcons.back,
           ),
           color: colors["soapstone"],
         ),

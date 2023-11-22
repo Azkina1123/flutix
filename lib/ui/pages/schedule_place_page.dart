@@ -38,14 +38,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
           padding: const EdgeInsets.only(top: 10.0),
           child: InkWell(
             onTap: () {
-              //  Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(
-              //                   builder: (context) {
-              //                     return MovieDetailPage(id: 0);
-              //                   },
-              //                 ),
-              //               );
+              Navigator.of(context).pop();
             },
             child: const Icon(
               CupertinoIcons.back,
@@ -88,6 +81,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 DropdownButton<String>(
+                  
                   value: selectedTempat,
                   onChanged: (String? newValue) {
                     setState(() {
@@ -120,8 +114,9 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
               indent: 20.0,
               endIndent: 20.0,
             ),
-            SizedBox(
+            Container(
               height: 900,
+              padding: EdgeInsets.only(right: 20, left: 20, bottom: 100),
               child: ListView.builder(
                 // physics: ScrollPhysics(),
                 shrinkWrap: true,
@@ -168,6 +163,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                         Container(
                           height: 100,
                           child: GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
@@ -208,31 +204,29 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
         ),
       ),
       bottomSheet: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        width: width(context),
-        margin: const EdgeInsets.only(bottom: 30),
-        child: ElevatedButton(
-          onPressed: () {
-            Provider.of<TicketData>(context, listen: false).createdDate =
-                DateTime.now();
-            Provider.of<TicketData>(context, listen: false).broadcastDate =
-                DateTime.utc(DateTime.now().year, DateTime.now().month,
-                    selectedHari, int.parse(selectedWaktu.substring(0, 2)));
-            Provider.of<TicketData>(context, listen: false).cinema =
-                selectedTempat;
-            Random random = Random();
-            int index = random.nextInt(StudioList.length);
-            Provider.of<TicketData>(context, listen: false).studio =
-                StudioList[index];
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const PilihBangku()));
-          },
-          child: const Text(
-            "Get Seat",
-            style: TextStyle(fontSize: 16, fontFamily: "Raleway"),
-          ),
-        )
-      ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          width: width(context),
+          child: ElevatedButton(
+            onPressed: () {
+              Provider.of<TicketData>(context, listen: false).createdDate =
+                  DateTime.now();
+              Provider.of<TicketData>(context, listen: false).broadcastDate =
+                  DateTime.utc(DateTime.now().year, DateTime.now().month,
+                      selectedHari, int.parse(selectedWaktu.substring(0, 2)));
+              Provider.of<TicketData>(context, listen: false).cinema =
+                  selectedTempat;
+              Random random = Random();
+              int index = random.nextInt(StudioList.length);
+              Provider.of<TicketData>(context, listen: false).studio =
+                  StudioList[index];
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const PilihBangku()));
+            },
+            child: const Text(
+              "Get Seat",
+              style: TextStyle(fontSize: 16, fontFamily: "Raleway"),
+            ),
+          )),
     );
   }
 }

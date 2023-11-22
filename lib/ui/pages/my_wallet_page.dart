@@ -7,17 +7,12 @@ class MyWalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: lightMode ? colors["soapstone"] : colors["cinder"],
-
-        toolbarHeight: 80, //
-
-        backgroundColor: lightMode ? colors["soapstone"] : colors["cinder"],
         title: Text(
           "My Wallet",
           style: TextStyle(
-              fontSize: 24,
-              color: lightMode ? colors["cinder"] : colors["soapstone"],
-              fontFamily: 'Raleway'),
+            fontSize: 24,
+            fontFamily: 'Raleway',
+          ),
         ),
       ),
       body: Consumer<TicketData>(builder: (context, ticketData, child) {
@@ -85,10 +80,8 @@ class MyWalletPage extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const TopUpPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const TopUpPage()));
           },
           child: const Text(
             "Top Up",

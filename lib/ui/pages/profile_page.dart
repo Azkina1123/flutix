@@ -10,6 +10,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    bool lightMode =
+        Provider.of<ThemeModeData>(context, listen: false).lightMode;
+    String color = lightMode ? "black" : "white";
     return Scaffold(
       body: ListView(
         children: [
@@ -20,13 +23,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 right: 0,
                 child: InkWell(
                   onTap: () {
-                    Provider.of<ThemeModeData>(context, listen: false).changeTheme();
+                    Provider.of<ThemeModeData>(context, listen: false)
+                        .changeTheme();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
-                      borderRadius: BorderRadius.only(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.5),
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
                       ),
@@ -39,7 +46,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              
               Container(
                 width: width(context),
                 padding: const EdgeInsets.only(top: 80, bottom: 30),
@@ -80,9 +86,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Container(
                               width: 26,
                               height: 26,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage("assets/edit-profile.png"),
+                                image: AssetImage("assets/edit-profile-$color.png"),
                               )),
                             ),
                             title: const Text(
@@ -95,9 +101,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Container(
                               width: 26,
                               height: 26,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage("assets/my-wallet.png"),
+                                image: AssetImage("assets/my-wallet-$color.png"),
                               )),
                             ),
                             title: const Text(
@@ -112,14 +118,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                           const MyWalletPage()));
                             },
                           ),
-
                           ListTile(
                             leading: Container(
                               width: 26,
                               height: 26,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage("assets/help.png"),
+                                image: AssetImage("assets/help-$color.png"),
                               )),
                             ),
                             title: const Text(
@@ -132,9 +137,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Container(
                               width: 26,
                               height: 26,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage("assets/language.png"),
+                                image: AssetImage("assets/language-$color.png"),
                               )),
                             ),
                             title: const Text(
@@ -147,9 +152,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Container(
                               width: 26,
                               height: 26,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage("assets/rate.png"),
+                                image: AssetImage("assets/rate-$color.png"),
                               )),
                             ),
                             title: const Text(
@@ -162,9 +167,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             leading: Container(
                               width: 26,
                               height: 26,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage("assets/logout.png"),
+                                image: AssetImage("assets/logout-$color.png"),
                               )),
                             ),
                             title: const Text(
@@ -173,10 +178,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             onTap: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignInPage()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignInPage(),
+                                ),
+                              );
                             },
                           ),
                         ],

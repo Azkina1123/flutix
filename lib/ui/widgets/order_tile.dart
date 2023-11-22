@@ -5,6 +5,9 @@ class OrderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        bool lightMode =
+        Provider.of<ThemeModeData>(context, listen: false).lightMode;
+    String color = lightMode ? "black" : "white";
     return Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
@@ -20,9 +23,9 @@ class OrderTile extends StatelessWidget {
                       Container(
                         height: 50,
                         width: 100,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage("film-strip.png"))),
+                                image: AssetImage("film-strip-$color.png"))),
                       ),
                       SizedBox(
                         height: 80,
