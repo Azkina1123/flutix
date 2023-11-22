@@ -8,6 +8,14 @@ class TicketData extends ChangeNotifier {
     return _tickets;
   }
 
+  DateTime? createdDate;
+  DateTime? broadcastDate;
+  String? cinema;
+  String? studio;
+  List<String>? seats;
+  bool? used;
+  int? movieId;
+
   void add(Ticket ticket) {
     int max = 99999999;
     int min = 10000000;
@@ -22,7 +30,37 @@ class TicketData extends ChangeNotifier {
       "seats": ticket.seats,
       "used": ticket.used,
       "movieId": ticket.movieId,
-      "userId": ticket.userId
+      "userId": ticket.userId,
     });
+  }
+
+  Future<Ticket> getTicket(int id) async {
+    QuerySnapshot snapshot = await _tickets.get();
+    final ticketList = snapshot.docs;
+
+    List<String> seats = [];
+    ticketList[0].get("seats").forEach((seat) {
+      seats.add(seat as String);
+    });
+
+    Ticket? newTicket = Ticket(
+      id: ticketList[0].get("id"),
+      movieId: ticketList[0].get("movieId"),
+      broadcastDate: ticketList[0].get("broadcastDate").toDate(),
+      cinema: ticketList[0].get("cinema"),
+      createdDate: ticketList[0].get("createdDate").toDate(),
+      userId: ticketList[0].get("userId"),
+      seats: seats,
+      used: ticketList[0].get("used"),
+      studio: ticketList[0].get("studio"),
+    );
+
+    // ticketList.forEach((ticket) {
+    //   if (ticket.get("id") == id) {
+    //     newTicket =
+    //   }
+    // });
+
+    return newTicket;
   }
 }
