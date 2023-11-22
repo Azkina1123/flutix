@@ -93,7 +93,9 @@ class _MyTicketPageState extends State<MyTicketPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const DetailTicket(),
+                                    builder: (context) => DetailTicket(
+                                      ticketId: ticket.get("id"),
+                                    ),
                                   ),
                                 );
                               },

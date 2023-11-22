@@ -311,12 +311,7 @@ class _PilihBangkuState extends State<PilihBangku> {
                     width: width(context) - 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CheckoutPage(),
-                          ),
-                        );
+
                       },
                       child: const Text("Pickup Seat"),
                     ),

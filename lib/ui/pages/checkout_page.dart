@@ -10,6 +10,8 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
+    DateTime brodcastDate =
+        Provider.of<TicketData>(context, listen: false).broadcastDate!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -18,7 +20,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
           padding: const EdgeInsets.only(top: 10.0),
           child: InkWell(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const PilihBangku();
+                  },
+                ),
+              );
             },
             child: const Icon(
               CupertinoIcons.back,
@@ -46,7 +55,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           ),
           const SizedBox(height: 10.0),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 30, right: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +71,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  "Samarinda Square XXI, Studio 3",
+                  Provider.of<TicketData>(context, listen: false).cinema! +
+                      ", " +
+                      Provider.of<TicketData>(context, listen: false).studio!,
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Colors.black,
@@ -82,7 +93,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  "Monday, 04 September 2023, 15:30",
+                  DateFormat('EEEE, dd MMMM yyyy, hh:mm').format(brodcastDate),
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: Colors.black,
