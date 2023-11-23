@@ -30,29 +30,39 @@ class _HomePageState extends State<HomePage> {
 
         toolbarHeight: 80, // tinggi appbar,
 
-        // sesuaikan dengan light mode / dark mode
-        // backgroundColor: lightMode ? colors["soapstone"] : colors["cinder"],
-
-        title: Row(
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              margin: const EdgeInsets.only(left: 10, right: 20),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ),
-            Text(
-              "Robert Pattinson",
-              style: TextStyle(
-                fontSize: 18,
-                // color: lightMode ? colors["cinder"] : colors["soapstone"],
-              ),
-            ),
-          ],
-        ),
+              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+              // KALAU LOGIN SUDAH BERHASIL, UBAH INIII
+              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        title: FirebaseAuth.instance.currentUser != null ? FutureBuilder<User1>(
+            future: Provider.of<UserData>(context, listen: false)
+                .getUser(FirebaseAuth.instance.currentUser!.email!),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final user = snapshot.data!;
+                return Row(
+                  children: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      margin: const EdgeInsets.only(left: 10, right: 20),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).colorScheme.secondary,
+                        image: DecorationImage(image: NetworkImage(user.foto)),
+                      ),
+                    ),
+                    Text(
+                      user.name,
+                      style: TextStyle(
+                        fontSize: 18,
+                        // color: lightMode ? colors["cinder"] : colors["soapstone"],
+                      ),
+                    ),
+                  ],
+                );
+              }
+              return Text("Loading...");
+            }) : Text("Belum ada user yang sedang login."),
       ),
 
       // body ===================================================================================

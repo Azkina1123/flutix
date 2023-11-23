@@ -35,12 +35,8 @@ class _GenreButtonState extends State<GenreButton> {
                     color: widget.pressed == true
                         ? press == true
                             ? colors["cerulean-blue"]
-                            : lightMode
-                                ? colors["light-grey"]
-                                : colors["dark-jungle-green"]
-                        : lightMode
-                            ? colors["light-grey"]
-                            : colors["dark-jungle-green"],
+                            : Theme.of(context).colorScheme.secondary
+                        : Theme.of(context).colorScheme.secondary,
                     boxShadow: [
                       BoxShadow(
                           color: widget.pressed == true

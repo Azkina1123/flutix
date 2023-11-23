@@ -40,7 +40,8 @@ class MyWalletPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "${"RP ${login.balance}"},00",
+                        // "${"RP ${login.balance}"},00",
+                        "",
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 25,

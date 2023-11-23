@@ -9,7 +9,6 @@ class MyTicketPage extends StatefulWidget {
 
 class _MyTicketPageState extends State<MyTicketPage> {
   int _index = 0;
-  User1? _user;
 
   @override
   Widget build(BuildContext context) {
@@ -26,47 +25,13 @@ class _MyTicketPageState extends State<MyTicketPage> {
           ),
         ),
       ),
-      body: Consumer<TicketData>(builder: (context, ticketData, child) {
-        return ListView(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FutureBuilder<User1>(
-              future: Provider.of<UserData>(context, listen: false)
-                  .getUser(FirebaseAuth.instance.currentUser!.email!),
-              builder: 
-                (context, snapshot) {
-                  if (snapshot.hasData) {
-                    _user = snapshot.data!;
-                  }
-                  return Text("Tidak ada user yang sedang login.");
-                },
-              
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                    width: 130,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _switchSubMenu();
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: _index == 0
-                            ? colors["cerulean-blue"]
-                            : Theme.of(context).colorScheme.secondary,
-                        foregroundColor: _index == 0
-                            ? Colors.white
-                            : Theme.of(context).colorScheme.onSecondary,
-                      ),
-                      child: const Text(
-                        "New",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )),
-                SizedBox(
+      body: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
                   width: 130,
                   child: ElevatedButton(
                     onPressed: () {
@@ -75,69 +40,102 @@ class _MyTicketPageState extends State<MyTicketPage> {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: _index == 1
+                      backgroundColor: _index == 0
                           ? colors["cerulean-blue"]
                           : Theme.of(context).colorScheme.secondary,
-                      foregroundColor: _index == 1
+                      foregroundColor: _index == 0
                           ? Colors.white
                           : Theme.of(context).colorScheme.onSecondary,
                     ),
-                    child: const Text("Used"),
+                    child: const Text(
+                      "New",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  )),
+              SizedBox(
+                width: 130,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _switchSubMenu();
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _index == 1
+                        ? colors["cerulean-blue"]
+                        : Theme.of(context).colorScheme.secondary,
+                    foregroundColor: _index == 1
+                        ? Colors.white
+                        : Theme.of(context).colorScheme.onSecondary,
                   ),
+                  child: const Text("Used"),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            StreamBuilder<QuerySnapshot>(
-                stream: ticketData.tickets
-                    .where("used", isEqualTo: _index == 0 ? false : true)
-                    .where("userId",
-                        isEqualTo: _user!.id)
-                    .snapshots(),
-                builder: (_, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  } else if (snapshot.hasData) {
-                    return Column(
-                      children: snapshot.data!.docs
-                          .map(
-                            (ticket) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailTicket(
-                                      ticketId: ticket.get("id"),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          FirebaseAuth.instance.currentUser != null ?
+          FutureBuilder<User1>(
+              future: Provider.of<UserData>(context, listen: false)
+                  .getUser(FirebaseAuth.instance.currentUser!.email!),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  User1 user = snapshot.data!;
+
+                  return StreamBuilder<QuerySnapshot>(
+                      stream: Provider.of<TicketData>(context, listen: false)
+                          .tickets
+                          .where("used", isEqualTo: _index == 0 ? false : true)
+                          .where("userId", isEqualTo: user.id)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasData) {
+                          return Column(
+                            children: snapshot.data!.docs
+                                .map(
+                                  (ticket) => GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailTicket(
+                                            ticketId: ticket.get("id"),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: TicketTile(
+                                      ticket: Ticket(
+                                        id: ticket.get("id"),
+                                        createdDate:
+                                            ticket.get("createdDate").toDate(),
+                                        broadcastDate: ticket
+                                            .get("broadcastDate")
+                                            .toDate(),
+                                        cinema: ticket.get("cinema"),
+                                        movieId: ticket.get("movieId"),
+                                        used: ticket.get("used"),
+                                        userId: ticket.get("userId"),
+                                      ),
                                     ),
                                   ),
-                                );
-                              },
-                              child: TicketTile(
-                                ticket: Ticket(
-                                  id: ticket.get("id"),
-                                  createdDate:
-                                      ticket.get("createdDate").toDate(),
-                                  broadcastDate:
-                                      ticket.get("broadcastDate").toDate(),
-                                  cinema: ticket.get("cinema"),
-                                  movieId: ticket.get("movieId"),
-                                  used: ticket.get("used"),
-                                  userId: ticket.get("userId"),
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    );
-                  }
+                                )
+                                .toList(),
+                          );
+                        }
 
-                  return const Text("There's no data.");
-                })
-          ],
-        );
-      }),
+                        return const Text("There's no data.");
+                      });
+                }
+                return Text("Tidak ada user yang sedang login.");
+              }) : Text("Tidak ada user yang sedang login.", textAlign: TextAlign.center,)
+        ],
+      ),
     );
   }
 

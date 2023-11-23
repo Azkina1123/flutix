@@ -10,14 +10,7 @@ part 'order.dart';
 
 // NANTI HAPUSSS
 bool lightMode = true;
-User1 login = User1(
-  "user1",
-  "user1@gmail.com",
-  "user1 Nama",
-  ["Action", "Comedy"],
-  "Indonesia",
-  990000,
-);
+
 
 Map<String, Color> colors = {
   "cinder": const Color.fromARGB(255, 21, 19, 24), // light: text

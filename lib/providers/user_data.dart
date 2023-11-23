@@ -40,8 +40,12 @@ class UserData extends ChangeNotifier {
       genres,
       userList[0].get("selectedLanguage"),
       userList[0].get("balance"),
+      userList[0].get("password"),
+      userList[0].get("foto"),
     );
 
     return newUser;
   }
+
+
 }

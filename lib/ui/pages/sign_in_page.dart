@@ -40,6 +40,12 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   TextButton(
                       onPressed: () {
+                        // UBAH EMAIL PASSWORD PAS UDH LOGIN UDAH JADI
+                        AutServices.signIn("xiena@gmail.com", "xiena");
+                        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        setState(() {
+                          
+                        });
                         Provider.of<PageData>(context, listen: false)
                             .changeMenu(0);
                         Navigator.push(
@@ -49,9 +55,7 @@ class _SignInPageState extends State<SignInPage> {
                       },
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color(0xFFD9D9D9),
-                          shape: BoxShape.circle
-                        ),
+                            color: Color(0xFFD9D9D9), shape: BoxShape.circle),
                         child: const Icon(Icons.keyboard_arrow_right_outlined,
                             size: 50),
                       ))
