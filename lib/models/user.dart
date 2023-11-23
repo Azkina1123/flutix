@@ -9,12 +9,12 @@ class User1 extends Equatable {
   final String selectedLanguage; // Bahasa yang dipilih oleh pengguna.
   final int balance; // Saldo akun pengguna.
   final String password;
-  final String foto;
+  final String profilePicture;
 
   // Konstruktor kelas User1 untuk menginisialisasi properti-propertinya.
   // Properti ini diisi dengan nilai dari parameter yang diterima saat pembuatan objek.
   User1(this.id, this.email, this.name, this.selectedGenres,
-      this.selectedLanguage, this.balance, this.password, this.foto);
+      this.selectedLanguage, this.balance, this.password, this.profilePicture);
 
   // Fungsi toString digunakan untuk menghasilkan representasi string dari objek User1.
   // Representasi ini mencakup ID, nama, dan email pengguna.
@@ -30,5 +30,5 @@ class User1 extends Equatable {
       [id, email, name, balance, selectedGenres, selectedLanguage];
 
   // Metode ini sekarang tidak digunakan (komentar).
-  get profilePicture => null;
+  // get profilePicture => null;
 }

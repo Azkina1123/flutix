@@ -41,7 +41,7 @@ class UserData extends ChangeNotifier {
       userList[0].get("selectedLanguage"),
       userList[0].get("balance"),
       userList[0].get("password"),
-      userList[0].get("foto"),
+      userList[0].get("profilePicture"),
     );
 
     return newUser;

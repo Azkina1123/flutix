@@ -37,6 +37,7 @@ class AutServices {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
     } catch (e) {
+      print("Gagal login!!!!!!!");
       // Menangani kesalahan yang mungkin terjadi saat proses sign-in.
     }
   }

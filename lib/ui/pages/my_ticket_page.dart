@@ -132,7 +132,7 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         return const Text("There's no data.");
                       });
                 }
-                return Text("Tidak ada user yang sedang login.");
+                return Text("");
               }) : Text("Tidak ada user yang sedang login.", textAlign: TextAlign.center,)
         ],
       ),

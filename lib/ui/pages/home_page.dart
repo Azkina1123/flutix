@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Theme.of(context).colorScheme.secondary,
-                        image: DecorationImage(image: NetworkImage(user.foto)),
+                        image: DecorationImage(image: NetworkImage(user.profilePicture)),
                       ),
                     ),
                     Text(
