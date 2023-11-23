@@ -32,12 +32,14 @@ class AutServices {
 
   // Metode signIn digunakan untuk mengotentikasi pengguna yang sudah terdaftar.
   static Future<void> signIn(String email, String password) async {
+
     try {
       // Mencoba untuk masuk (sign in) dengan email dan password yang diberikan.
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+
     } catch (e) {
-      print("Gagal login!!!!!!!");
+      print("Login Gagal");
       // Menangani kesalahan yang mungkin terjadi saat proses sign-in.
     }
   }

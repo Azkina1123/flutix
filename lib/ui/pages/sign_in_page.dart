@@ -8,8 +8,10 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -40,11 +42,11 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   TextButton(
                       onPressed: () {
-                        // UBAH EMAIL PASSWORD PAS UDH LOGIN UDAH JADI
-                        AutServices.signIn("123@gmail.com", "123123");
-                        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        AutServices.signIn(
+                        Provider.of<UserData>(context, listen: false).email,
+                        Provider.of<UserData>(context, listen: false).password);
                         setState(() {
-                          
+                         
                         });
                         Provider.of<PageData>(context, listen: false)
                             .changeMenu(0);
