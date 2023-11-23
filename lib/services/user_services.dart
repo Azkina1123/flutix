@@ -13,10 +13,11 @@ class UserService {
   static Future<void> updateUser(User1 user1) async {
     // Menggunakan metode set() pada dokumen pengguna di koleksi '_userCollection' untuk memperbarui data.
     _userCollection.doc(user1.id).set({
+      'id' : user1.id,
       'email': user1.email,
       'name': user1.name,
       'balance': user1.balance,
-      'delectedGenres': user1
+      'selectedGenres': user1
           .selectedGenres, // Mungkin ada typo di sini, seharusnya 'selectedGenres'.
       'selectedLanguages': user1.selectedLanguage,
       'profilePicture': user1.profilePicture ??

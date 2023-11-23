@@ -11,31 +11,29 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
-  String? selectLanguage;
-  String? selectGenre;
+  String selectLanguage = "";
   bool press = false;
   bool btnSkip = false;
   bool loading = false;
   String genres = "";
 
-  final _formKey = GlobalKey<FormState>();
-
-    final List<String> selectGenres = [];
+  List<String> selectGenres = [];
 
   handleSubmit() async {
-    if (!_formKey.currentState!.validate()) return;
     final email = Provider.of<UserData>(context, listen: false).email;
     final password = Provider.of<UserData>(context, listen: false).password;
     final fullName = Provider.of<UserData>(context, listen: false).fullName;
     final List<String> selectedGenres = selectGenres;
-    String language = selectLanguage!;
-    btnSkip == true ?
-    language = selectLanguage!
-    : language = "English";
+    final selectedLanguage = selectLanguage;
 
-    
+    btnSkip ?
+    selectLanguage = "English":
+    selectLanguage = selectLanguage;
+
     setState(() => loading = true);
-    await AutServices.signUp(email, password, fullName, selectedGenres, language!);
+    btnSkip ?
+    await AutServices.signUp(email, password, fullName, selectedGenres, selectedLanguage)
+    : await AutServices.signUp(email, password, fullName, selectedGenres, selectedLanguage);
     setState(() => loading = false);
   }
 
@@ -83,7 +81,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     crossAxisCount: 1),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   GestureDetector(
                     child: GenreButton(genre: "musical", pressed: true),
@@ -103,15 +100,47 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       });
                     },
                     ),
-                  GenreButton(genre: "romance", pressed: true),
-                  GenreButton(genre: "thriller", pressed: true),
-                  GenreButton(genre: "action", pressed: true),
-                  GenreButton(genre: "drama", pressed: true),
+                  GestureDetector(
+                    child: GenreButton(genre: "romance", pressed: true),
+                    onTap: () {
+                      setState(() {
+                        String genres = "romance";
+                        selectGenres.add(genres);
+                      });
+                    },
+                    ),
+                  GestureDetector(
+                    child: GenreButton(genre: "thriller", pressed: true),
+                    onTap: () {
+                      setState(() {
+                        String genres = "thriller";
+                        selectGenres.add(genres);
+                      });
+                    },
+                    ),
+                  GestureDetector(
+                    child: GenreButton(genre: "action", pressed: true),
+                    onTap: () {
+                      setState(() {
+                        String genres = "action";
+                        selectGenres.add(genres);
+                      });
+                    },
+                    ),
+                  GestureDetector(
+                    child: GenreButton(genre: "drama", pressed: true),
+                    onTap: () {
+                      setState(() {
+                        String genres = "drama";
+                        selectGenres.add(genres);
+                      });
+                    },
+                    ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 55, bottom: 25, left: 55),
+              padding: EdgeInsets.only(top: 45, bottom: 25, left: 55),
               child: Text(
                 "Select Language",
                 style: TextStyle(
@@ -123,14 +152,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
             ),
             Container(
-              height: 230,
-              width: width(context) - 30,
-              padding: const EdgeInsets.only(left: 30),
+              height: 240,
+              width: width(context),
+              padding: const EdgeInsets.only(left: 25),
               child: GridView(
                 gridDelegate:
-                    // SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 4),
                     SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 1),
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Container(
@@ -141,6 +170,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             "English",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onBackground,
+                              fontSize: 15,
                             ),
                           ),
                           value: "English",
@@ -157,6 +187,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             "Indonesia",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onBackground,
+                              fontSize: 15,
                             ),
                           ),
                           value: "Indonesia",
@@ -173,6 +204,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             "Spanyol",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onBackground,
+                              fontSize: 15,
                             ),
                           ),
                           value: "Spanyol",
@@ -189,6 +221,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             "Turkey",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onBackground,
+                              fontSize: 15,
                             ),
                           ),
                           value: "Turkey",
@@ -203,60 +236,66 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       ],
                     ),
                   ),
-                  Container(
-                    child: Column(
-                      children: [
-                        RadioListTile(
-                          title: Text(
-                            "한글",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
+                  // Padding(
+                    Container(
+                    // padding: const EdgeInsets.only(left: 5),
+                      child: Column(
+                        children: [
+                          RadioListTile(
+                            title: Text(
+                              "한글",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "한글",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "한글",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
-                        ),
-                        RadioListTile(
-                          title: Text(
-                            "France",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
+                          RadioListTile(
+                            title: Text(
+                              "France",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "France",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "France",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
-                        ),
-                        RadioListTile(
-                          title: Text(
-                            "日本語",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
+                          RadioListTile(
+                            title: Text(
+                              "日本語",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "日本語",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "日本語",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
+                  // ),
                 ],
               ),
             ),
@@ -271,6 +310,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
+                          btnSkip = !btnSkip;
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return const SuccessAccountPage();
@@ -294,17 +334,18 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       style: ButtonStyle(
                         
                       ),
-                      onPressed: () => handleSubmit(),
-                      // onPressed: () {
-                      //   setState(() {
-                      //     Navigator.push(context, MaterialPageRoute(
-                      //       builder: (context) {
-                      //         return const SuccessAccountPage();
-                      //       },
-                      //     ));
-                      //   });
-                      // },
-                      child: const Text(
+                      onPressed: () {
+                        handleSubmit();
+                        },
+                      child: loading ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : Text(
                         "Next",
                         style: TextStyle(fontSize: 14, fontFamily: 'Raleway'),
                       ),
