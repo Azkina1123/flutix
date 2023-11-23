@@ -9,6 +9,7 @@ class MyTicketPage extends StatefulWidget {
 
 class _MyTicketPageState extends State<MyTicketPage> {
   int _index = 0;
+  User1? _user;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,18 @@ class _MyTicketPageState extends State<MyTicketPage> {
         return ListView(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            FutureBuilder<User1>(
+              future: Provider.of<UserData>(context, listen: false)
+                  .getUser(FirebaseAuth.instance.currentUser!.email!),
+              builder: 
+                (context, snapshot) {
+                  if (snapshot.hasData) {
+                    _user = snapshot.data!;
+                  }
+                  return Text("Tidak ada user yang sedang login.");
+                },
+              
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -80,6 +93,8 @@ class _MyTicketPageState extends State<MyTicketPage> {
             StreamBuilder<QuerySnapshot>(
                 stream: ticketData.tickets
                     .where("used", isEqualTo: _index == 0 ? false : true)
+                    .where("userId",
+                        isEqualTo: _user!.id)
                     .snapshots(),
                 builder: (_, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

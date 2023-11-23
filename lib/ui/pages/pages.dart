@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/models/models.dart';
 import 'package:flutix/providers/providers.dart';
 import 'package:flutix/services/services.dart';
