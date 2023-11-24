@@ -45,7 +45,7 @@ class MyWalletPage extends StatelessWidget {
                                   FirebaseAuth.instance.currentUser!.email!),
                           builder: (context, snapshot) {
                             return Text(
-                              "RP.  ${snapshot.data!.balance}",
+                              "RP.  ${(snapshot.hasData) ? snapshot.data!.balance.toString() : "0"}",
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 25,

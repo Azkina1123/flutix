@@ -44,7 +44,13 @@ class SuccessTopUpPage extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.popUntil(context,
+                        ModalRoute.withName(Navigator.defaultRouteName));
+                        
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyWalletPage()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colors["cerulean-blue"]!),

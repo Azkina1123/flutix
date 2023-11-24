@@ -109,6 +109,9 @@ class _TopUpPageState extends State<TopUpPage> {
                         Provider.of<TopUpSelectionData>(context, listen: false)
                             .templateSelected]));
 
+            Provider.of<TopUpSelectionData>(context, listen: false)
+                .changeSelection(-1);
+
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
