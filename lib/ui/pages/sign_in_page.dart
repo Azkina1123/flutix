@@ -8,10 +8,10 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -43,17 +43,19 @@ class _SignInPageState extends State<SignInPage> {
                   TextButton(
                       onPressed: () {
                         AutServices.signIn(
-                        Provider.of<UserData>(context, listen: false).email,
-                        Provider.of<UserData>(context, listen: false).password);
-                        setState(() {
-                         
-                        });
-                        Provider.of<PageData>(context, listen: false)
-                            .changeMenu(0);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MainPage()));
+                          Provider.of<UserData>(context, listen: false).email,
+                        Provider.of<UserData>(context, listen: false).password).then((User1? user1) async {
+                          if (user1 == null){
+                            return;
+                          }
+
+                          Provider.of<PageData>(context, listen: false)
+                              .changeMenu(0);
+                          await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MainPage()));
+                        }).catchError((e) => print(e));
                       },
                       child: Container(
                         decoration: const BoxDecoration(

@@ -31,17 +31,28 @@ class AutServices {
   }
 
   // Metode signIn digunakan untuk mengotentikasi pengguna yang sudah terdaftar.
-  static Future<void> signIn(String email, String password) async {
+  static Future<User1?> signIn(String email, String password) async {
 
     try {
       // Mencoba untuk masuk (sign in) dengan email dan password yang diberikan.
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      
+      final User1 user1 = result.user!.convertToUser();
 
-    } catch (e) {
-      print("Login Gagal");
-      // Menangani kesalahan yang mungkin terjadi saat proses sign-in.
+      return user1;
+    } on FirebaseAuthException catch (e) {
+
+      // Email tidak ditemukan
+      if (e.code == 'user-not-found') {
+
+      // Password Salah
+      } else if (e.code == 'wrong-password') {
+
+      }
     }
+
+    return null;
   }
 }
 

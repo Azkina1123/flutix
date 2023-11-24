@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return MainPage();
           } else {
-            return SplashPage();
+            return const SplashPage();
           }
         },
       ),
