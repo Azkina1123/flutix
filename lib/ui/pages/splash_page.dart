@@ -100,7 +100,7 @@ class SplashPage extends StatelessWidget {
                                     fontSize: 18,
                                     fontFamily: 'Raleway')),
                             onPressed: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>

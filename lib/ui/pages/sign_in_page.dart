@@ -51,7 +51,7 @@ class _SignInPageState extends State<SignInPage> {
 
                           Provider.of<PageData>(context, listen: false)
                               .changeMenu(0);
-                          await Navigator.push(
+                          await Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => MainPage()));

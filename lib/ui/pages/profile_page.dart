@@ -173,6 +173,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                           style: TextStyle(fontSize: 16),
                                         ),
                                         onTap: () {
+                                          FirebaseAuth.instance.signOut();
+                                          Provider.of<UserData>(context, listen: false).email = "";
+                                          Provider.of<UserData>(context, listen: false).password = "";
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
