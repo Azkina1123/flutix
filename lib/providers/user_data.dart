@@ -25,7 +25,8 @@ class UserData extends ChangeNotifier {
   }
 
   Future<User1> getUser(String email) async {
-    QuerySnapshot snapshot = await _users.get();
+    QuerySnapshot snapshot =
+        await _users.where("email", isEqualTo: email).get();
     final userList = snapshot.docs;
 
     List<String> genres = [];
@@ -34,6 +35,7 @@ class UserData extends ChangeNotifier {
     });
 
     User1 newUser = User1(
+      userList[0].id,
       userList[0].get("id"),
       userList[0].get("email"),
       userList[0].get("name"),
@@ -47,5 +49,15 @@ class UserData extends ChangeNotifier {
     return newUser;
   }
 
+  void topupBalance(String email, int topUpValue) async {
+    QuerySnapshot snapshot =
+        await _users.where("email", isEqualTo: email).get();
+    final userList = snapshot.docs;
 
+    users
+        .doc(userList[0].id)
+        .update({'balance': topUpValue + userList[0].get('balance')});
+
+    notifyListeners();
+  }
 }

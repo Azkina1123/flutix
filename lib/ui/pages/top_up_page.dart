@@ -8,36 +8,35 @@ class TopUpPage extends StatefulWidget {
 }
 
 class _TopUpPageState extends State<TopUpPage> {
-  int _index = -1;
   final List<String> recom = [
-    "IDR 35.000",
-    "IDR 50.000",
-    "IDR 100.000",
-    "IDR 150.000",
-    "IDR 200.000",
-    "IDR 350.000",
-    "IDR 500.000",
-    "IDR 750.000"
+    "35000",
+    "50000",
+    "100000",
+    "150000",
+    "200000",
+    "350000",
+    "500000",
+    "750000"
   ];
+
+  final TextEditingController _topUpAmount = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: lightMode ? colors["soapstone"] : colors["cinder"],
         toolbarHeight: 80,
-        backgroundColor: lightMode ? colors["soapstone"] : colors["cinder"],
-        title: Text(
+        title: const Text(
           "Top Up",
           style: TextStyle(
-              fontSize: 24,
-              color: lightMode ? colors["cinder"] : colors["soapstone"],
-              fontFamily: 'Raleway'),
+            fontSize: 24,
+            fontFamily: 'Raleway',
+          ),
         ),
       ),
       body: ListView(
         children: [
-          const TextBox(title: "Amount", type: 0, hint: "IDR"),
+          TextBox(title: "Amount", type: 4, controller: _topUpAmount),
           const Padding(
             padding: EdgeInsets.all(35),
             child: Text(
@@ -59,19 +58,30 @@ class _TopUpPageState extends State<TopUpPage> {
                     return ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          _index = idx;
+                          Provider.of<TopUpSelectionData>(context,
+                                  listen: false)
+                              .changeSelection(idx);
+                          _topUpAmount.text = "";
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: _index == idx
+                        backgroundColor: Provider.of<TopUpSelectionData>(
+                                        context,
+                                        listen: false)
+                                    .templateSelected ==
+                                idx
                             ? colors["cerulean-blue"]
                             : Theme.of(context).colorScheme.secondary,
-                        foregroundColor: _index == idx
+                        foregroundColor: Provider.of<TopUpSelectionData>(
+                                        context,
+                                        listen: false)
+                                    .templateSelected ==
+                                idx
                             ? Colors.white
                             : Theme.of(context).colorScheme.onSecondary,
                       ),
                       child: Text(
-                        recom[idx],
+                        "IDR ${recom[idx]}",
                         style: const TextStyle(fontFamily: 'Oswald'),
                       ),
                     );
@@ -83,17 +93,38 @@ class _TopUpPageState extends State<TopUpPage> {
         width: width(context),
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
+            if (_topUpAmount.text == "" &&
+                Provider.of<TopUpSelectionData>(context, listen: false)
+                        .templateSelected ==
+                    -1) {
+              return;
+            }
+
+            Provider.of<UserData>(context, listen: false).topupBalance(
+                FirebaseAuth.instance.currentUser!.email!,
+                int.parse(_topUpAmount.text != ""
+                    ? _topUpAmount.text
+                    : recom[
+                        Provider.of<TopUpSelectionData>(context, listen: false)
+                            .templateSelected]));
+
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const SuccessTopUpPage()));
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: _index != -1
+            backgroundColor: _topUpAmount.text != "" ||
+                    Provider.of<TopUpSelectionData>(context, listen: false)
+                            .templateSelected !=
+                        -1
                 ? colors["cerulean-blue"]
                 : Theme.of(context).colorScheme.secondary,
-            foregroundColor: _index != -1
+            foregroundColor: _topUpAmount.text != "" ||
+                    Provider.of<TopUpSelectionData>(context, listen: false)
+                            .templateSelected !=
+                        -1
                 ? Colors.white
                 : Theme.of(context).colorScheme.onSecondary,
           ),

@@ -16,7 +16,7 @@ class SuccessCheckoutPage extends StatelessWidget {
               height: 100,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/Confetti.png"),
+                    image: AssetImage("assets/confetti.png"),
                     fit: BoxFit.cover),
               ),
             ),

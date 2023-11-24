@@ -4,10 +4,11 @@ class MyWalletPage extends StatelessWidget {
   const MyWalletPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        toolbarHeight: 80,
+        title: const Text(
           "My Wallet",
           style: TextStyle(
             fontSize: 24,
@@ -17,14 +18,13 @@ class MyWalletPage extends StatelessWidget {
       ),
       body: Consumer<TicketData>(builder: (context, ticketData, child) {
         return ListView(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               alignment: Alignment.center,
               children: [
                 Container(
-                    height: 220,
-                    margin: const EdgeInsets.only(left: 50, right: 50),
+                    height: 200,
+                    margin: const EdgeInsets.only(left: 30, right: 30, top: 20),
                     alignment: Alignment.bottomLeft,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -33,21 +33,26 @@ class MyWalletPage extends StatelessWidget {
                 Container(
                   alignment: Alignment.bottomLeft,
                   height: 220,
-                  margin: const EdgeInsets.only(left: 50, right: 50),
+                  margin: const EdgeInsets.only(left: 30, right: 30),
                   padding: const EdgeInsets.only(left: 20, bottom: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        // "${"RP ${login.balance}"},00",
-                        "",
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontFamily: 'Oswald',
-                            fontWeight: FontWeight.w200),
-                      ),
+                      FutureBuilder<User1>(
+                          future: Provider.of<UserData>(context, listen: false)
+                              .getUser(
+                                  FirebaseAuth.instance.currentUser!.email!),
+                          builder: (context, snapshot) {
+                            return Text(
+                              "RP.  ${snapshot.data!.balance}",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontFamily: 'Oswald',
+                                  fontWeight: FontWeight.w200),
+                            );
+                          }),
                       const Text(
                         "Available Balance",
                         style: TextStyle(

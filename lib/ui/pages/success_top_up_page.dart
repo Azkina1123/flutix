@@ -16,7 +16,7 @@ class SuccessTopUpPage extends StatelessWidget {
               height: 100,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/Confetti.png"),
+                    image: AssetImage("assets/confetti.png"),
                     fit: BoxFit.cover),
               ),
             ),
@@ -33,7 +33,7 @@ class SuccessTopUpPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.symmetric(horizontal: 90),
                   child: Text(
                     "You have successfully feed your wallet!",
                     style: TextStyle(fontSize: 22),

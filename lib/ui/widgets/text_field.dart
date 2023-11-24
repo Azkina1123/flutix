@@ -3,10 +3,10 @@ part of 'widgets.dart';
 class TextBox extends StatefulWidget {
   final String title;
   final int type;
-  final String? hint;
+  final TextEditingController? controller;
 
   const TextBox(
-      {super.key, required this.title, required this.type, this.hint});
+      {super.key, required this.title, required this.type, this.controller});
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -21,15 +21,16 @@ class _TextBoxState extends State<TextBox> {
             ? PasswordTextBox(title: widget.title)
             : widget.type == 3
                 ? ConfPasswordTextBox(title: widget.title)
-                : NormalTextBox(title: widget.title, hint: widget.hint);
+                : (widget.type == 4 && widget.controller != null)
+                ? TopUpTextBox(title: widget.title, controllerTextField: widget.controller)
+                : NormalTextBox(title: widget.title);
   }
 }
 
 class NormalTextBox extends StatefulWidget {
   final String title;
-  final String? hint;
 
-  const NormalTextBox({super.key, required this.title, this.hint});
+  const NormalTextBox({super.key, required this.title});
 
   @override
   State<NormalTextBox> createState() => _NormalTextBoxState();
@@ -100,7 +101,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                               : colors['soapstone']!),
                 ),
                 contentPadding: const EdgeInsets.all(5),
-                hintText: widget.hint ?? "Type Here",
+                hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
                   color: lightMode ? colors['light-grey'] : colors['dove-grey'],
@@ -444,6 +445,108 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
                   textVal = _controllerPassword.text;
                   Provider.of<UserData>(context, listen: false).confPassword =
                       textVal;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class TopUpTextBox extends StatefulWidget {
+  final String title;
+  final TextEditingController? controllerTextField;
+
+  const TopUpTextBox({super.key, required this.title, this.controllerTextField});
+
+  @override
+  State<TopUpTextBox> createState() => _TopUpTextBoxState();
+}
+
+class _TopUpTextBoxState extends State<TopUpTextBox> {
+  bool txtFieldVal = false;
+  bool active = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controllerTextField!.addListener(() {
+      setState(() {
+        txtFieldVal = widget.controllerTextField!.text.isNotEmpty;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.controllerTextField!.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 37, right: 37),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              widget.title,
+              style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontSize: 20,
+                  color: active
+                      ? colors["cerulean-blue"]
+                      : lightMode
+                          ? colors['cinder']
+                          : colors['soapstone']),
+            ),
+          ),
+          SizedBox(
+            width: width(context) - 37,
+            child: TextFormField(
+              controller: widget.controllerTextField!,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: lightMode
+                    ? colors['soapstone']
+                    : colors['dark-jungle-green'],
+                border: const OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: active
+                          ? colors["cerulean-blue"]!
+                          : lightMode
+                              ? colors['cinder']!
+                              : colors['soapstone']!),
+                ),
+                contentPadding: const EdgeInsets.all(5),
+                hintText: "IDR",
+                hintStyle: TextStyle(
+                  fontFamily: 'Raleway',
+                  color: lightMode ? colors['light-grey'] : colors['dove-grey'],
+                ),
+              ),
+              textAlignVertical: TextAlignVertical.center,
+              style: TextStyle(
+                color: lightMode ? colors['cinder'] : colors['soapstone'],
+              ),
+              onTap: () {
+                setState(() {
+                  active = !active;
+                });
+              },
+              onChanged: (value) {
+                setState(() {
+                  Provider.of<TopUpSelectionData>(context, listen: false).changeSelection(-1);
                 });
               },
             ),

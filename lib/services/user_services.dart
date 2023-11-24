@@ -31,7 +31,7 @@ class UserService {
     DocumentSnapshot snapshot = await _userCollection.doc(id).get();
 
     // Membuat objek User1 dari data yang diambil dari Firestore.
-    return User1(snapshot["id"], snapshot['email'], snapshot['name'], snapshot['balance'],
+    return User1(id, snapshot["id"], snapshot['email'], snapshot['name'], snapshot['balance'],
         snapshot['selectedGenres'], snapshot['selectedLanguages'], snapshot["password"], snapshot["foto"]);
   }
 }

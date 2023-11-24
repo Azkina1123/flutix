@@ -2,6 +2,7 @@ part of 'models.dart';
 
 // Kelas User1 adalah kelas model yang merepresentasikan seorang pengguna (user).
 class User1 extends Equatable {
+  final String docId;
   final String id;
   final String email;
   final String name;
@@ -13,7 +14,7 @@ class User1 extends Equatable {
 
   // Konstruktor kelas User1 untuk menginisialisasi properti-propertinya.
   // Properti ini diisi dengan nilai dari parameter yang diterima saat pembuatan objek.
-  User1(this.id, this.email, this.name, this.selectedGenres,
+  User1(this.docId, this.id, this.email, this.name, this.selectedGenres,
       this.selectedLanguage, this.balance, this.password, this.profilePicture);
 
   // Fungsi toString digunakan untuk menghasilkan representasi string dari objek User1.

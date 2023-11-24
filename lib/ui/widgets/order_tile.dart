@@ -25,7 +25,7 @@ class OrderTile extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage("film-strip-$color.png"))),
+                                image: AssetImage("assets/film-strip-$color.png"))),
                       ),
                       SizedBox(
                         height: 80,
