@@ -1,11 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 part of "pages.dart";
 
 class DetailTicket extends StatelessWidget {
   int ticketId;
   DetailTicket({super.key, required this.ticketId});
+  Movie? movie;
 
   @override
   Widget build(BuildContext context) {
+    lightMode = true;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -40,15 +44,25 @@ class DetailTicket extends StatelessWidget {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        FutureBuilder<Movie>(
+                            future: ApiServices.getMovieDetails(ticket.movieId),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                movie = snapshot.data!;
+                              }
+                              return Text("gagal ambil data");
+                            }),
                         Container(
                           width: 400,
                           height: 280,
                           margin: const EdgeInsets.only(
                               left: 40, right: 40, bottom: 0, top: 10),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage("assets/midnight_runners.jpeg"),
-                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                Provider.of<MovieData>(context).imgDir +
+                                    movie!.img,
+                              ),
                             ),
                             color: Color.fromARGB(255, 242, 238, 238),
                             borderRadius: BorderRadius.only(
@@ -70,23 +84,23 @@ class DetailTicket extends StatelessWidget {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Column(
                               children: [
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Text(
-                                  'Midnight Runners',
-                                  style: TextStyle(
+                                  movie!.title,
+                                  style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Cinema",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -99,7 +113,7 @@ class DetailTicket extends StatelessWidget {
                                     Text(
                                       ticket.cinema,
                                       textAlign: TextAlign.right,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
@@ -107,12 +121,12 @@ class DetailTicket extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 6),
+                                const SizedBox(height: 6),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Date & Time",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -127,7 +141,7 @@ class DetailTicket extends StatelessWidget {
                                       DateFormat(' dd MMMM yyyy')
                                           .format(ticket.broadcastDate),
                                       textAlign: TextAlign.right,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
@@ -142,7 +156,7 @@ class DetailTicket extends StatelessWidget {
                                       DateFormat('hh:mm')
                                           .format(ticket.broadcastDate),
                                       textAlign: TextAlign.right,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
@@ -150,12 +164,12 @@ class DetailTicket extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 6),
+                                const SizedBox(height: 6),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Seat",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -168,7 +182,7 @@ class DetailTicket extends StatelessWidget {
                                     Text(
                                       ticket.seats.toString(),
                                       textAlign: TextAlign.right,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
@@ -176,12 +190,12 @@ class DetailTicket extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 6),
+                                const SizedBox(height: 6),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Studio",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -194,7 +208,7 @@ class DetailTicket extends StatelessWidget {
                                     Text(
                                       ticket.studio.toString(),
                                       textAlign: TextAlign.right,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
@@ -202,12 +216,12 @@ class DetailTicket extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 6),
+                                const SizedBox(height: 6),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "ID Order",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -220,7 +234,7 @@ class DetailTicket extends StatelessWidget {
                                     Text(
                                       ticket.id.toString(),
                                       textAlign: TextAlign.right,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,

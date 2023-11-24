@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, sort_child_properties_last
+// ignore_for_file: deprecated_member_use, sort_child_properties_last, non_constant_identifier_names, avoid_unnecessary_containers, sized_box_for_whitespace
 
 part of "pages.dart";
 
@@ -30,20 +30,20 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
 
   @override
   Widget build(BuildContext context) {
+    lightMode = true;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Padding(
           padding: const EdgeInsets.only(top: 10.0),
-          child: InkWell(
-            onTap: () {
-              Navigator.of(context).pop();
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
             },
-            child: const Icon(
-              CupertinoIcons.back,
-              color: Colors.black,
-            ),
           ),
         ),
         title: const Text(
@@ -81,7 +81,6 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 DropdownButton<String>(
-                  
                   value: selectedTempat,
                   onChanged: (String? newValue) {
                     setState(() {
@@ -114,9 +113,8 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
               indent: 20.0,
               endIndent: 20.0,
             ),
-            Container(
+            SizedBox(
               height: 900,
-              padding: EdgeInsets.only(right: 20, left: 20, bottom: 100),
               child: ListView.builder(
                 // physics: ScrollPhysics(),
                 shrinkWrap: true,
@@ -134,64 +132,71 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 30),
+                              padding: const EdgeInsets.only(left: 30),
                               child: Text(
-                                DateFormat('EEE').format(DateTime(
+                                DateFormat('EEEE').format(DateTime(
                                     DateTime.now().year,
                                     DateTime.now().month,
                                     DateTime.now().day + index)),
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Colors.black,
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.normal,
                                 ),
                               ),
                             ),
                             // SizedBox(width: 180),
-                            Text(
-                              "IDR 45.000",
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
+                            const Padding(
+                              padding: EdgeInsets.only(right: 30),
+                              child: Text(
+                                "IDR 45.000",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  //   color: lightMode ? colors["cinder"] : colors["soapstone"],
+
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
                             ),
                           ],
                         ),
                         Container(
                           height: 100,
-                          child: GridView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              // crossAxisSpacing: 8.0,
-                              // mainAxisSpacing: 8.0,
-                              mainAxisSpacing: height(context) / 70,
-                              crossAxisSpacing: 10,
-                              mainAxisExtent: 40,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 27, right: 27),
+                            child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                // crossAxisSpacing: 8.0,
+                                // mainAxisSpacing: 8.0,
+                                mainAxisSpacing: height(context) / 70,
+                                crossAxisSpacing: 10,
+                                mainAxisExtent: 40,
+                              ),
+                              itemCount: waktuTayang.length,
+                              itemBuilder: (context, index2) {
+                                return ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      selectedWaktu = waktuTayang[index2];
+                                      selectedHari = DateTime.now().day + index;
+                                      selected = waktuTayang[index2] + namaHari;
+                                    });
+                                  },
+                                  child: Text(waktuTayang[index2]),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: selected ==
+                                            waktuTayang[index2] + namaHari
+                                        ? colors["cerulean-blue"]
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                  ),
+                                );
+                              },
                             ),
-                            itemCount: waktuTayang.length,
-                            itemBuilder: (context, index2) {
-                              return ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    selectedWaktu = waktuTayang[index2];
-                                    selectedHari = DateTime.now().day + index;
-                                    selected = waktuTayang[index2] + namaHari;
-                                  });
-                                },
-                                child: Text(waktuTayang[index2]),
-                                style: ElevatedButton.styleFrom(
-                                  primary: selected ==
-                                          waktuTayang[index2] + namaHari
-                                      ? colors["cerulean-blue"]
-                                      : Theme.of(context).colorScheme.secondary,
-                                ),
-                              );
-                            },
                           ),
                         ),
                       ],
@@ -200,12 +205,14 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                 },
               ),
             ),
+            SizedBox(height: 1000),
           ],
         ),
       ),
       bottomSheet: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           width: width(context),
+          margin: const EdgeInsets.only(bottom: 30),
           child: ElevatedButton(
             onPressed: () {
               Provider.of<TicketData>(context, listen: false).createdDate =

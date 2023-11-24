@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 part of "pages.dart";
 
 class CheckoutPage extends StatefulWidget {
@@ -18,21 +20,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
         backgroundColor: Colors.transparent,
         leading: Padding(
           padding: const EdgeInsets.only(top: 10.0),
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const PilihBangku();
-                  },
-                ),
-              );
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
             },
-            child: const Icon(
-              CupertinoIcons.back,
-              color: Colors.black,
-            ),
           ),
         ),
         title: const Text(
@@ -56,11 +50,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
           ),
           const SizedBox(height: 10.0),
           Padding(
-            padding: EdgeInsets.only(left: 30, right: 20.0),
+            padding: const EdgeInsets.only(left: 30, right: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Cinema",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -69,20 +63,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 3),
+                const SizedBox(height: 3),
                 Text(
                   Provider.of<TicketData>(context, listen: false).cinema! +
                       ", " +
                       Provider.of<TicketData>(context, listen: false).studio!,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   "Date & Time",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -91,18 +85,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 3),
+                const SizedBox(height: 3),
                 Text(
                   DateFormat('EEEE, dd MMMM yyyy, hh:mm').format(brodcastDate),
                   textAlign: TextAlign.right,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   "Seat",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -111,8 +105,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 3),
-                Text(
+                const SizedBox(height: 3),
+                const Text(
                   "A1, A2",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -121,8 +115,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 20),
-                Row(
+                const SizedBox(height: 20),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -146,8 +140,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 3),
-                Row(
+                const SizedBox(height: 3),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
