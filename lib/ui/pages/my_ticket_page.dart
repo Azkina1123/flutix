@@ -98,30 +98,18 @@ class _MyTicketPageState extends State<MyTicketPage> {
                           return Column(
                             children: snapshot.data!.docs
                                 .map(
-                                  (ticket) => GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => DetailTicket(
-                                            ticketId: ticket.get("id"),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: TicketTile(
-                                      ticket: Ticket(
-                                        id: ticket.get("id"),
-                                        createdDate:
-                                            ticket.get("createdDate").toDate(),
-                                        broadcastDate: ticket
-                                            .get("broadcastDate")
-                                            .toDate(),
-                                        cinema: ticket.get("cinema"),
-                                        movieId: ticket.get("movieId"),
-                                        used: ticket.get("used"),
-                                        userId: ticket.get("userId"),
-                                      ),
+                                  (ticket) => TicketTile(
+                                    ticket: Ticket(
+                                      id: ticket.get("id"),
+                                      createdDate:
+                                          ticket.get("createdDate").toDate(),
+                                      broadcastDate: ticket
+                                          .get("broadcastDate")
+                                          .toDate(),
+                                      cinema: ticket.get("cinema"),
+                                      movieId: ticket.get("movieId"),
+                                      used: ticket.get("used"),
+                                      userId: ticket.get("userId"),
                                     ),
                                   ),
                                 )

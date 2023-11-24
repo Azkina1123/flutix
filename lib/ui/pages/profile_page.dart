@@ -18,34 +18,6 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Stack(
             children: [
-              Positioned(
-                top: 30,
-                right: 0,
-                child: InkWell(
-                  onTap: () {
-                    Provider.of<ThemeModeData>(context, listen: false)
-                        .changeTheme();
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondary
-                          .withOpacity(0.5),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
-                    ),
-                    child: Icon(
-                        Provider.of<ThemeModeData>(context, listen: false)
-                                .lightMode
-                            ? Icons.dark_mode
-                            : Icons.light_mode),
-                  ),
-                ),
-              ),
 
               // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
               // KALAU LOGIN SUDAH BERHASIL, UBAH INIII
@@ -223,6 +195,35 @@ class _ProfilePageState extends State<ProfilePage> {
                       "Belum ada user yang login.",
                       textAlign: TextAlign.center,
                     ),
+                          Positioned(
+                top: 30,
+                right: 0,
+                child: InkWell(
+                  onTap: () {
+                    Provider.of<ThemeModeData>(context, listen: false)
+                        .changeTheme();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.5),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
+                    child: Icon(
+                        Provider.of<ThemeModeData>(context, listen: false)
+                                .lightMode
+                            ? Icons.dark_mode
+                            : Icons.light_mode),
+                  ),
+                ),
+              ),
+
             ],
           ),
         ],

@@ -35,7 +35,7 @@ class TicketData extends ChangeNotifier {
   }
 
   Future<Ticket> getTicket(int id) async {
-    QuerySnapshot snapshot = await _tickets.get();
+    QuerySnapshot snapshot = await _tickets.where("id", isEqualTo: id).get();
     final ticketList = snapshot.docs;
 
     List<String> seats = [];
@@ -54,12 +54,6 @@ class TicketData extends ChangeNotifier {
       used: ticketList[0].get("used"),
       studio: ticketList[0].get("studio"),
     );
-
-    // ticketList.forEach((ticket) {
-    //   if (ticket.get("id") == id) {
-    //     newTicket =
-    //   }
-    // });
 
     return newTicket;
   }

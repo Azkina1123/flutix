@@ -1,14 +1,9 @@
 part of "pages.dart";
 
-class DetailTicket extends StatefulWidget {
+class DetailTicket extends StatelessWidget {
   int ticketId;
   DetailTicket({super.key, required this.ticketId});
 
-  @override
-  State<DetailTicket> createState() => _DetailTicketState();
-}
-
-class _DetailTicketState extends State<DetailTicket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +33,7 @@ class _DetailTicketState extends State<DetailTicket> {
           Center(
             child: FutureBuilder<Ticket>(
                 future: Provider.of<TicketData>(context, listen: false)
-                    .getTicket(widget.ticketId),
+                    .getTicket(ticketId),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     Ticket ticket = snapshot.data!;
@@ -260,7 +255,7 @@ class _DetailTicketState extends State<DetailTicket> {
                       ],
                     );
                   }
-                  return Text("Gagal ambil data.");
+                  return const CircularProgressIndicator();
                 }),
           ),
         ],
