@@ -41,9 +41,6 @@ class _NormalTextBoxState extends State<NormalTextBox> {
   bool txtFieldVal = false;
   bool active = false;
   String textVal = "";
-  // String emailVal = "";
-  // String fullNameVal = "";
-  // String passwordVal = "";
 
   @override
   void initState() {
@@ -77,9 +74,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                   fontSize: 20,
                   color: active
                       ? colors["cerulean-blue"]
-                      : lightMode
-                          ? colors['cinder']
-                          : colors['soapstone']),
+                      : Theme.of(context).colorScheme.onPrimary),
             ),
           ),
           SizedBox(
@@ -89,27 +84,27 @@ class _NormalTextBoxState extends State<NormalTextBox> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
-                    ? colors['soapstone']
-                    : colors['dark-jungle-green'],
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.secondary,
                 border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color: active
                           ? colors["cerulean-blue"]!
                           : lightMode
-                              ? colors['cinder']!
-                              : colors['soapstone']!),
+                              ? Theme.of(context).colorScheme.onPrimary
+                              : Theme.of(context).colorScheme.onPrimary),
                 ),
                 contentPadding: const EdgeInsets.all(5),
                 hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
-                  color: lightMode ? colors['light-grey'] : colors['dove-grey'],
+                  color: lightMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               textAlignVertical: TextAlignVertical.center,
               style: TextStyle(
-                color: lightMode ? colors['cinder'] : colors['soapstone'],
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               onTap: () {
                 setState(() {
@@ -177,10 +172,8 @@ class _EmailTextBoxState extends State<EmailTextBox> {
                 fontFamily: 'Raleway',
                 fontSize: 20,
                 color: emailCheck == false && _controllerEmail.text != ""
-                    ? colors['red-brown']
-                    : lightMode
-                        ? colors['cinder']
-                        : colors['soapstone'],
+                    ? Theme.of(context).colorScheme.error
+                    : Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -199,38 +192,32 @@ class _EmailTextBoxState extends State<EmailTextBox> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
-                    ? colors['soapstone']
-                    : colors['dark-jungle-green'],
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.secondary,
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: emailCheck == false && _controllerEmail.text != ""
-                        ? colors['red-brown']!
-                        : lightMode
-                            ? colors['cinder']!
-                            : colors['soapstone']!,
+                        ? Theme.of(context).colorScheme.error
+                        : Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                   color: emailCheck == false && _controllerEmail.text != ""
-                      ? colors['red-brown']!
-                      : lightMode
-                          ? colors['cinder']!
-                          : colors['soapstone']!,
+                      ? Theme.of(context).colorScheme.error
+                      : Theme.of(context).colorScheme.onPrimary,
                 )),
                 contentPadding: const EdgeInsets.all(5),
                 hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
-                  color: lightMode ? colors['light-grey'] : colors['dove-grey'],
+                  color: lightMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               style: TextStyle(
                 color: emailCheck == false
-                    ? colors['red-brown']
-                    : lightMode
-                        ? colors['cinder']
-                        : colors['soapstone'],
+                    ? Theme.of(context).colorScheme.error
+                    : Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -287,7 +274,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
               style: TextStyle(
                   fontFamily: 'Raleway',
                   fontSize: 20,
-                  color: lightMode ? colors['cinder'] : colors['soapstone']),
+                  color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
           SizedBox(
@@ -297,13 +284,13 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
-                    ? colors['soapstone']
-                    : colors['dark-jungle-green'],
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.secondary,
                 border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color:
-                          lightMode ? colors['cinder']! : colors['soapstone']!),
+                      color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
                 contentPadding: const EdgeInsets.all(5),
                 suffixIcon: GestureDetector(
@@ -319,7 +306,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                 hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
-                  color: lightMode ? colors['light-grey'] : colors['dove-grey'],
+                  color: lightMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSecondary,
                 ),
                 // membuat kondisi jika email dan password tidak sesuai
                 // *silahkan disesuaikan
@@ -334,7 +321,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
               obscureText: press ? true : false,
               textAlignVertical: TextAlignVertical.center,
               style: TextStyle(
-                color: lightMode ? colors['cinder'] : colors['soapstone'],
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               onChanged: (value) {
                 setState(() {
@@ -400,7 +387,7 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
               style: TextStyle(
                   fontFamily: 'Raleway',
                   fontSize: 20,
-                  color: lightMode ? colors['cinder'] : colors['soapstone']),
+                  color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
           SizedBox(
@@ -410,13 +397,14 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
-                    ? colors['soapstone']
-                    : colors['dark-jungle-green'],
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.secondary,
                 border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color:
-                          lightMode ? colors['cinder']! : colors['soapstone']!),
+                          Theme.of(context).colorScheme.onPrimary,
+                        ),
                 ),
                 contentPadding: const EdgeInsets.all(5),
                 suffixIcon: GestureDetector(
@@ -432,13 +420,13 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
                 hintText: "Type Here",
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
-                  color: lightMode ? colors['light-grey'] : colors['dove-grey'],
+                  color: lightMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               obscureText: press ? true : false,
               textAlignVertical: TextAlignVertical.center,
               style: TextStyle(
-                color: lightMode ? colors['cinder'] : colors['soapstone'],
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               onChanged: (value) {
                 setState(() {

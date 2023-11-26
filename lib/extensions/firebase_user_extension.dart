@@ -18,6 +18,6 @@ extension FirebaseUserExtension on User {
           int balance =
               50000,
           String password = "Password",
-          String foto = "Path Foto"}) => // Parameter balance dengan nilai default 50000
+          String foto = "Path Foto", required String profilePicture}) => // Parameter balance dengan nilai default 50000
       User1(docId, uid, email, name, selectedGenres, selectedLanguage, balance, password, foto);
 }

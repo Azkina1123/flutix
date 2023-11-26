@@ -10,33 +10,36 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool checkedValue = false;
   bool validatePass = false;
+  bool loading = false;
 
   String fullName = "";
   String email = "";
   String password = "";
   String confPassword = "";
+  String profilePicture = "";
+  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
     final snackBarPass = SnackBar(
-      content: Text("Confirm Password Must Be Same"),
-      duration: Duration(seconds: 3),
-      padding: EdgeInsets.all(10),
+      content: const Text("Confirm Password Must Be Same"),
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(10),
       backgroundColor: Theme.of(context).colorScheme.error,
     );
 
     final snackBarPrivacyPolice = SnackBar(
-      content: Text("Please Agree Privacy Policy"),
-      duration: Duration(seconds: 3),
-      padding: EdgeInsets.all(10),
+      content: const Text("Please Agree Privacy Policy"),
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(10),
       backgroundColor: Colors.amber.shade300,
     );
 
     final snackBarPassAndPP = SnackBar(
-      content:
-          Text("Confirm Password Must Be Same & Please Agree Privacy Policy"),
-      duration: Duration(seconds: 3),
-      padding: EdgeInsets.all(10),
+      content: const Text(
+          "Confirm Password Must Be Same & Please Agree Privacy Policy"),
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(10),
       backgroundColor: Theme.of(context).colorScheme.error,
     );
 
@@ -46,14 +49,67 @@ class _SignUpPageState extends State<SignUpPage> {
         scrollDirection: Axis.vertical,
         children: [
           Center(
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 20, left: 37, right: 37),
-              width: 90,
-              height: 90,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: lightMode ? colors['light-grey'] : colors['dove-grey'],
-              ),
+            child: InkWell(
+              onTap: () async {
+
+                  // Membuat  dan menambahkan package image_picker
+                  final imgPicker = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+
+                  if (imgPicker == null) return;
+
+                  String fileName =
+                      DateTime.now().microsecondsSinceEpoch.toString();
+
+                  // Membua reference untuk menggambil folder root pada firebase storage
+                  Reference referenceRoot = FirebaseStorage.instance.ref();
+                  Reference referenceImages =
+                      referenceRoot.child("user_profile_pic");
+
+                  // Membuat reference untuk mengupload gambar
+                  Reference referenceImageToUpload =
+                      referenceImages.child(fileName);
+
+                  // Error handling
+                  try {
+                    await referenceImageToUpload.putFile(File(imgPicker.path));
+                    imageUrl = await referenceImageToUpload.getDownloadURL();
+                  } catch (e) {}
+              },
+              child:
+              imageUrl != ""
+                  ? Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 20, left: 37, right: 37),
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: lightMode
+                            ? Theme.of(context).colorScheme.secondary
+                            : Theme.of(context).colorScheme.onSecondary,
+                        image: DecorationImage(
+                          image: NetworkImage(imageUrl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                  :
+                  Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 20, left: 37, right: 37),
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: lightMode
+                            ? Theme.of(context).colorScheme.secondary
+                            : Theme.of(context).colorScheme.onSecondary,
+                        image: const DecorationImage(
+                          image: AssetImage("assets/profile-grey.png"),
+                        ),
+                      ),
+                    ),
             ),
           ),
           const Padding(
@@ -97,6 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
             setState(() {
               email = Provider.of<UserData>(context, listen: false).email;
               fullName = Provider.of<UserData>(context, listen: false).fullName;
+              profilePicture = Provider.of<UserData>(context, listen: false).profilePicture;
               confPassword =
                   Provider.of<UserData>(context, listen: false).confPassword;
               confPassword ==
@@ -110,15 +167,15 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? password =
                           Provider.of<UserData>(context, listen: false).password
                       : password = "";
-            });
             validatePass == true && checkedValue == true
                 ? Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => UserProfilePage(
-                              username: email,
+                              email: email,
                               name: fullName,
                               password: password,
+                              profilePath: profilePicture,
                             )))
                 : validatePass == true && checkedValue == false
                     ? ScaffoldMessenger.of(context)
@@ -130,7 +187,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ? ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBarPassAndPP)
                             : null;
-            ;
+            });
           },
           child: const Text(
             "Sign Up",

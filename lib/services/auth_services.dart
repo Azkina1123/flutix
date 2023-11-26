@@ -10,7 +10,7 @@ class AutServices {
 
   // Metode signUp digunakan untuk mendaftarkan pengguna baru.
   static Future<void> signUp(String email, String password, String name,
-      List<String> selectedGenres, String selectedLanguage) async {
+      List<String> selectedGenres, String selectedLanguage, String profilePicture) async {
     try {
       // Mencoba membuat pengguna baru dengan email dan password.
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -19,9 +19,12 @@ class AutServices {
       // Mengonversi objek User hasil pendaftaran ke objek User1
       // dengan mengatur properti seperti nama, genre yang dipilih, dan bahasa yang dipilih.
       User1 user1 = result.user!.convertToUser(
+          email: email,
           name: name,
+          password: password,
           selectedGenres: selectedGenres,
-          selectedLanguage: selectedLanguage);
+          selectedLanguage: selectedLanguage,
+          foto: profilePicture, profilePicture: '');
 
       // Memperbarui informasi pengguna ke layanan UserService.
       await UserService.updateUser(user1);
@@ -32,27 +35,40 @@ class AutServices {
 
   // Metode signIn digunakan untuk mengotentikasi pengguna yang sudah terdaftar.
   static Future<User1?> signIn(String email, String password) async {
-
     try {
       // Mencoba untuk masuk (sign in) dengan email dan password yang diberikan.
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      
-      final User1 user1 = result.user!.convertToUser();
+
+      final User1 user1 = result.user!.convertToUser(profilePicture: '');
 
       return user1;
     } on FirebaseAuthException catch (e) {
-
       // Email tidak ditemukan
       if (e.code == 'user-not-found') {
-
-      // Password Salah
-      } else if (e.code == 'wrong-password') {
-
-      }
+        // Password Salah
+      } else if (e.code == 'wrong-password') {}
     }
 
     return null;
+  }
+
+  static Future<void> anonymouslySignIn() async {
+
+    try {
+      final userCredential = await FirebaseAuth.instance.signInAnonymously();
+      print("Signed in with temporary account.");
+
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case "operation-not-allowed":
+          print("Anonymous auth hasn't been enabled for this project.");
+          break;
+
+        default:
+          print("Unknown error.");
+      }
+    }
   }
 }
 

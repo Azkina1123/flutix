@@ -12,6 +12,7 @@ class GenreButton extends StatefulWidget {
 class _GenreButtonState extends State<GenreButton> {
   String img = "";
   bool press = false;
+    List<String> selectGenres = [];
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,14 @@ class _GenreButtonState extends State<GenreButton> {
         onTap: () {
           setState(() {
             press = !press;
+            
+            press == true ?
+              selectGenres.add(widget.genre)
+              : selectGenres.remove(widget.genre);
+            
+            Provider.of<UserData>(context, listen: false).genres = selectGenres;
+            print(Provider.of<UserData>(context, listen: false).genres);
+            // print(selectGenres.length);
           });
         },
         child: Container(

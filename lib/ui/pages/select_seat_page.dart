@@ -1,13 +1,13 @@
 part of 'pages.dart';
 
-class PilihBangku extends StatefulWidget {
-  const PilihBangku({super.key});
+class PilihBangkuPage extends StatefulWidget {
+  const PilihBangkuPage({super.key});
 
   @override
-  State<PilihBangku> createState() => _PilihBangkuState();
+  State<PilihBangkuPage> createState() => _PilihBangkuPageState();
 }
 
-class _PilihBangkuState extends State<PilihBangku> {
+class _PilihBangkuPageState extends State<PilihBangkuPage> {
   List<String> seatNumber = [
     "A1",
     "A2",
@@ -59,34 +59,40 @@ class _PilihBangkuState extends State<PilihBangku> {
     "H6"
   ];
 
+  bool press = false;
+  List<String> selectedSeats = [];
+  int seatCount = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20, top: 5, right: 20),
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
+            },
+          ),
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: const Text(
+            "Select Seat",
+            style: TextStyle(
+              fontFamily: 'Raleway',
+              fontWeight: FontWeight.w500,
+              fontSize: 24,
+            ),
+          ),
+        ),
+      ),
       body: ListView(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                  onPressed: () {
-                    setState(() {
-                      Navigator.pop(context);
-                    });
-                  },
-                ),
-              ),
-              const Text(
-                "Select Seat",
-                style: TextStyle(
-                  fontFamily: 'Raleway',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24,
-                ),
-              ),
-            ],
-          ),
+          SizedBox(height: 15),
           Stack(
             children: [
               Container(
@@ -166,8 +172,26 @@ class _PilihBangkuState extends State<PilihBangku> {
                                     crossAxisCount: 6),
                             shrinkWrap: true,
                             itemBuilder: (_, i) {
-                              return SeatButton(
-                                  seat: seatNumber[i], selected: false);
+                              return
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     setState(() {
+                                  //       press = !press;
+
+                                  //       press == true ?
+                                  //       selectedSeats.add(seatNumber[i])
+                                  //       : selectedSeats.removeWhere((element) => element == seatNumber[i]);
+
+                                  //       Provider.of<TicketData>(context, listen: false).seats = selectedSeats;
+                                  //       seatCount = Provider.of<TicketData>(context, listen: false).seats!.length;
+                                  //       print(Provider.of<TicketData>(context, listen: false).seats);
+                                  //     });
+                                  //   },
+                                  //   child:
+                                  SeatButton(seat: seatNumber[i]
+                                      // , pressed: press
+                                      );
+                              // );
                             },
                             itemCount: seatNumber.length,
                           ),
@@ -179,7 +203,7 @@ class _PilihBangkuState extends State<PilihBangku> {
               ),
             ],
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -277,7 +301,7 @@ class _PilihBangkuState extends State<PilihBangku> {
               ),
             ],
           ),
-          const SizedBox(height: 45),
+          const SizedBox(height: 25),
           Container(
             height: 120,
             width: double.maxFinite,
@@ -291,16 +315,15 @@ class _PilihBangkuState extends State<PilihBangku> {
               padding: const EdgeInsets.only(top: 15),
               child: Column(
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(left: 30, right: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Selected Seat " + "-"),
-                        Text(
-                            //tampilkan jumlah tiket sesuai jumlah bangku yang dipilih
-                            //tiket 0
-                            "0" + " Ticket"),
+                        Text(seatCount < 1
+                            ? "Selected Seat -"
+                            : "Selected Seat $selectedSeats"),
+                        Text(seatCount < 1 ? "0 Ticket" : "$seatCount Ticket"),
                       ],
                     ),
                   ),
@@ -311,7 +334,12 @@ class _PilihBangkuState extends State<PilihBangku> {
                     width: width(context) - 50,
                     child: ElevatedButton(
                       onPressed: () {
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SuccessCheckoutPage(),
+                          ),
+                        );
                       },
                       child: const Text("Pickup Seat"),
                     ),

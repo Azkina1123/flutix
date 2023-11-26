@@ -227,7 +227,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
               Provider.of<TicketData>(context, listen: false).studio =
                   StudioList[index];
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const PilihBangku()));
+                  MaterialPageRoute(builder: (context) => const PilihBangkuPage()));
             },
             child: const Text(
               "Get Seat",

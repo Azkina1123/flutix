@@ -12,16 +12,46 @@ class UserData extends ChangeNotifier {
   String fullName = "";
   String password = "";
   String confPassword = "";
+  String profilePicture = "";
   bool validatePass = false;
+  List<String> genres = [];
 
   void userData(String emailVal, String fullNameVal, String passwordVal,
-      String confPasswordVal, bool validatePassVal) {
+      String confPasswordVal, bool validatePassVal, List<String> selectedGenres, String profilePictureVal) {
     email = emailVal;
     fullName = fullNameVal;
     password = passwordVal;
     confPassword = confPasswordVal;
     validatePass = validatePassVal;
+    genres = selectedGenres;
+    profilePicture = profilePictureVal;
     notifyListeners();
+  }
+
+  // void add(User1 user) {
+  //   int max = 99999999;
+  //   int min = 10000000;
+  //   int randomNumber = Random().nextInt(max - min + 1) + min;
+
+  // _users.add({
+  //   "id" : randomNumber,
+  //   "email" : user.email,
+  //   "name" : user.name,
+  //   "password" : user.password,
+  //   "selectedGenres" : user.selectedGenres,
+  //   "selectedlanguage" : user.selectedLanguage,
+  //   "profilePicture" : user.profilePicture,
+  //   "balance" : user.balance,
+  // });
+  // }
+
+  void update(User1 user){
+    _users.doc(user.docId).update({
+    "email" : user.email,
+    "name" : user.name,
+    "password" : user.password,
+    "profilePicture" : user.profilePicture,
+    });
   }
 
   Future<User1> getUser(String email) async {
