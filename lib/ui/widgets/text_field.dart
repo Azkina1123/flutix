@@ -74,7 +74,9 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                   fontSize: 20,
                   color: active
                       ? colors["cerulean-blue"]
-                      : Theme.of(context).colorScheme.onPrimary),
+                      : lightMode ?
+                      Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.primary),
             ),
           ),
           SizedBox(
@@ -93,7 +95,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
                           ? colors["cerulean-blue"]!
                           : lightMode
                               ? Theme.of(context).colorScheme.onPrimary
-                              : Theme.of(context).colorScheme.onPrimary),
+                              : Theme.of(context).colorScheme.onSecondary),
                 ),
                 contentPadding: const EdgeInsets.all(5),
                 hintText: "Type Here",
@@ -310,13 +312,13 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                 ),
                 // membuat kondisi jika email dan password tidak sesuai
                 // *silahkan disesuaikan
-                errorText: errorText == true
-                    ? Provider.of<UserData>(context, listen: false)
-                                .validatePass ==
-                            true
-                        ? "Your Email or Password is Wrong"
-                        : null
-                    : null,
+                // errorText: errorText == true
+                //     ? Provider.of<UserData>(context, listen: false)
+                //                 .validatePass ==
+                //             true
+                //         ? "Your Email or Password is Wrong"
+                //         : null
+                //     : null,
               ),
               obscureText: press ? true : false,
               textAlignVertical: TextAlignVertical.center,

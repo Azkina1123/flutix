@@ -12,7 +12,7 @@ class TicketData extends ChangeNotifier {
   DateTime? broadcastDate;
   String? cinema;
   String? studio;
-  List<String>? seats;
+  List<String> seats = [];
   bool? used;
   int? movieId;
 

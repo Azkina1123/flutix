@@ -53,23 +53,6 @@ class AutServices {
     return null;
   }
 
-  static Future<void> anonymouslySignIn() async {
-
-    try {
-      final userCredential = await FirebaseAuth.instance.signInAnonymously();
-      print("Signed in with temporary account.");
-
-    } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case "operation-not-allowed":
-          print("Anonymous auth hasn't been enabled for this project.");
-          break;
-
-        default:
-          print("Unknown error.");
-      }
-    }
-  }
 }
 
 // Kelas SignInSignUpResult digunakan untuk menyimpan hasil sign-in atau sign-up.

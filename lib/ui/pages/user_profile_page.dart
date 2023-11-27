@@ -23,6 +23,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
   bool loading = false;
   String genres = "";
 
+  List<String> genreName = [
+    "musical", "horror", "romance", "thriller", "action", "drama"
+  ];
+
   List<String> selectGenres = [];
 
   // handleSubmit() async {}
@@ -62,80 +66,22 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
             ),
             Container(
-              height: 140,
+              height: 110,
               width: width(context) - 30,
               padding: const EdgeInsets.only(left: 30),
-              child: GridView(
+              child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                children: [
-                  // GestureDetector(
-                  //   child:
-                  GenreButton(genre: "musical", pressed: true),
-                  // onTap: () {
-                  //   setState(() {
-                  //     String genres = "musical";
-                  //     selectGenres.add(genres);
-                  //   });
-                  // },
-                  // ),
-                  // GestureDetector(
-                  //   child:
-                  GenreButton(genre: "horror", pressed: true),
-                  //   onTap: () {
-                  //     setState(() {
-                  //       String genres = "horror";
-                  //       selectGenres.add(genres);
-                  //     });
-                  //   },
-                  //   ),
-                  // GestureDetector(
-                  //   child:
-                  GenreButton(genre: "romance", pressed: true),
-                  //   onTap: () {
-                  //     setState(() {
-                  //       String genres = "romance";
-                  //       selectGenres.add(genres);
-                  //     });
-                  //   },
-                  //   ),
-                  // GestureDetector(
-                  //   child:
-                  GenreButton(genre: "thriller", pressed: true),
-                  //   onTap: () {
-                  //     setState(() {
-                  //       String genres = "thriller";
-                  //       selectGenres.add(genres);
-                  //     });
-                  //   },
-                  //   ),
-                  // GestureDetector(
-                  //   child:
-                  GenreButton(genre: "action", pressed: true),
-                  //   onTap: () {
-                  //     setState(() {
-                  //       String genres = "action";
-                  //       selectGenres.add(genres);
-                  //     });
-                  //   },
-                  //   ),
-                  // GestureDetector(
-                  //   child:
-                  GenreButton(genre: "drama", pressed: true),
-                  // onTap: () {
-                  //   setState(() {
-                  //     String genres = "drama";
-                  //     selectGenres.add(genres);
-                  //   });
-                  // },
-                  // ),
-                ],
+                itemBuilder: (_, i) {
+                  return GenreButton(genre: genreName[i], pressed: true);
+                },
+                itemCount: genreName.length,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 45, bottom: 25, left: 55),
+              padding: EdgeInsets.only(top: 55, bottom: 5, left: 55),
               child: Text(
                 "Select Language",
                 style: TextStyle(
@@ -152,143 +98,160 @@ class _UserProfilePageState extends State<UserProfilePage> {
               padding: const EdgeInsets.only(left: 25),
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, mainAxisSpacing: 1),
-                physics: const NeverScrollableScrollPhysics(),
+                    crossAxisCount: 2),
                 children: [
                   Container(
                     child: Column(
                       children: [
-                        RadioListTile(
-                          title: Text(
-                            "English",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "English",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "English",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "English",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
-                        RadioListTile(
-                          title: Text(
-                            "Indonesia",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "Indonesia",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "Indonesia",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "Indonesia",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
-                        RadioListTile(
-                          title: Text(
-                            "Spanyol",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "Spanyol",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "Spanyol",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "Spanyol",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
-                        RadioListTile(
-                          title: Text(
-                            "Turkey",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "Turkey",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "Turkey",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "Turkey",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
                       ],
                     ),
                   ),
-                  // Padding(
                   Container(
-                    // padding: const EdgeInsets.only(left: 5),
                     child: Column(
                       children: [
-                        RadioListTile(
-                          title: Text(
-                            "한글",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "한글",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "Korean",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "Korean",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
-                        RadioListTile(
-                          title: Text(
-                            "France",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "France",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "France",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "France",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
-                        RadioListTile(
-                          title: Text(
-                            "日本語",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 15,
+                        SizedBox(
+                          height: 40,
+                          child: RadioListTile(
+                            title: Text(
+                              "日本語",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onBackground,
+                                fontSize: 15,
+                              ),
                             ),
+                            value: "Japanese",
+                            groupValue: selectLanguage,
+                            activeColor: colors["cerulean-blue"],
+                            onChanged: (value) {
+                              setState(() {
+                                selectLanguage = value.toString();
+                              });
+                            },
                           ),
-                          value: "Japanese",
-                          groupValue: selectLanguage,
-                          activeColor: colors["cerulean-blue"],
-                          onChanged: (value) {
-                            setState(() {
-                              selectLanguage = value.toString();
-                            });
-                          },
                         ),
                       ],
                     ),
                   ),
-                  // ),
                 ],
               ),
             ),

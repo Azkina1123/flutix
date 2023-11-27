@@ -12,7 +12,6 @@ class GenreButton extends StatefulWidget {
 class _GenreButtonState extends State<GenreButton> {
   String img = "";
   bool press = false;
-    List<String> selectGenres = [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +20,14 @@ class _GenreButtonState extends State<GenreButton> {
         onTap: () {
           setState(() {
             press = !press;
-            
-            press == true ?
-              selectGenres.add(widget.genre)
-              : selectGenres.remove(widget.genre);
-            
-            Provider.of<UserData>(context, listen: false).genres = selectGenres;
-            print(Provider.of<UserData>(context, listen: false).genres);
-            // print(selectGenres.length);
+
+            press == true
+                ? Provider.of<UserData>(context, listen: false)
+                    .genres
+                    .add(widget.genre)
+                : Provider.of<UserData>(context, listen: false)
+                    .genres
+                    .remove(widget.genre);
           });
         },
         child: Container(
@@ -50,25 +49,27 @@ class _GenreButtonState extends State<GenreButton> {
                       BoxShadow(
                           color: widget.pressed == true
                               ? press == true
-                                ? colors["cerulean-blue"]!
-                                : Colors.transparent
+                                  ? colors["cerulean-blue"]!
+                                  : Colors.transparent
                               : Colors.transparent,
-                          blurRadius: 5.5),
+                          blurRadius: 6),
                     ],
                     image: DecorationImage(
-                        image: AssetImage(
-                            "assets/${widget.genre.toLowerCase()}.png"))),
+                        image: AssetImage(press == true
+                            ? "assets/${widget.genre.toLowerCase()}-white.png"
+                            : "assets/${widget.genre.toLowerCase()}.png"))),
               ),
               Text(
                 widget.genre.toTitleCase(),
                 style: TextStyle(
                     fontSize: 16,
                     color: widget.pressed == true
-                              ? press == true
-                        ? colors["cerulean-blue"]
+                        ? press == true
+                            ? colors["cerulean-blue"]
+                            : lightMode
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : Theme.of(context).colorScheme.onSecondary
                         : lightMode
-                            ? Theme.of(context).colorScheme.onPrimary
-                            : Theme.of(context).colorScheme.onSecondary : lightMode
                             ? Theme.of(context).colorScheme.onPrimary
                             : Theme.of(context).colorScheme.onSecondary),
               )

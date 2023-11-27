@@ -51,36 +51,34 @@ class _SignUpPageState extends State<SignUpPage> {
           Center(
             child: InkWell(
               onTap: () async {
+                // Membuat  dan menambahkan package image_picker
+                final imgPicker =
+                    await ImagePicker().pickImage(source: ImageSource.gallery);
 
-                  // Membuat  dan menambahkan package image_picker
-                  final imgPicker = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
+                if (imgPicker == null) return;
 
-                  if (imgPicker == null) return;
+                String fileName =
+                    DateTime.now().microsecondsSinceEpoch.toString();
 
-                  String fileName =
-                      DateTime.now().microsecondsSinceEpoch.toString();
+                // Membua reference untuk menggambil folder root pada firebase storage
+                Reference referenceRoot = FirebaseStorage.instance.ref();
+                Reference referenceImages =
+                    referenceRoot.child("user_profile_pic");
 
-                  // Membua reference untuk menggambil folder root pada firebase storage
-                  Reference referenceRoot = FirebaseStorage.instance.ref();
-                  Reference referenceImages =
-                      referenceRoot.child("user_profile_pic");
+                // Membuat reference untuk mengupload gambar
+                Reference referenceImageToUpload =
+                    referenceImages.child(fileName);
 
-                  // Membuat reference untuk mengupload gambar
-                  Reference referenceImageToUpload =
-                      referenceImages.child(fileName);
-
-                  // Error handling
-                  try {
-                    await referenceImageToUpload.putFile(File(imgPicker.path));
-                    imageUrl = await referenceImageToUpload.getDownloadURL();
-                  } catch (e) {}
+                // Error handling
+                try {
+                  await referenceImageToUpload.putFile(File(imgPicker.path));
+                  imageUrl = await referenceImageToUpload.getDownloadURL();
+                } catch (e) {}
               },
-              child:
-              imageUrl != ""
+              child: imageUrl != ""
                   ? Container(
                       margin: const EdgeInsets.only(
-                          bottom: 20, left: 37, right: 37),
+                          bottom: 10, left: 37, right: 37),
                       width: 90,
                       height: 90,
                       decoration: BoxDecoration(
@@ -94,10 +92,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                     )
-                  :
-                  Container(
+                  : Container(
                       margin: const EdgeInsets.only(
-                          bottom: 20, left: 37, right: 37),
+                          bottom: 10, left: 37, right: 37),
                       width: 90,
                       height: 90,
                       decoration: BoxDecoration(
@@ -117,21 +114,25 @@ class _SignUpPageState extends State<SignUpPage> {
             child: TextBox(title: "Full Name", type: 4),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 35),
+            padding: EdgeInsets.only(top: 25),
             child: TextBox(title: "Email Address", type: 1),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 35),
+            padding: EdgeInsets.only(top: 25),
             child: TextBox(title: "Password", type: 2),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 35),
+            padding: EdgeInsets.only(top: 25),
             child: TextBox(title: "Confirm Password", type: 3),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: CheckboxListTile(
-              title: const Text("I Agree to Privacy Police"),
+              title: const Text(
+                "I Agree to Privacy Police",
+                style: TextStyle(
+                    fontFamily: 'Raleway', fontWeight: FontWeight.w500),
+              ),
               value: checkedValue,
               onChanged: (value) {
                 setState(() {
@@ -153,7 +154,8 @@ class _SignUpPageState extends State<SignUpPage> {
             setState(() {
               email = Provider.of<UserData>(context, listen: false).email;
               fullName = Provider.of<UserData>(context, listen: false).fullName;
-              profilePicture = Provider.of<UserData>(context, listen: false).profilePicture;
+              profilePicture =
+                  Provider.of<UserData>(context, listen: false).profilePicture;
               confPassword =
                   Provider.of<UserData>(context, listen: false).confPassword;
               confPassword ==
@@ -167,26 +169,26 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? password =
                           Provider.of<UserData>(context, listen: false).password
                       : password = "";
-            validatePass == true && checkedValue == true
-                ? Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UserProfilePage(
-                              email: email,
-                              name: fullName,
-                              password: password,
-                              profilePath: profilePicture,
-                            )))
-                : validatePass == true && checkedValue == false
-                    ? ScaffoldMessenger.of(context)
-                        .showSnackBar(snackBarPrivacyPolice)
-                    : validatePass == false && checkedValue == true
-                        ? ScaffoldMessenger.of(context)
-                            .showSnackBar(snackBarPass)
-                        : validatePass == false && checkedValue == false
-                            ? ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBarPassAndPP)
-                            : null;
+              validatePass == true && checkedValue == true
+                  ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserProfilePage(
+                                email: email,
+                                name: fullName,
+                                password: password,
+                                profilePath: profilePicture,
+                              )))
+                  : validatePass == true && checkedValue == false
+                      ? ScaffoldMessenger.of(context)
+                          .showSnackBar(snackBarPrivacyPolice)
+                      : validatePass == false && checkedValue == true
+                          ? ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBarPass)
+                          : validatePass == false && checkedValue == false
+                              ? ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBarPassAndPP)
+                              : null;
             });
           },
           child: const Text(

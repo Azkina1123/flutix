@@ -9,66 +9,29 @@ class PilihBangkuPage extends StatefulWidget {
 
 class _PilihBangkuPageState extends State<PilihBangkuPage> {
   List<String> seatNumber = [
-    "A1",
-    "A2",
-    "A3",
-    "A4",
-    "A5",
-    "A6",
-    "B1",
-    "B2",
-    "B3",
-    "B4",
-    "B5",
-    "B6",
-    "C1",
-    "C2",
-    "C3",
-    "C4",
-    "C5",
-    "C6",
-    "D1",
-    "D2",
-    "D3",
-    "D4",
-    "D5",
-    "D6",
-    "E1",
-    "E2",
-    "E3",
-    "E4",
-    "E5",
-    "E6",
-    "F1",
-    "F2",
-    "F3",
-    "F4",
-    "F5",
-    "F6",
-    "G1",
-    "G2",
-    "G3",
-    "G4",
-    "G5",
-    "G6",
-    "H1",
-    "H2",
-    "H3",
-    "H4",
-    "H5",
-    "H6"
+    "A1", "A2", "A3", "A4", "A5", "A6",
+    "B1", "B2", "B3", "B4", "B5", "B6",
+    "C1", "C2", "C3", "C4", "C5", "C6",
+    "D1", "D2", "D3", "D4", "D5", "D6",
+    "E1", "E2", "E3", "E4", "E5", "E6",
+    "F1", "F2", "F3", "F4", "F5", "F6",
+    "G1", "G2", "G3", "G4", "G5", "G6",
+    "H1", "H2", "H3", "H4", "H5", "H6"
   ];
 
   bool press = false;
-  List<String> selectedSeats = [];
-  int seatCount = 0;
 
   @override
   Widget build(BuildContext context) {
+    // setState(() {
+    // });
+      List<String> selectedSeats = Provider.of<TicketData>(context, listen: false).seats;
+      int seatCount = selectedSeats.length;
+
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(left: 20, top: 5, right: 20),
+          padding: const EdgeInsets.only(left: 5, top: 5, right: 20),
           child: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_rounded),
             onPressed: () {
@@ -90,7 +53,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
           ),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           SizedBox(height: 15),
           Stack(
@@ -120,12 +83,11 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                     margin: const EdgeInsets.all(3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(200),
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.background,
                     ),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(200),
-                        // color: Colors.black45,
                         gradient: const LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -146,9 +108,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                             fontSize: 16,
                             fontFamily: 'Raleway',
                             fontWeight: FontWeight.w500,
-                            color: lightMode
-                                ? colors['cerulean-blue']
-                                : colors['cerulean-blue'],
+                            color: colors['cerulean-blue'],
                           ),
                         ),
                       ),
@@ -172,26 +132,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                                     crossAxisCount: 6),
                             shrinkWrap: true,
                             itemBuilder: (_, i) {
-                              return
-                                  // InkWell(
-                                  //   onTap: () {
-                                  //     setState(() {
-                                  //       press = !press;
-
-                                  //       press == true ?
-                                  //       selectedSeats.add(seatNumber[i])
-                                  //       : selectedSeats.removeWhere((element) => element == seatNumber[i]);
-
-                                  //       Provider.of<TicketData>(context, listen: false).seats = selectedSeats;
-                                  //       seatCount = Provider.of<TicketData>(context, listen: false).seats!.length;
-                                  //       print(Provider.of<TicketData>(context, listen: false).seats);
-                                  //     });
-                                  //   },
-                                  //   child:
-                                  SeatButton(seat: seatNumber[i]
-                                      // , pressed: press
-                                      );
-                              // );
+                              return SeatButton(seat: seatNumber[i]);
                             },
                             itemCount: seatNumber.length,
                           ),
@@ -214,9 +155,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: lightMode
-                            ? colors['light-grey']
-                            : colors['dark-jungle-green']),
+                        color: Theme.of(context).colorScheme.secondary),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -226,7 +165,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                           fontFamily: 'Oswald',
                           fontWeight: FontWeight.w300,
                           color:
-                              lightMode ? colors['cinder'] : colors['cinder'],
+                              lightMode ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -244,9 +183,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: lightMode
-                            ? colors['cerulean-blue']
-                            : colors['cerulean-blue']),
+                        color: colors['cerulean-blue']),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -255,9 +192,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                           fontSize: 20,
                           fontFamily: 'Oswald',
                           fontWeight: FontWeight.w300,
-                          color: lightMode
-                              ? colors['soapstone']
-                              : colors['soapstone'],
+                          color: colors["soapstone"],
                         ),
                       ),
                     ),
@@ -275,9 +210,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: lightMode
-                            ? colors['light-grey']
-                            : colors['dark-jungle-green']),
+                        color: Theme.of(context).colorScheme.secondary),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -286,9 +219,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                           fontSize: 20,
                           fontFamily: 'Oswald',
                           fontWeight: FontWeight.w300,
-                          color: lightMode
-                              ? colors['dove-grey']
-                              : colors['dove-grey'],
+                          color: Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
                     ),
@@ -301,54 +232,51 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
               ),
             ],
           ),
-          const SizedBox(height: 25),
-          Container(
-            height: 120,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-                color: lightMode
-                    ? colors['light-grey']
-                    : colors['dark-jungle-green'],
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(20.0))),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 30, right: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(seatCount < 1
-                            ? "Selected Seat -"
-                            : "Selected Seat $selectedSeats"),
-                        Text(seatCount < 1 ? "0 Ticket" : "$seatCount Ticket"),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    width: width(context) - 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SuccessCheckoutPage(),
-                          ),
-                        );
-                      },
-                      child: const Text("Pickup Seat"),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
         ],
+      ),
+      bottomSheet: Container(
+        height: 120,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(20.0))),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 30, right: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(Provider.of<TicketData>(context, listen: false).seats.length < 1
+                        ? "Selected Seat -"
+                        : "Selected Seat "),
+                    Text(Provider.of<TicketData>(context, listen: false).seats.length < 1 ? "0 Ticket" : "$seatCount Ticket"),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: width(context) - 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SuccessCheckoutPage(),
+                      ),
+                    );
+                  },
+                  child: const Text("Pickup Seat"),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

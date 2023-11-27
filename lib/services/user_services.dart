@@ -9,6 +9,10 @@ class UserService {
   // Variabel genre adalah variabel statis yang tampaknya belum diinisialisasi (bernilai null).
   static get genre => null;
 
+  static Future<void> addUser(User1 user1) async {
+    _userCollection.add(user1);
+  }
+
   // Metode updateUser digunakan untuk memperbarui data pengguna.
   static Future<void> updateUser(User1 user1) async {
     // Menggunakan metode set() pada dokumen pengguna di koleksi '_userCollection' untuk memperbarui data.

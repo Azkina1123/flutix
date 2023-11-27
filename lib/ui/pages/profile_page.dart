@@ -86,7 +86,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                           "Edit Profile",
                                           style: TextStyle(fontSize: 16),
                                         ),
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => EditProfilePage(),));
+                                        },
                                       ),
                                       ListTile(
                                         leading: Container(
