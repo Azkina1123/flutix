@@ -50,7 +50,7 @@ class TicketData extends ChangeNotifier {
       cinema: ticketList[0].get("cinema"),
       createdDate: ticketList[0].get("createdDate").toDate(),
       userId: ticketList[0].get("userId"),
-      seats: seats,
+      seats: ticketList[0].get("seats"),
       used: ticketList[0].get("used"),
       studio: ticketList[0].get("studio"),
     );

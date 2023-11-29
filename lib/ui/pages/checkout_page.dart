@@ -12,6 +12,16 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
+    double diskon = 0.1;
+    double totaldiskon =
+        Provider.of<TicketData>(context, listen: false).seats.length *
+            35000 *
+            diskon;
+    double totalbayar =
+        Provider.of<TicketData>(context, listen: false).seats.length * 35000 -
+            totaldiskon;
+    bool topUp = false;
+    int balance = 0;
     DateTime brodcastDate =
         Provider.of<TicketData>(context, listen: false).broadcastDate!;
     return Scaffold(
@@ -106,8 +116,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ),
                 const SizedBox(height: 3),
-                const Text(
-                  "A1, A2",
+                Text(
+                  Provider.of<TicketData>(context, listen: false)
+                      .seats
+                      .toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Colors.black,
@@ -141,11 +153,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ],
                 ),
                 const SizedBox(height: 3),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "2 Ticket",
+                      Provider.of<TicketData>(context, listen: false)
+                              .seats
+                              .length
+                              .toString() +
+                          " tickets",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: Colors.black,
@@ -210,7 +226,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
@@ -229,7 +245,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   Padding(
                     padding: EdgeInsets.only(right: 20),
                     child: Text(
-                      "IDR 63.000",
+                      "IDR " + totalbayar.toString(),
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         color: Colors.black,
@@ -249,7 +265,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                   child: Row(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 20),
                         child: Column(
                           children: [
@@ -264,31 +280,49 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               ),
                             ),
                             SizedBox(height: 3),
-                            Text(
-                              "IDR 75.000",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
+                            FutureBuilder<User1>(
+                                future: Provider.of<UserData>(context,
+                                        listen: false)
+                                    .getUser(FirebaseAuth
+                                        .instance.currentUser!.email!),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    balance = snapshot.data!.balance;
+                                  }
+                                  return Text(
+                                    "RP.  ${(snapshot.hasData) ? snapshot.data!.balance.toString() : "0"}",
+                                    style: TextStyle(
+                                        color:
+                                            topUp ? Colors.red : Colors.black,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w200),
+                                  );
+                                }),
                           ],
                         ),
                       ),
                       const SizedBox(width: 140),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return const SuccessCheckoutPage();
-                              },
-                            ),
-                          );
+                          if (balance < totalbayar) {
+                            setState(() {
+                              topUp = true;
+                            });
+                          }
+                          if (topUp) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const SuccessCheckoutPage();
+                                },
+                              ),
+                            );
+                          }
                         },
-                        child: const Text("Play Now  >"),
+                        child: topUp
+                            ? const Text("Top Up Now")
+                            : const Text("Play Now  >"),
                       ),
                     ],
                   )),

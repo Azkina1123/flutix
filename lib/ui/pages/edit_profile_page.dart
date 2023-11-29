@@ -14,7 +14,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String newFullName = "";
   String newEmail = "";
   String newPassword = "";
-  String newConfPassword= "";
+  String newConfPassword = "";
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
           onPressed: () {
             setState(() {
               newEmail = Provider.of<UserData>(context, listen: false).email;
-              newFullName = Provider.of<UserData>(context, listen: false).fullName;
+              newFullName =
+                  Provider.of<UserData>(context, listen: false).fullName;
               newConfPassword =
                   Provider.of<UserData>(context, listen: false).confPassword;
               newConfPassword ==
@@ -97,7 +98,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ? newPassword =
                           Provider.of<UserData>(context, listen: false).password
                       : newPassword = "";
-              Provider.of<UserData>(context, listen: false).getUser(email);
+              // Provider.of<UserData>(context, listen: false).getUser(email);
             });
             validatePass == true && checkedValue == true
                 ? Navigator.push(

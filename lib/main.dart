@@ -39,79 +39,76 @@ class MyApp extends StatelessWidget {
 
       // light mode
       theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          background: colors["soapstone"]!, // warna putih background
-          onBackground: colors["cinder"]!, // warna hitam text
-          primary: colors["soapstone"]!, // warna putih background
-          onPrimary: colors["cinder"]!, // warna hitam text
-          secondary: colors["light-grey"]!, // warna abu-abu gelap background
-          onSecondary: colors["dove-grey"]!, // warna abu-abu terang text
-          error: colors["red-brown"]!, // warna merah background error
-          onError: colors["red-brown"]!, // warna merah text error
-          surface: colors["soapstone"]!, // warna putih background
-          onSurface: colors["cinder"]!, // warna hitam text
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: colors["cerulean-blue"],
-            foregroundColor: colors["soapstone"],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+          useMaterial3: true,
+          colorScheme: ColorScheme(
+            brightness: Brightness.light,
+            background: colors["soapstone"]!, // warna putih background
+            onBackground: colors["cinder"]!, // warna hitam text
+            primary: colors["soapstone"]!, // warna putih background
+            onPrimary: colors["cinder"]!, // warna hitam text
+            secondary: colors["light-grey"]!, // warna abu-abu gelap background
+            onSecondary: colors["dove-grey"]!, // warna abu-abu terang text
+            error: colors["red-brown"]!, // warna merah background error
+            onError: colors["red-brown"]!, // warna merah text error
+            surface: colors["soapstone"]!, // warna putih background
+            onSurface: colors["cinder"]!, // warna hitam text
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colors["cerulean-blue"],
+              foregroundColor: colors["soapstone"],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
           ),
-        ),
-        appBarTheme: AppBarTheme(
-          backgroundColor: colors["soapstone"],
-          foregroundColor: colors["cinder"],
-          actionsIconTheme: IconThemeData(color: colors["cinder"]),
-
-        ),
-                bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          appBarTheme: AppBarTheme(
             backgroundColor: colors["soapstone"],
-          )
-      ),
+            foregroundColor: colors["cinder"],
+            actionsIconTheme: IconThemeData(color: colors["cinder"]),
+          ),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: colors["soapstone"],
+          )),
 
       // dark mode
       darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme(
-          brightness: Brightness.dark,
-          background: colors["cinder"]!, // warna hitam backgrund
-          onBackground: colors["soapstone"]!, // warna putih text
-          primary: colors["cinder"]!, // warna hitam background
-          onPrimary: colors["soapstone"]!, // warna putih text
-          secondary: colors["dark-jungle-green"]!, // warna hitam terang
-          onSecondary: colors["dove-grey"]!, // warna abu-abu gelap text
-          error: colors["red-brown"]!, // warna merah background error
-          onError: colors["red-brown"]!, // warna merah text error
-          surface: colors["cinder"]!, // warna hitam background
-          onSurface: colors["soapstone"]!, // warna putih text
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: colors["cerulean-blue"],
-            foregroundColor: colors["soapstone"],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+          useMaterial3: true,
+          colorScheme: ColorScheme(
+            brightness: Brightness.dark,
+            background: colors["cinder"]!, // warna hitam backgrund
+            onBackground: colors["soapstone"]!, // warna putih text
+            primary: colors["cinder"]!, // warna hitam background
+            onPrimary: colors["soapstone"]!, // warna putih text
+            secondary: colors["dark-jungle-green"]!, // warna hitam terang
+            onSecondary: colors["dove-grey"]!, // warna abu-abu gelap text
+            error: colors["red-brown"]!, // warna merah background error
+            onError: colors["red-brown"]!, // warna merah text error
+            surface: colors["cinder"]!, // warna hitam background
+            onSurface: colors["soapstone"]!, // warna putih text
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colors["cerulean-blue"],
+              foregroundColor: colors["soapstone"],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
           ),
-        ),
-        appBarTheme: AppBarTheme(
-          backgroundColor: colors["cinder"],
-          foregroundColor: colors["soapstone"],
-          actionsIconTheme: IconThemeData(color: colors["soapstone"]),
-          surfaceTintColor: colors["soapstone"],
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: colors["cinder"],
-        )
-      ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: colors["cinder"],
+            foregroundColor: colors["soapstone"],
+            actionsIconTheme: IconThemeData(color: colors["soapstone"]),
+            surfaceTintColor: colors["soapstone"],
+          ),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: colors["cinder"],
+          )),
 
       themeMode: Provider.of<ThemeModeData>(context).themeMode,
       // home: const SplashPage(),
-      
+
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {

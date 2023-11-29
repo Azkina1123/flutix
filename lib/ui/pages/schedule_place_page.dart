@@ -149,7 +149,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                             const Padding(
                               padding: EdgeInsets.only(right: 30),
                               child: Text(
-                                "IDR 45.000",
+                                "IDR 35.000",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   //   color: lightMode ? colors["cinder"] : colors["soapstone"],
@@ -226,8 +226,10 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
               int index = random.nextInt(StudioList.length);
               Provider.of<TicketData>(context, listen: false).studio =
                   StudioList[index];
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const PilihBangkuPage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PilihBangkuPage()));
             },
             child: const Text(
               "Get Seat",
