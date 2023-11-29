@@ -48,8 +48,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
         ),
         title: const Text(
           "Schedule & Cinema",
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.normal),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
         ),
       ),
       body: Container(
@@ -60,10 +59,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
               padding: EdgeInsets.only(left: 30.0),
               child: Text(
                 "Cinema",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                    fontWeight: FontWeight.normal),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
               ),
             ),
             const Divider(
@@ -101,10 +97,7 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
               padding: EdgeInsets.only(left: 30),
               child: Text(
                 "Schedule",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                    fontWeight: FontWeight.normal),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
               ),
             ),
             const Divider(
@@ -152,8 +145,6 @@ class _SchedulePlacePageState extends State<SchedulePlacePage> {
                                 "IDR 35.000",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  //   color: lightMode ? colors["cinder"] : colors["soapstone"],
-
                                   fontSize: 18,
                                   fontWeight: FontWeight.normal,
                                 ),

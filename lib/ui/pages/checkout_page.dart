@@ -41,8 +41,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         ),
         title: const Text(
           "Order Detail",
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.normal),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
         ),
       ),
       body: ListView(
@@ -52,10 +51,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             padding: EdgeInsets.only(left: 30.0, bottom: 10.0),
             child: Text(
               "Movie Name",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 10.0),
@@ -68,7 +64,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   "Cinema",
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -80,7 +75,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Provider.of<TicketData>(context, listen: false).studio!,
                   textAlign: TextAlign.left,
                   style: const TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -90,7 +84,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   "Date & Time",
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -100,7 +93,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   DateFormat('EEEE, dd MMMM yyyy, hh:mm').format(brodcastDate),
                   textAlign: TextAlign.right,
                   style: const TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -110,7 +102,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   "Seat",
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -122,7 +113,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       .toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -135,7 +125,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "Ticket",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
@@ -145,7 +134,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "Price",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
@@ -164,7 +152,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           " tickets",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
@@ -174,7 +161,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "IDR 35.000",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
@@ -186,7 +172,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
           ),
           const SizedBox(height: 10.0),
           const Divider(
-            color: Colors.black,
             thickness: 2,
             indent: 20.0,
             endIndent: 20.0,
@@ -204,7 +189,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "Voucher Added",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                       ),
@@ -217,7 +201,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "-10%",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -235,7 +218,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "Total",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
                       ),
@@ -248,7 +230,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "IDR " + totalbayar.toString(),
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -274,7 +255,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               "Your Balance",
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                color: Colors.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
                               ),
@@ -310,6 +290,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             });
                           }
                           if (topUp) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const TopUpPage();
+                                },
+                              ),
+                            );
+                          } else {
                             Navigator.push(
                               context,
                               MaterialPageRoute(

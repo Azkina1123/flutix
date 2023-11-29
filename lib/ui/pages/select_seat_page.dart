@@ -9,14 +9,54 @@ class PilihBangkuPage extends StatefulWidget {
 
 class _PilihBangkuPageState extends State<PilihBangkuPage> {
   List<String> seatNumber = [
-    "A1", "A2", "A3", "A4", "A5", "A6",
-    "B1", "B2", "B3", "B4", "B5", "B6",
-    "C1", "C2", "C3", "C4", "C5", "C6",
-    "D1", "D2", "D3", "D4", "D5", "D6",
-    "E1", "E2", "E3", "E4", "E5", "E6",
-    "F1", "F2", "F3", "F4", "F5", "F6",
-    "G1", "G2", "G3", "G4", "G5", "G6",
-    "H1", "H2", "H3", "H4", "H5", "H6"
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6"
   ];
 
   bool press = false;
@@ -25,8 +65,9 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
   Widget build(BuildContext context) {
     // setState(() {
     // });
-      List<String> selectedSeats = Provider.of<TicketData>(context, listen: false).seats;
-      int seatCount = selectedSeats.length;
+    List<String> selectedSeats =
+        Provider.of<TicketData>(context, listen: false).seats;
+    int seatCount = selectedSeats.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -164,8 +205,9 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                           fontSize: 20,
                           fontFamily: 'Oswald',
                           fontWeight: FontWeight.w300,
-                          color:
-                              lightMode ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
+                          color: lightMode
+                              ? Theme.of(context).colorScheme.onPrimary
+                              : Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -250,10 +292,18 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(Provider.of<TicketData>(context, listen: false).seats.length < 1
+                    Text(Provider.of<TicketData>(context, listen: false)
+                                .seats
+                                .length <
+                            1
                         ? "Selected Seat -"
                         : "Selected Seat "),
-                    Text(Provider.of<TicketData>(context, listen: false).seats.length < 1 ? "0 Ticket" : "$seatCount Ticket"),
+                    Text(Provider.of<TicketData>(context, listen: false)
+                                .seats
+                                .length <
+                            1
+                        ? "0 Ticket"
+                        : "$seatCount Ticket"),
                   ],
                 ),
               ),
@@ -267,7 +317,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SuccessCheckoutPage(),
+                        builder: (context) => const CheckoutPage(),
                       ),
                     );
                   },

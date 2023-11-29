@@ -173,7 +173,6 @@ class DetailTicket extends StatelessWidget {
                                       "Seat",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -183,7 +182,6 @@ class DetailTicket extends StatelessWidget {
                                       ticket.seats.toString(),
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -199,7 +197,6 @@ class DetailTicket extends StatelessWidget {
                                       "Studio",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -209,7 +206,6 @@ class DetailTicket extends StatelessWidget {
                                       ticket.studio.toString(),
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -225,7 +221,6 @@ class DetailTicket extends StatelessWidget {
                                       "ID Order",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -235,7 +230,6 @@ class DetailTicket extends StatelessWidget {
                                       ticket.id.toString(),
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),

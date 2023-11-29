@@ -65,10 +65,7 @@ class SuccessCheckoutPage extends StatelessWidget {
                 TextButton(
                   child: const Text("Back to Home",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Raleway')),
+                      style: TextStyle(fontSize: 18, fontFamily: 'Raleway')),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainPage()));
