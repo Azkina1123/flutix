@@ -22,7 +22,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             totaldiskon;
     bool topUp = false;
     int balance = 0;
-    int randomNum = Random().nextInt(9000) + 1000;
+    int randomNum = Random().nextInt(900000000) + 100000000;
 
     DateTime brodcastDate =
         Provider.of<TicketData>(context, listen: false).broadcastDate!;
@@ -371,6 +371,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         orderCollection
                                             .doc(randomNum.toString())
                                             .set(checkoutOrder);
+                                        Provider.of<UserData>(context,
+                                                listen: false)
+                                            .topupBalance(
+                                                FirebaseAuth.instance
+                                                    .currentUser!.email!,
+                                                -totalbayar.toInt());
+                                        balance -= totalbayar.toInt();
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
