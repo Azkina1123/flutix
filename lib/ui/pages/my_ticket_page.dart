@@ -97,19 +97,30 @@ class _MyTicketPageState extends State<MyTicketPage> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Container(
                     alignment: Alignment.center,
-                    child: CircularProgressIndicator(color: colors["cerulean-blue"],),
+                    child: CircularProgressIndicator(
+                      color: colors["cerulean-blue"],
+                    ),
                   );
                 } else if (snapshot.hasData) {
-                  return Column(
-                    children: snapshot.data!.docs
-                        .map(
-                          (ticketDoc) => TicketTile(
-                            ticket: Ticket.fromJson(
-                                ticketDoc.data() as Map<String, dynamic>),
-                          ),
+                  final ticketDocs = snapshot.data!.docs;
+
+                  return ticketDocs.isEmpty
+                      ? Container(
+                          width: width(context),
+                          height: 200,
+                          alignment: Alignment.center,
+                          child: Text("There's no ticket added yet."),
                         )
-                        .toList(),
-                  );
+                      : Column(
+                          children: ticketDocs
+                              .map(
+                                (ticketDoc) => TicketTile(
+                                  ticket: Ticket.fromJson(
+                                      ticketDoc.data() as Map<String, dynamic>),
+                                ),
+                              )
+                              .toList(),
+                        );
                 }
 
                 return const Text("There's no data.");

@@ -19,10 +19,6 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Stack(
             children: [
-              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-              // KALAU LOGIN SUDAH BERHASIL, UBAH INIII
-              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
               FutureBuilder<User1>(
                   future: Provider.of<UserData>(context, listen: false)
                       .getUser(FirebaseAuth.instance.currentUser!.email!),
