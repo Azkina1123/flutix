@@ -7,7 +7,7 @@ class ApiServices {
 
   static Future<List<Movie>> getNowPlaying(int count) async {
     final response = await http.get(Uri.parse(
-        "https://api.themoviedb.org/3/movie/now_playing?page=6&api_key=$apiKey"));
+        "https://api.themoviedb.org/3/movie/now_playing?page=3&api_key=$apiKey&adult=false"));
 
     List<Movie> movies = [];
     if (response.statusCode == 200) {
