@@ -373,7 +373,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             .set(checkoutOrder);
                                         Provider.of<UserData>(context,
                                                 listen: false)
-                                            .topupBalance(
+                                            .calcBalance(
                                                 FirebaseAuth.instance
                                                     .currentUser!.email!,
                                                 -totalbayar.toInt());
