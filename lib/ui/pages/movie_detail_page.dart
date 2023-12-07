@@ -100,7 +100,7 @@ class MovieDetailPage extends StatelessWidget {
                                           SizedBox(
                                             // width: 30 / 100 * width(context),
                                             child: Text(
-                                              "${movie!.rating}  |  ${movie!.duration}min",
+                                              "${movie.rating}  |  ${movie.duration}min",
                                               // style: TextStyle(fontSize: 14),
                                               softWrap: true,
                                             ),

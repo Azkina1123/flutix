@@ -12,7 +12,50 @@ class OrderTile extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: (!order.isTicket)
-            ? const Text("")
+            ? Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 20),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 80,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  AssetImage("assets/top-up-$color.png"))),
+                    ),
+                    SizedBox(
+                      height: 80,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Top Up",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: colors["dove-grey"]),
+                          ),
+                          Text(
+                            DateFormat('EEE, dd MMMM yyyy')
+                                .format(order.createdDate),
+                            style: TextStyle(
+                                fontSize: 16, color: colors["dove-grey"],),
+                          ),
+                          Text(
+                            "IDR ${order.totalPembayaran.toString()}",
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: colors["dove-grey"],
+                                fontFamily: "Oswald",),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
             : FutureBuilder(
                 future: Provider.of<TicketData>(context, listen: false)
                     .tickets
@@ -31,7 +74,7 @@ class OrderTile extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Container(
-                                    height: 50,
+                                    height: 80,
                                     width: 100,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
@@ -76,7 +119,6 @@ class OrderTile extends StatelessWidget {
                           } else {
                             return Container();
                           }
-                          ;
                         });
                   } else {
                     return Container();

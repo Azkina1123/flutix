@@ -101,16 +101,31 @@ class _TopUpPageState extends State<TopUpPage> {
               return;
             }
 
-            Provider.of<UserData>(context, listen: false).calcBalance(
-                FirebaseAuth.instance.currentUser!.email!,
-                int.parse(_topUpAmount.text != ""
-                    ? _topUpAmount.text
-                    : recom[
-                        Provider.of<TopUpSelectionData>(context, listen: false)
-                            .templateSelected]));
+            int bayar = int.parse(_topUpAmount.text != ""
+                ? _topUpAmount.text
+                : recom[Provider.of<TopUpSelectionData>(context, listen: false)
+                    .templateSelected]);
+
+            Provider.of<UserData>(context, listen: false)
+                .calcBalance(FirebaseAuth.instance.currentUser!.email!, bayar);
 
             Provider.of<TopUpSelectionData>(context, listen: false)
                 .changeSelection(-1);
+
+            int randomNum = Random().nextInt(899999999) + 100000000;
+
+            OrderData orders = OrderData(
+              id: randomNum,
+              idUser: FirebaseAuth.instance.currentUser!.uid,
+              createdDate:
+                  DateTime.now(),
+              isTicket: false,
+              totalPembayaran: bayar,
+              ticketId: null,
+            );
+
+            Provider.of<OrderDataProvider>(context, listen: false)
+                .add(randomNum, orders);
 
             Navigator.pushReplacement(
                 context,
