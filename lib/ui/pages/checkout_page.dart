@@ -22,6 +22,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             totaldiskon;
     bool topUp = false;
     int balance = 0;
+    int randomNum = Random().nextInt(9000) + 1000;
 
     DateTime brodcastDate =
         Provider.of<TicketData>(context, listen: false).broadcastDate!;
@@ -322,6 +323,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             FirebaseFirestore.instance
                                                 .collection('tickets');
                                         Map<String, dynamic> checkoutData = {
+                                          "id": '$randomNum',
                                           "createdDate":
                                               Provider.of<TicketData>(context,
                                                       listen: false)
@@ -341,9 +343,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           "seats": Provider.of<TicketData>(
                                                   context,
                                                   listen: false)
-                                              .seats
-                                              .length
-                                              .toString(),
+                                              .seats,
                                           "total": totalbayar.toString(),
                                           "used": "false",
                                           "movieId": movie.id.toString(),
