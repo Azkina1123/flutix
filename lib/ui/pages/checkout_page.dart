@@ -19,7 +19,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
             diskon;
     int totalbayar =
         (Provider.of<TicketData>(context, listen: false).seats.length * 35000 -
-            totaldiskon).toInt();
+                totaldiskon)
+            .toInt();
     bool topUp = false;
     int balance = 0;
     int randomNum = Random().nextInt(900000000) + 100000000;
@@ -349,24 +350,26 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           "userId": FirebaseAuth
                                               .instance.currentUser?.uid,
                                         };
-                                        checkoutCollection.doc(
-                                                randomNum.toString())
+                                        checkoutCollection
+                                            .doc(randomNum.toString())
                                             .set(checkoutData);
-                                        
+
                                         OrderData orders = OrderData(
                                           id: randomNum,
                                           idUser: FirebaseAuth
                                               .instance.currentUser!.uid,
-                                          createdDate:
-                                              Provider.of<TicketData>(context,
-                                                      listen: false)
-                                                  .createdDate!,
+                                          createdDate: Provider.of<TicketData>(
+                                                  context,
+                                                  listen: false)
+                                              .createdDate!,
                                           isTicket: true,
                                           totalPembayaran: totalbayar,
                                           ticketId: randomNum,
                                         );
 
-                                        Provider.of<OrderDataProvider>(context, listen: false).add(randomNum, orders);
+                                        Provider.of<OrderDataProvider>(context,
+                                                listen: false)
+                                            .add(randomNum, orders);
 
                                         Provider.of<UserData>(context,
                                                 listen: false)

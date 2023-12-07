@@ -70,7 +70,7 @@ class DetailTicket extends StatelessWidget {
                                 ),
                                 Container(
                                   width: 400,
-                                  height: 280,
+                                  height: 290,
                                   margin: const EdgeInsets.only(
                                       left: 40, right: 40, bottom: 0, top: 0),
                                   decoration: const BoxDecoration(
@@ -239,19 +239,43 @@ class DetailTicket extends StatelessWidget {
                                   indent: 48.0,
                                   endIndent: 48.0,
                                 ),
-                                Container(
-                                  width: 400,
-                                  height: 70,
-                                  margin: const EdgeInsets.only(
-                                      left: 40, right: 40, bottom: 90, top: 0),
-                                  decoration: BoxDecoration(
-                                    image: const DecorationImage(
-                                      image: AssetImage("assets/barcode3.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
+                                lightMode
+                                    ? Container(
+                                        width: 400,
+                                        height: 70,
+                                        margin: const EdgeInsets.only(
+                                            left: 40,
+                                            right: 40,
+                                            bottom: 90,
+                                            top: 0),
+                                        decoration: BoxDecoration(
+                                          image: const DecorationImage(
+                                            image: AssetImage(
+                                                "assets/barcode.png"),
+                                            fit: BoxFit.fill,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                      )
+                                    : Container(
+                                        width: 400,
+                                        height: 70,
+                                        margin: const EdgeInsets.only(
+                                            left: 40,
+                                            right: 40,
+                                            bottom: 90,
+                                            top: 0),
+                                        decoration: BoxDecoration(
+                                          image: const DecorationImage(
+                                            image: AssetImage(
+                                                "assets/barcode2.png"),
+                                            fit: BoxFit.fill,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                      ),
                               ],
                             );
                             // print(movie!.id.toString() + "<<<<<<<<<<<");
