@@ -16,8 +16,14 @@ class UserData extends ChangeNotifier {
   bool validatePass = false;
   List<String> genres = [];
 
-  void userData(String emailVal, String fullNameVal, String passwordVal,
-      String confPasswordVal, bool validatePassVal, List<String> selectedGenres, String profilePictureVal) {
+  void userData(
+      String emailVal,
+      String fullNameVal,
+      String passwordVal,
+      String confPasswordVal,
+      bool validatePassVal,
+      List<String> selectedGenres,
+      String profilePictureVal) {
     email = emailVal;
     fullName = fullNameVal;
     password = passwordVal;
@@ -45,12 +51,12 @@ class UserData extends ChangeNotifier {
   // });
   // }
 
-  void update(User1 user){
+  void update(User1 user) {
     _users.doc(user.docId).update({
-    "email" : user.email,
-    "name" : user.name,
-    "password" : user.password,
-    "profilePicture" : user.profilePicture,
+      "email": user.email,
+      "name": user.name,
+      // "password": user.password,
+      "profilePicture": user.profilePicture,
     });
   }
 
@@ -59,10 +65,8 @@ class UserData extends ChangeNotifier {
         await _users.where("email", isEqualTo: email).get();
     final userList = snapshot.docs;
 
-    List<String> genres = [];
-    userList[0].get("selectedGenres").forEach((genre) {
-      genres.add(genre as String);
-    });
+    // if (userList[0].get("selectedGenres").)
+    List<String> genres = List<String>.from(userList[0].get("selectedGenres"));
 
     User1 newUser = User1(
       userList[0].id,
@@ -72,10 +76,10 @@ class UserData extends ChangeNotifier {
       genres,
       userList[0].get("selectedLanguage"),
       userList[0].get("balance"),
-      userList[0].get("password"),
       userList[0].get("profilePicture"),
     );
 
+    print(genres.toString() + "<<<<<");
     return newUser;
   }
 

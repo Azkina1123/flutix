@@ -43,11 +43,16 @@ class _SignInPageState extends State<SignInPage> {
                   TextButton(
                       onPressed: () {
                         AutServices.signIn(
-                          Provider.of<UserData>(context, listen: false).email,
-                        Provider.of<UserData>(context, listen: false).password).then((User1? user1) async {
-                          if (user1 == null){
+                                Provider.of<UserData>(context, listen: false)
+                                    .email,
+                                Provider.of<UserData>(context, listen: false)
+                                    .password)
+                            .then((User1? user1) async {
+                          if (user1 == null) {
                             return;
                           }
+                          print(Provider.of<UserData>(context, listen: false)
+                              .email + "<<< EMAILLLL");
 
                           Provider.of<PageData>(context, listen: false)
                               .changeMenu(0);

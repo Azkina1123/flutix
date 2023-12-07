@@ -23,7 +23,7 @@ class UserService {
       'balance': user1.balance,
       'selectedGenres': user1
           .selectedGenres, // Mungkin ada typo di sini, seharusnya 'selectedGenres'.
-      'selectedLanguages': user1.selectedLanguage,
+      'selectedLanguage': user1.selectedLanguage,
       'profilePicture': user1.profilePicture ??
           "" // Menggunakan gambar profil jika tersedia, jika tidak, gunakan string kosong ("").
     });
@@ -36,6 +36,6 @@ class UserService {
 
     // Membuat objek User1 dari data yang diambil dari Firestore.
     return User1(id, snapshot["id"], snapshot['email'], snapshot['name'], snapshot['balance'],
-        snapshot['selectedGenres'], snapshot['selectedLanguages'], snapshot["password"], snapshot["foto"]);
+        snapshot['selectedGenres'], snapshot['selectedLanguages'], snapshot["foto"]);
   }
 }

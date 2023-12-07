@@ -21,7 +21,7 @@ class AutServices {
       User1 user1 = result.user!.convertToUser(
           email: email,
           name: name,
-          password: password,
+          // password: password,
           selectedGenres: selectedGenres,
           selectedLanguage: selectedLanguage,
           foto: profilePicture, profilePicture: '');

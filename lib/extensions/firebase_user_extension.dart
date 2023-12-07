@@ -4,9 +4,8 @@ part of 'extensions.dart';
 extension FirebaseUserExtension on User {
   // Fungsi convertToUser yang akan digunakan untuk mengubah objek User menjadi objek User1
   User1 convertToUser(
-          {
-          String docId =
-              "No Id", // Parameter id doc dengan nilai default "No Id"  
+          {String docId =
+              "No Id", // Parameter id doc dengan nilai default "No Id"
           String name =
               "No Name", // Parameter nama dengan nilai default "No Name"
           String email =
@@ -15,9 +14,10 @@ extension FirebaseUserExtension on User {
               const [], // Parameter selectedGenres dengan nilai default berupa list kosong
           String selectedLanguage =
               "English", // Parameter selectedLanguage dengan nilai default "English"
-          int balance =
-              50000,
-          String password = "Password",
-          String foto = "Path Foto", required String profilePicture}) => // Parameter balance dengan nilai default 50000
-      User1(docId, uid, email, name, selectedGenres, selectedLanguage, balance, password, foto);
+          int balance = 50000,
+          String foto = "Path Foto",
+          required String
+              profilePicture}) => // Parameter balance dengan nilai default 50000
+      User1(docId, uid, email, name, selectedGenres, selectedLanguage, balance,
+          foto);
 }
