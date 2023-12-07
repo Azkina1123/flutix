@@ -44,10 +44,9 @@ class SuccessCheckoutPage extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyTicketPage()));
+                    Provider.of<PageData>(context, listen: false).changeMenu(1);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MainPage()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colors["cerulean-blue"]!),
@@ -70,6 +69,7 @@ class SuccessCheckoutPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 18, fontFamily: 'Raleway')),
                   onPressed: () {
+                    Provider.of<PageData>(context, listen: false).changeMenu(0);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainPage()));
                   },

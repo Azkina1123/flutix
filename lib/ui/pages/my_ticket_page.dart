@@ -76,51 +76,45 @@ class _MyTicketPageState extends State<MyTicketPage> {
           const SizedBox(
             height: 30,
           ),
-          
-          FutureBuilder<User1>(
-              future: Provider.of<UserData>(context, listen: false)
-                  .getUser(FirebaseAuth.instance.currentUser!.email!),
+          StreamBuilder<QuerySnapshot>(
+              stream: Provider.of<TicketData>(context, listen: false)
+                  .tickets
+                  // .where("used", isEqualTo: _index == 0 ? false : true)
+                  .where("userId",
+                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .snapshots(),
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  User1 user = snapshot.data!;
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator(color: Theme.of(context).colorScheme.secondary,);
+                } else if (snapshot.hasData) {
+                  return Column(
+                    children: snapshot.data!.docs.map(
+                      (ticketDoc) {
+                        Ticket ticket = Ticket(
+                          id: ticketDoc.get("id"),
+                          createdDate: ticketDoc.get("createdDate").toDate(),
+                          broadcastDate:
+                              ticketDoc.get("broadcastDate").toDate(),
+                          cinema: ticketDoc.get("cinema"),
+                          movieId: ticketDoc.get("movieId"),
+                          used: ticketDoc.get("used"),
+                          userId: ticketDoc.get("userId"),
+                        );
 
-                  return StreamBuilder<QuerySnapshot>(
-                      stream: Provider.of<TicketData>(context, listen: false)
-                          .tickets
-                          .where("used", isEqualTo: _index == 0 ? false : true)
-                          .where("userId", isEqualTo: user.id)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.hasData) {
-                          return Column(
-                            children: snapshot.data!.docs
-                                .map(
-                                  (ticket) => TicketTile(
-                                    ticket: Ticket(
-                                      id: ticket.get("id"),
-                                      createdDate:
-                                          ticket.get("createdDate").toDate(),
-                                      broadcastDate: ticket
-                                          .get("broadcastDate")
-                                          .toDate(),
-                                      cinema: ticket.get("cinema"),
-                                      movieId: ticket.get("movieId"),
-                                      used: ticket.get("used"),
-                                      userId: ticket.get("userId"),
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                          );
-                        }
+                        bool used =
+                            ticket.broadcastDate.isAfter(DateTime.now());
 
-                        return const Text("There's no data.");
-                      });
+                        if (used && _index == 1) {
+                          return TicketTile(ticket: ticket);
+                        } 
+                        return TicketTile(ticket: ticket);
+                        
+                      },
+                    ).toList(),
+                  );
                 }
-                return Text("Gagal mengambil data dari database.", textAlign: TextAlign.center,);
+
+                return const Text("There's no data.");
               }),
         ],
       ),
