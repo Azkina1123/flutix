@@ -80,7 +80,7 @@ class _MyTicketPageState extends State<MyTicketPage> {
               future: _index == 0
                   ? Provider.of<TicketData>(context, listen: false)
                       .tickets
-                      .where("broadcastDate", isLessThan: DateTime.now())
+                      .where("broadcastDate", isGreaterThan: DateTime.now())
                       .where("userId",
                           isEqualTo: FirebaseAuth.instance.currentUser!.uid)
                       .orderBy("broadcastDate", descending: true)
@@ -88,7 +88,7 @@ class _MyTicketPageState extends State<MyTicketPage> {
                   : Provider.of<TicketData>(context, listen: false)
                       .tickets
                       .where("broadcastDate",
-                          isGreaterThanOrEqualTo: DateTime.now())
+                          isLessThanOrEqualTo: DateTime.now())
                       .where("userId",
                           isEqualTo: FirebaseAuth.instance.currentUser!.uid)
                       .orderBy("broadcastDate", descending: true)
