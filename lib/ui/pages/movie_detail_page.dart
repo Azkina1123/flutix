@@ -10,7 +10,7 @@ class MovieDetailPage extends StatelessWidget {
 
     // jika tanggal rilis setelah hari
     bool isUpcoming = movie.start!.isAfter(DateTime.now());
-    
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -34,7 +34,7 @@ class MovieDetailPage extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 } else if (snapshot.hasData) {
-                  final movie = snapshot.data!;
+                  movie = snapshot.data!;
                   List<String> genres = movie.genreToList();
 
                   return Column(
@@ -225,6 +225,9 @@ class MovieDetailPage extends StatelessWidget {
               width: width(context),
               child: ElevatedButton(
                 onPressed: () {
+                  Provider.of<TicketData>(context, listen: false).movieId =
+                      movie.id;
+                  DateTime.now();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

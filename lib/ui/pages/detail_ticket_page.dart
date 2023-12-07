@@ -22,14 +22,12 @@ class DetailTicket extends StatelessWidget {
             },
             child: const Icon(
               CupertinoIcons.back,
-              color: Colors.black,
             ),
           ),
         ),
         title: const Text(
           "Order Detail",
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.normal),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
         ),
       ),
       body: ListView(
@@ -91,7 +89,6 @@ class DetailTicket extends StatelessWidget {
                                 Text(
                                   movie!.title,
                                   style: const TextStyle(
-                                      color: Colors.black,
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -104,7 +101,6 @@ class DetailTicket extends StatelessWidget {
                                       "Cinema",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -114,7 +110,6 @@ class DetailTicket extends StatelessWidget {
                                       ticket.cinema,
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -130,7 +125,6 @@ class DetailTicket extends StatelessWidget {
                                       "Date & Time",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -142,7 +136,6 @@ class DetailTicket extends StatelessWidget {
                                           .format(ticket.broadcastDate),
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -157,7 +150,6 @@ class DetailTicket extends StatelessWidget {
                                           .format(ticket.broadcastDate),
                                       textAlign: TextAlign.right,
                                       style: const TextStyle(
-                                        color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.normal,
                                       ),

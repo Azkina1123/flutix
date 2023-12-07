@@ -44,7 +44,10 @@ class SuccessCheckoutPage extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyTicketPage()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colors["cerulean-blue"]!),
