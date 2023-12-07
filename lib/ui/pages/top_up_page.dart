@@ -36,7 +36,7 @@ class _TopUpPageState extends State<TopUpPage> {
       ),
       body: ListView(
         children: [
-          TextBox(title: "Amount", type: 4, controller: _topUpAmount),
+          TextBox(title: "Amount", type: 4, controller: _topUpAmount, readOnly: false),
           const Padding(
             padding: EdgeInsets.all(35),
             child: Text(

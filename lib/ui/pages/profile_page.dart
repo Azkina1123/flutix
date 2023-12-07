@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              EditProfilePage(),
+                                              EditProfilePage(name: _user!.name, email: _user!.email, profilePicture: _user!.profilePicture, genre: _user!.selectedGenres, language: _user!.selectedLanguage),
                                         ));
                                   },
                                 ),

@@ -4,9 +4,11 @@ class TextBox extends StatefulWidget {
   final String title;
   final int type;
   final TextEditingController? controller;
+  final bool readOnly;
+  final String? hintText;
 
   const TextBox(
-      {super.key, required this.title, required this.type, this.controller});
+      {super.key, required this.title, required this.type, this.controller, required this.readOnly, this.hintText});
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -16,28 +18,28 @@ class _TextBoxState extends State<TextBox> {
   @override
   Widget build(BuildContext context) {
     return widget.type == 1
-        ? EmailTextBox(title: widget.title)
+        ? EmailTextBox(title: widget.title, controllerTextField: widget.controller, readOnly: widget.readOnly, hintText: widget.hintText!)
         : widget.type == 2
-            ? PasswordTextBox(title: widget.title)
+            ? PasswordTextBox(title: widget.title, controllerTextField: widget.controller)
             : widget.type == 3
-                ? ConfPasswordTextBox(title: widget.title)
+                ? ConfPasswordTextBox(title: widget.title, controllerTextField: widget.controller)
                 : (widget.type == 4 && widget.controller != null)
                 ? TopUpTextBox(title: widget.title, controllerTextField: widget.controller)
-                : NormalTextBox(title: widget.title);
+                : NormalTextBox(title: widget.title, controllerTextField: widget.controller);
   }
 }
 
 class NormalTextBox extends StatefulWidget {
   final String title;
+  final TextEditingController? controllerTextField;
 
-  const NormalTextBox({super.key, required this.title});
+  const NormalTextBox({super.key, required this.title, this.controllerTextField});
 
   @override
   State<NormalTextBox> createState() => _NormalTextBoxState();
 }
 
 class _NormalTextBoxState extends State<NormalTextBox> {
-  final TextEditingController _controllerTextField = TextEditingController();
   bool txtFieldVal = false;
   bool active = false;
   String textVal = "";
@@ -45,9 +47,9 @@ class _NormalTextBoxState extends State<NormalTextBox> {
   @override
   void initState() {
     super.initState();
-    _controllerTextField.addListener(() {
+    widget.controllerTextField!.addListener(() {
       setState(() {
-        txtFieldVal = _controllerTextField.text.isNotEmpty;
+        txtFieldVal = widget.controllerTextField!.text.isNotEmpty;
       });
     });
   }
@@ -55,7 +57,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
   @override
   void dispose() {
     super.dispose();
-    _controllerTextField.dispose();
+    widget.controllerTextField!.dispose();
   }
 
   @override
@@ -82,7 +84,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
           SizedBox(
             width: width(context) - 37,
             child: TextFormField(
-              controller: _controllerTextField,
+              controller: widget.controllerTextField!,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
@@ -115,7 +117,7 @@ class _NormalTextBoxState extends State<NormalTextBox> {
               },
               onChanged: (value) {
                 setState(() {
-                  textVal = _controllerTextField.text;
+                  textVal = widget.controllerTextField!.text;
                   Provider.of<UserData>(context, listen: false).fullName =
                       textVal;
                 });
@@ -130,15 +132,17 @@ class _NormalTextBoxState extends State<NormalTextBox> {
 
 class EmailTextBox extends StatefulWidget {
   final String title;
+  final TextEditingController? controllerTextField;
+  final bool readOnly;
+  final String hintText;
 
-  const EmailTextBox({super.key, required this.title});
+  const EmailTextBox({super.key, required this.title, this.controllerTextField, required this.readOnly, required this.hintText});
 
   @override
   State<EmailTextBox> createState() => _EmailTextBoxState();
 }
 
 class _EmailTextBoxState extends State<EmailTextBox> {
-  final TextEditingController _controllerEmail = TextEditingController();
   bool emailCheck = false;
   bool emailVal = false;
   String textVal = "";
@@ -146,9 +150,9 @@ class _EmailTextBoxState extends State<EmailTextBox> {
   @override
   void initState() {
     super.initState();
-    _controllerEmail.addListener(() {
+    widget.controllerTextField!.addListener(() {
       setState(() {
-        emailVal = _controllerEmail.text.isNotEmpty;
+        emailVal = widget.controllerTextField!.text.isNotEmpty;
       });
     });
   }
@@ -156,7 +160,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
   @override
   void dispose() {
     super.dispose();
-    _controllerEmail.dispose();
+    widget.controllerTextField!.dispose();
   }
 
   @override
@@ -173,7 +177,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
               style: TextStyle(
                 fontFamily: 'Raleway',
                 fontSize: 20,
-                color: emailCheck == false && _controllerEmail.text != ""
+                color: emailCheck == false && widget.controllerTextField!.text != ""
                     ? Theme.of(context).colorScheme.error
                     : Theme.of(context).colorScheme.onPrimary,
               ),
@@ -182,12 +186,13 @@ class _EmailTextBoxState extends State<EmailTextBox> {
           SizedBox(
             width: width(context) - 37,
             child: TextFormField(
-              controller: _controllerEmail,
+              controller: widget.controllerTextField!,
               keyboardType: TextInputType.emailAddress,
+              enabled: widget.readOnly,
               onChanged: (value) {
                 setState(() {
-                  emailCheck = EmailValidator.validate(_controllerEmail.text);
-                  textVal = _controllerEmail.text;
+                  emailCheck = EmailValidator.validate(widget.controllerTextField!.text);
+                  textVal = widget.controllerTextField!.text;
                   Provider.of<UserData>(context, listen: false).email = textVal;
                 });
               },
@@ -198,19 +203,19 @@ class _EmailTextBoxState extends State<EmailTextBox> {
                     : Theme.of(context).colorScheme.secondary,
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: emailCheck == false && _controllerEmail.text != ""
+                    color: emailCheck == false && widget.controllerTextField!.text != ""
                         ? Theme.of(context).colorScheme.error
                         : Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                  color: emailCheck == false && _controllerEmail.text != ""
+                  color: emailCheck == false && widget.controllerTextField!.text != ""
                       ? Theme.of(context).colorScheme.error
                       : Theme.of(context).colorScheme.onPrimary,
                 )),
                 contentPadding: const EdgeInsets.all(5),
-                hintText: "Type Here",
+                hintText: widget.hintText,
                 hintStyle: TextStyle(
                   fontFamily: 'Raleway',
                   color: lightMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSecondary,
@@ -231,16 +236,15 @@ class _EmailTextBoxState extends State<EmailTextBox> {
 
 class PasswordTextBox extends StatefulWidget {
   final String title;
+  final TextEditingController? controllerTextField;
 
-  const PasswordTextBox({super.key, required this.title});
+  const PasswordTextBox({super.key, required this.title, this.controllerTextField});
 
   @override
   State<PasswordTextBox> createState() => _PasswordTextBoxState();
 }
 
 class _PasswordTextBoxState extends State<PasswordTextBox> {
-  final TextEditingController _controllerPassword = TextEditingController();
-
   bool passVal = false;
   bool press = true;
   bool errorText = false;
@@ -249,9 +253,9 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
   @override
   void initState() {
     super.initState();
-    _controllerPassword.addListener(() {
+    widget.controllerTextField!.addListener(() {
       setState(() {
-        passVal = _controllerPassword.text.isNotEmpty;
+        passVal = widget.controllerTextField!.text.isNotEmpty;
       });
     });
   }
@@ -259,7 +263,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
   @override
   void dispose() {
     super.dispose();
-    _controllerPassword.dispose();
+    widget.controllerTextField!.dispose();
   }
 
   @override
@@ -282,7 +286,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
           SizedBox(
             width: width(context) - 37,
             child: TextFormField(
-              controller: _controllerPassword,
+              controller: widget.controllerTextField!,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
@@ -327,7 +331,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
               ),
               onChanged: (value) {
                 setState(() {
-                  textVal = _controllerPassword.text;
+                  textVal = widget.controllerTextField!.text;
                   Provider.of<UserData>(context, listen: false).password =
                       textVal;
                   Provider.of<UserData>(context, listen: false).validatePass ==
@@ -346,15 +350,15 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
 
 class ConfPasswordTextBox extends StatefulWidget {
   final String title;
+  final TextEditingController? controllerTextField;
 
-  const ConfPasswordTextBox({super.key, required this.title});
+  const ConfPasswordTextBox({super.key, required this.title, this.controllerTextField});
 
   @override
   State<ConfPasswordTextBox> createState() => _ConfPasswordTextBoxState();
 }
 
 class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
-  final TextEditingController _controllerPassword = TextEditingController();
   bool passVal = false;
   bool press = true;
   String textVal = "";
@@ -362,9 +366,9 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
   @override
   void initState() {
     super.initState();
-    _controllerPassword.addListener(() {
+    widget.controllerTextField!.addListener(() {
       setState(() {
-        passVal = _controllerPassword.text.isNotEmpty;
+        passVal = widget.controllerTextField!.text.isNotEmpty;
       });
     });
   }
@@ -372,7 +376,7 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
   @override
   void dispose() {
     super.dispose();
-    _controllerPassword.dispose();
+    widget.controllerTextField!.dispose();
   }
 
   @override
@@ -395,7 +399,7 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
           SizedBox(
             width: width(context) - 37,
             child: TextFormField(
-              controller: _controllerPassword,
+              controller: widget.controllerTextField!,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: lightMode
@@ -432,7 +436,7 @@ class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
               ),
               onChanged: (value) {
                 setState(() {
-                  textVal = _controllerPassword.text;
+                  textVal = widget.controllerTextField!.text;
                   Provider.of<UserData>(context, listen: false).confPassword =
                       textVal;
                 });

@@ -25,11 +25,11 @@ class _SignInPageState extends State<SignInPage> {
           ),
           const Padding(
             padding: EdgeInsets.only(top: 90),
-            child: TextBox(title: "Email Address", type: 1),
+            child: TextBox(title: "Email Address", type: 1, readOnly: false, hintText: "Type Here"),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 35),
-            child: TextBox(title: "Password", type: 2),
+            child: TextBox(title: "Password", type: 2, readOnly: false),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, top: 75, right: 35),

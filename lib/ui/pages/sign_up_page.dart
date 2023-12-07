@@ -19,6 +19,11 @@ class _SignUpPageState extends State<SignUpPage> {
   String profilePicture = "";
   String imageUrl = '';
 
+  final TextEditingController _emailController = new TextEditingController();
+  final TextEditingController _fullNameController = new TextEditingController();
+  final TextEditingController _passwordController = new TextEditingController();
+  final TextEditingController _confPasswordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final snackBarPass = SnackBar(
@@ -111,21 +116,21 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 20),
-            child: TextBox(title: "Full Name", type: 4),
+            child: TextBox(title: "Full Name", type: 4, controller: _emailController, readOnly: false),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 25),
-            child: TextBox(title: "Email Address", type: 1),
+            child: TextBox(title: "Email Address", type: 1, controller: _fullNameController, readOnly: false, hintText: "Type Here"),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 25),
-            child: TextBox(title: "Password", type: 2),
+            child: TextBox(title: "Password", type: 2, controller: _passwordController, readOnly: false),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 25),
-            child: TextBox(title: "Confirm Password", type: 3),
+            child: TextBox(title: "Confirm Password", type: 3, controller: _confPasswordController, readOnly: false),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 25),
