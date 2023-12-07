@@ -323,7 +323,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             FirebaseFirestore.instance
                                                 .collection('tickets');
                                         Map<String, dynamic> checkoutData = {
-                                          "id": '$randomNum',
+                                          "id": randomNum,
                                           "createdDate":
                                               Provider.of<TicketData>(context,
                                                       listen: false)
@@ -344,13 +344,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                                   context,
                                                   listen: false)
                                               .seats,
-                                          "total": totalbayar.toString(),
-                                          "used": "false",
-                                          "movieId": movie.id.toString(),
+                                          "used": false,
+                                          "movieId": movie.id,
                                           "userId": FirebaseAuth
                                               .instance.currentUser?.uid,
                                         };
-                                        CheckoutCollection.add(checkoutData);
+                                        CheckoutCollection.doc(
+                                                randomNum.toString())
+                                            .set(checkoutData);
+
+                                        CollectionReference orderCollection =
+                                            FirebaseFirestore.instance
+                                                .collection('order');
+                                        Map<String, dynamic> checkoutOrder = {
+                                          "id": randomNum,
+                                          "idUser": FirebaseAuth
+                                              .instance.currentUser?.uid,
+                                          "createdDate":
+                                              Provider.of<TicketData>(context,
+                                                      listen: false)
+                                                  .createdDate,
+                                          "isTicket": true,
+                                          "totalPembayaran": totalbayar,
+                                          "ticketId": '$randomNum',
+                                        };
+                                        orderCollection
+                                            .doc(randomNum.toString())
+                                            .set(checkoutOrder);
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
