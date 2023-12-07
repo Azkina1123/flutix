@@ -76,7 +76,7 @@ class _MyTicketPageState extends State<MyTicketPage> {
           const SizedBox(
             height: 30,
           ),
-          FirebaseAuth.instance.currentUser != null ?
+          
           FutureBuilder<User1>(
               future: Provider.of<UserData>(context, listen: false)
                   .getUser(FirebaseAuth.instance.currentUser!.email!),
@@ -120,8 +120,8 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         return const Text("There's no data.");
                       });
                 }
-                return Text("");
-              }) : Text("Tidak ada user yang sedang login.", textAlign: TextAlign.center,)
+                return Text("Gagal mengambil data dari database.", textAlign: TextAlign.center,);
+              }),
         ],
       ),
     );

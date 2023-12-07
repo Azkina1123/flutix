@@ -79,7 +79,7 @@ class UserData extends ChangeNotifier {
       userList[0].get("profilePicture"),
     );
 
-    print(genres.toString() + "<<<<<");
+    // print(genres.toString() + "<<<<<");
     return newUser;
   }
 
