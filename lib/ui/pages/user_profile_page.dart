@@ -289,18 +289,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         try {
-                          final email =
-                              Provider.of<UserData>(context, listen: false)
-                                  .email;
-                          final password =
-                              Provider.of<UserData>(context, listen: false)
-                                  .password;
-                          final fullName =
-                              Provider.of<UserData>(context, listen: false)
-                                  .fullName;
-                          final profilePicture =
-                              Provider.of<UserData>(context, listen: false)
-                                  .profilePicture;
                           final List<String> selectedGenres = selectGenres;
                           final selectedLanguage = selectLanguage;
 
@@ -309,8 +297,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
                               : selectLanguage = selectLanguage;
 
                           setState(() => loading = true);
-                          await AutServices.signUp(email, password, fullName,
-                              selectedGenres, selectedLanguage, profilePicture);
+                          await AutServices.signUp(widget.email, widget.password, widget.name,
+                              selectedGenres, selectedLanguage, widget.profilePath);
                           setState(() => loading = false);
                           Navigator.pushReplacement(
                             context,

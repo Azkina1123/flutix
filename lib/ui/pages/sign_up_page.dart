@@ -72,7 +72,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 // Error handling
                 try {
                   await referenceImageToUpload.putFile(File(imgPicker.path));
-                  imageUrl = await referenceImageToUpload.getDownloadURL();
+                  setState(() async {
+                    imageUrl = await referenceImageToUpload.getDownloadURL();
+                  });
                 } catch (e) {}
               },
               child: imageUrl != ""
@@ -154,8 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
             setState(() {
               email = Provider.of<UserData>(context, listen: false).email;
               fullName = Provider.of<UserData>(context, listen: false).fullName;
-              profilePicture =
-                  Provider.of<UserData>(context, listen: false).profilePicture;
+              profilePicture = imageUrl;
               confPassword =
                   Provider.of<UserData>(context, listen: false).confPassword;
               confPassword ==
@@ -177,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 email: email,
                                 name: fullName,
                                 password: password,
-                                profilePath: profilePicture,
+                                profilePath: imageUrl,
                               )))
                   : validatePass == true && checkedValue == false
                       ? ScaffoldMessenger.of(context)

@@ -22,13 +22,13 @@ class SplashPage extends StatelessWidget {
                     themeModeData.changeTheme();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Theme.of(context)
                           .colorScheme
                           .secondary
                           .withOpacity(0.5),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
                       ),

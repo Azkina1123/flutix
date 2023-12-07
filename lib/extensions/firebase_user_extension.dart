@@ -14,9 +14,9 @@ extension FirebaseUserExtension on User {
               const [], // Parameter selectedGenres dengan nilai default berupa list kosong
           String selectedLanguage =
               "English", // Parameter selectedLanguage dengan nilai default "English"
-          int balance = 50000,
+          int balance = 0,
           required String
-              profilePicture}) => // Parameter balance dengan nilai default 50000
+              profilePicture}) => // Parameter balance dengan nilai default 0
       User1(docId, uid, email, name, selectedGenres, selectedLanguage, balance,
           profilePicture);
 }

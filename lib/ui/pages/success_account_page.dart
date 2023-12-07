@@ -16,7 +16,7 @@ class SuccessAccountPage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Your account is\nsuccessfully setted up!",
-                  style: TextStyle(fontSize: 30, fontFamily: 'Raleway')),
+                    style: TextStyle(fontSize: 30, fontFamily: 'Raleway')),
               ),
             ),
             Column(
@@ -25,15 +25,20 @@ class SuccessAccountPage extends StatelessWidget {
                   width: 150,
                   height: 150,
                   decoration: BoxDecoration(
-                      color:
-                          lightMode ? colors["cinder"]! : colors["soapstone"]!,
-                      shape: BoxShape.circle,
-                      image: const DecorationImage(
-                          image: AssetImage("assets/img/"))),
+                    color: lightMode ? colors["cinder"]! : colors["soapstone"]!,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(Provider.of<UserData>(context, listen: false).profilePicture),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 20,),
-                const Text("Nama_Orang_Signup",
-                style: TextStyle(fontSize: 25, fontFamily: 'Raleway')),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(Provider.of<UserData>(context, listen: false).fullName,
+                    style:
+                        const TextStyle(fontSize: 25, fontFamily: 'Raleway')),
               ],
             ),
             Padding(
@@ -49,6 +54,9 @@ class SuccessAccountPage extends StatelessWidget {
                         onPressed: () {
                           Provider.of<PageData>(context, listen: false)
                               .changeMenu(0);
+                          Navigator.popUntil(context,
+                              ModalRoute.withName(Navigator.defaultRouteName));
+
                           Navigator.push(
                               context,
                               MaterialPageRoute(
