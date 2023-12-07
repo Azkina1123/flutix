@@ -8,16 +8,12 @@ double height(BuildContext context) {
   return MediaQuery.of(context).size.height;
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
+    User1? user;
     Future<List<Movie>> nowPlaying = Provider.of<MovieData>(context).nowPlaying;
     Future<List<Movie>> comingSoon = Provider.of<MovieData>(context).comingSoon;
     lightMode = true;
@@ -30,39 +26,38 @@ class _HomePageState extends State<HomePage> {
 
         toolbarHeight: 80, // tinggi appbar,
 
-              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-              // KALAU LOGIN SUDAH BERHASIL, UBAH INIII
-              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        title: FirebaseAuth.instance.currentUser != null ? FutureBuilder<User1>(
+        title: FutureBuilder<User1>(
             future: Provider.of<UserData>(context, listen: false)
                 .getUser(FirebaseAuth.instance.currentUser!.email!),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final user = snapshot.data!;
-                return Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      margin: const EdgeInsets.only(left: 10, right: 20),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.secondary,
-                        image: DecorationImage(image: NetworkImage(user.profilePicture)),
-                      ),
-                    ),
-                    Text(
-                      user.name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: lightMode ? colors["cinder"] : colors["soapstone"],
-                      ),
-                    ),
-                  ],
-                );
+                user = snapshot.data!;
               }
+              return Row(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    margin: const EdgeInsets.only(left: 10, right: 20),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).colorScheme.secondary,
+                      image: DecorationImage(
+                          image: NetworkImage(user?.profilePicture ?? "")),
+                    ),
+                  ),
+                  Text(
+                    user?.name ?? "",
+                    style: TextStyle(
+                      fontSize: 18,
+                      // color: lightMode ? colors["cinder"] : colors["soapstone"],
+                    ),
+                  ),
+                ],
+              );
+
               return Text("Loading...");
-            }) : Text("Belum ada user yang sedang login."),
+            }),
       ),
 
       // body ===================================================================================
