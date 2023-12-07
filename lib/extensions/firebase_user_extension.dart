@@ -15,9 +15,8 @@ extension FirebaseUserExtension on User {
           String selectedLanguage =
               "English", // Parameter selectedLanguage dengan nilai default "English"
           int balance = 50000,
-          String foto = "Path Foto",
           required String
               profilePicture}) => // Parameter balance dengan nilai default 50000
       User1(docId, uid, email, name, selectedGenres, selectedLanguage, balance,
-          foto);
+          profilePicture);
 }

@@ -23,8 +23,7 @@ class AutServices {
           name: name,
           // password: password,
           selectedGenres: selectedGenres,
-          selectedLanguage: selectedLanguage,
-          foto: profilePicture, profilePicture: '');
+          selectedLanguage: selectedLanguage, profilePicture: profilePicture);
 
       // Memperbarui informasi pengguna ke layanan UserService.
       await UserService.updateUser(user1);

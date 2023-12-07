@@ -8,6 +8,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  User1? _user;
   @override
   Widget build(BuildContext context) {
     bool lightMode =
@@ -27,181 +28,176 @@ class _ProfilePageState extends State<ProfilePage> {
                       .getUser(FirebaseAuth.instance.currentUser!.email!),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      final user = snapshot.data!;
-                      return Container(
-                        width: width(context),
-                        padding: const EdgeInsets.only(top: 50, bottom: 30),
-                        child: Column(
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(user.profilePicture),
-                                  fit: BoxFit.cover,
-                                ),
+                      _user = snapshot.data!;
+                    }
+                    return Container(
+                      width: width(context),
+                      padding: const EdgeInsets.only(top: 50, bottom: 30),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondary,
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage(_user?.profilePicture ?? ""),
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              user.name,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              user.email,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  ListTile(
-                                    leading: Container(
-                                      width: 26,
-                                      height: 26,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/edit-profile-$color.png"),
-                                      )),
-                                    ),
-                                    title: const Text(
-                                      "Edit Profile",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfilePage(),
-                                          ));
-                                    },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            _user?.name ?? "",
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            _user?.email ?? "",
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ListTile(
+                                  leading: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/edit-profile-$color.png"),
+                                    )),
                                   ),
-                                  ListTile(
-                                    leading: Container(
-                                      width: 26,
-                                      height: 26,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/my-wallet-$color.png"),
-                                      )),
-                                    ),
-                                    title: const Text(
-                                      "My Wallet",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MyWalletPage()));
-                                    },
+                                  title: const Text(
+                                    "Edit Profile",
+                                    style: TextStyle(fontSize: 16),
                                   ),
-                                  ListTile(
-                                    leading: Container(
-                                      width: 26,
-                                      height: 26,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/help-$color.png"),
-                                      )),
-                                    ),
-                                    title: const Text(
-                                      "Help",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                  ListTile(
-                                    leading: Container(
-                                      width: 26,
-                                      height: 26,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/language-$color.png"),
-                                      )),
-                                    ),
-                                    title: const Text(
-                                      "Change Language",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                  ListTile(
-                                    leading: Container(
-                                      width: 26,
-                                      height: 26,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/rate-$color.png"),
-                                      )),
-                                    ),
-                                    title: const Text(
-                                      "Rate Flutix",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                  ListTile(
-                                    leading: Container(
-                                      width: 26,
-                                      height: 26,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/logout-$color.png"),
-                                      )),
-                                    ),
-                                    title: const Text(
-                                      "Log Out",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    onTap: () {
-                                      FirebaseAuth.instance.signOut();
-                                      Provider.of<UserData>(context,
-                                              listen: false)
-                                          .email = "";
-                                      Provider.of<UserData>(context,
-                                              listen: false)
-                                          .password = "";
-                                      Navigator.push(
+                                  onTap: () {
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const SignInPage(),
-                                        ),
-                                      );
-                                    },
+                                              EditProfilePage(),
+                                        ));
+                                  },
+                                ),
+                                ListTile(
+                                  leading: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/my-wallet-$color.png"),
+                                    )),
                                   ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    }
-                    return Container(
-                      child: const CircularProgressIndicator(),
-                      alignment: Alignment.center,
+                                  title: const Text(
+                                    "My Wallet",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const MyWalletPage()));
+                                  },
+                                ),
+                                ListTile(
+                                  leading: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/help-$color.png"),
+                                    )),
+                                  ),
+                                  title: const Text(
+                                    "Help",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/language-$color.png"),
+                                    )),
+                                  ),
+                                  title: const Text(
+                                    "Change Language",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/rate-$color.png"),
+                                    )),
+                                  ),
+                                  title: const Text(
+                                    "Rate Flutix",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Container(
+                                    width: 26,
+                                    height: 26,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/logout-$color.png"),
+                                    )),
+                                  ),
+                                  title: const Text(
+                                    "Log Out",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  onTap: () {
+                                    FirebaseAuth.instance.signOut();
+                                    Provider.of<UserData>(context,
+                                            listen: false)
+                                        .email = "";
+                                    Provider.of<UserData>(context,
+                                            listen: false)
+                                        .password = "";
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SignInPage(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     );
                   }),
               Positioned(
