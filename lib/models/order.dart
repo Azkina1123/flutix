@@ -1,6 +1,6 @@
 part of 'models.dart';
 
-class Order {
+class OrderData {
   int id;
   String idUser;
   DateTime createdDate;
@@ -8,7 +8,7 @@ class Order {
   int totalPembayaran;
   int? ticketId;
 
-  Order({
+  OrderData({
     required this.id,
     required this.idUser,
     required this.createdDate,
@@ -16,4 +16,17 @@ class Order {
     required this.totalPembayaran,
     this.ticketId,
   });
+
+  factory OrderData.fromJson(Map<String, dynamic> json) {
+    OrderData order = OrderData(
+      id: json["id"],
+      idUser: json["idUser"],
+      createdDate: json["createdDate"].toDate(),
+      isTicket: json["isTicket"],
+      totalPembayaran: json["totalPembayaran"],
+      ticketId: json["ticketId"],
+    );
+
+    return order;
+  }
 }

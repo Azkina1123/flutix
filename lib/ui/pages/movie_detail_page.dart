@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 part of "pages.dart";
 
 class MovieDetailPage extends StatelessWidget {

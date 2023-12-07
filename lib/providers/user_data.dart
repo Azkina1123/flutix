@@ -83,18 +83,6 @@ class UserData extends ChangeNotifier {
     return newUser;
   }
 
-  void topupBalance(String email, int topUpValue) async {
-    QuerySnapshot snapshot =
-        await _users.where("email", isEqualTo: email).get();
-    final userList = snapshot.docs;
-
-    users
-        .doc(userList[0].id)
-        .update({'balance': topUpValue + userList[0].get('balance')});
-
-    notifyListeners();
-  }
-
   void calcBalance(String email, int calcValue) async {
     QuerySnapshot snapshot =
         await _users.where("email", isEqualTo: email).get();

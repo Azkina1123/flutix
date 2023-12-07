@@ -11,3 +11,4 @@ part "ticket_data.dart";
 part "theme_mode_data.dart";
 part "user_data.dart";
 part "top_up_selection_data.dart";
+part "order_data.dart";

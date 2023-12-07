@@ -17,9 +17,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
         Provider.of<TicketData>(context, listen: false).seats.length *
             35000 *
             diskon;
-    double totalbayar =
-        Provider.of<TicketData>(context, listen: false).seats.length * 35000 -
-            totaldiskon;
+    int totalbayar =
+        (Provider.of<TicketData>(context, listen: false).seats.length * 35000 -
+            totaldiskon).toInt();
     bool topUp = false;
     int balance = 0;
     int randomNum = Random().nextInt(900000000) + 100000000;
@@ -319,7 +319,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           ),
                                         );
                                       } else {
-                                        CollectionReference CheckoutCollection =
+                                        CollectionReference checkoutCollection =
                                             FirebaseFirestore.instance
                                                 .collection('tickets');
                                         Map<String, dynamic> checkoutData = {
@@ -349,28 +349,25 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           "userId": FirebaseAuth
                                               .instance.currentUser?.uid,
                                         };
-                                        CheckoutCollection.doc(
+                                        checkoutCollection.doc(
                                                 randomNum.toString())
                                             .set(checkoutData);
-
-                                        CollectionReference orderCollection =
-                                            FirebaseFirestore.instance
-                                                .collection('order');
-                                        Map<String, dynamic> checkoutOrder = {
-                                          "id": randomNum,
-                                          "idUser": FirebaseAuth
-                                              .instance.currentUser?.uid,
-                                          "createdDate":
+                                        
+                                        OrderData orders = OrderData(
+                                          id: randomNum,
+                                          idUser: FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          createdDate:
                                               Provider.of<TicketData>(context,
                                                       listen: false)
-                                                  .createdDate,
-                                          "isTicket": true,
-                                          "totalPembayaran": totalbayar,
-                                          "ticketId": '$randomNum',
-                                        };
-                                        orderCollection
-                                            .doc(randomNum.toString())
-                                            .set(checkoutOrder);
+                                                  .createdDate!,
+                                          isTicket: true,
+                                          totalPembayaran: totalbayar,
+                                          ticketId: randomNum,
+                                        );
+
+                                        Provider.of<OrderDataProvider>(context, listen: false).add(randomNum, orders);
+
                                         Provider.of<UserData>(context,
                                                 listen: false)
                                             .calcBalance(
@@ -390,7 +387,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     },
                                     child: topUp
                                         ? const Text("Top Up Now")
-                                        : const Text("Play Now >"),
+                                        : const Text("Pay Now >"),
                                   ),
                                 ),
                               ],

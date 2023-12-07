@@ -21,6 +21,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => ThemeModeData()),
         ChangeNotifierProvider(create: (context) => UserData()),
         ChangeNotifierProvider(create: (context) => TopUpSelectionData()),
+        ChangeNotifierProvider(create: (context) => OrderDataProvider()),
       ],
       child: const MyApp(),
     ),

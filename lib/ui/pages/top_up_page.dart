@@ -101,7 +101,7 @@ class _TopUpPageState extends State<TopUpPage> {
               return;
             }
 
-            Provider.of<UserData>(context, listen: false).topupBalance(
+            Provider.of<UserData>(context, listen: false).calcBalance(
                 FirebaseAuth.instance.currentUser!.email!,
                 int.parse(_topUpAmount.text != ""
                     ? _topUpAmount.text

@@ -75,7 +75,45 @@ class MyWalletPage extends StatelessWidget {
                   "Recent Transcation",
                   style: TextStyle(fontSize: 25, fontFamily: 'Raleway'),
                 )),
-            const OrderTile(),
+            FutureBuilder<QuerySnapshot>(
+              future: Provider.of<OrderDataProvider>(context, listen: false)
+                    .orderProv
+                    .where("idUser",
+                        isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                    .orderBy("createdDate", descending: true)
+                    .get(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(
+                      color: colors["cerulean-blue"],
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  final order = snapshot.data!.docs;
+
+                  return order.isEmpty
+                      ? Container(
+                          width: width(context),
+                          height: 200,
+                          alignment: Alignment.center,
+                          child: const Text("No transaction yet."),
+                        )
+                      : Column(
+                          children: order
+                              .map(
+                                (order) => OrderTile(
+                                  order: OrderData.fromJson(
+                                      order.data() as Map<String, dynamic>),
+                                ),
+                              )
+                              .toList(),
+                        );
+                }
+
+                return const Text("There's no data.");
+              }),
             const SizedBox(height: 80)
           ],
         );
