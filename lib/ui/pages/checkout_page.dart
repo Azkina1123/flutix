@@ -323,7 +323,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             FirebaseFirestore.instance
                                                 .collection('tickets');
                                         Map<String, dynamic> checkoutData = {
-                                          "id": '$randomNum',
+                                          "id": randomNum,
                                           "createdDate":
                                               Provider.of<TicketData>(context,
                                                       listen: false)
@@ -357,7 +357,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             FirebaseFirestore.instance
                                                 .collection('order');
                                         Map<String, dynamic> checkoutOrder = {
-                                          "id": '$randomNum',
+                                          "id": randomNum,
                                           "idUser": FirebaseAuth
                                               .instance.currentUser?.uid,
                                           "createdDate":
