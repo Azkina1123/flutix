@@ -38,23 +38,23 @@ class TicketData extends ChangeNotifier {
     QuerySnapshot snapshot = await _tickets.where("id", isEqualTo: id).get();
     final ticketList = snapshot.docs;
 
-    List<String> seats = [];
-    ticketList[0].get("seats").forEach((seat) {
-      seats.add(seat as String);
-    });
-
-    Ticket? newTicket = Ticket(
-      id: ticketList[0].get("id"),
-      movieId: ticketList[0].get("movieId"),
-      broadcastDate: ticketList[0].get("broadcastDate").toDate(),
-      cinema: ticketList[0].get("cinema"),
-      createdDate: ticketList[0].get("createdDate").toDate(),
-      userId: ticketList[0].get("userId"),
-      seats: ticketList[0].get("seats"),
-      used: ticketList[0].get("used"),
-      studio: ticketList[0].get("studio"),
-    );
-
+    Ticket newTicket =
+        Ticket.fromJson(ticketList[0].data() as Map<String, dynamic>);
+    print(newTicket.id.toString() + "<<<<<<");
     return newTicket;
   }
+
+  
+
+  // Future<Ticket> getTickets(String userId) async {
+  //   QuerySnapshot snapshot = await _tickets.where("id", isEqualTo: id).get();
+  //   final ticketList = snapshot.docs;
+
+  //   Ticket newTicket =
+  //       Ticket.fromJson(ticketList[0].data() as Map<String, dynamic>);
+  //   print(newTicket.id.toString() + "<<<<<<");
+  //   return newTicket;
+  // }
+
+
 }

@@ -76,41 +76,39 @@ class _MyTicketPageState extends State<MyTicketPage> {
           const SizedBox(
             height: 30,
           ),
-          StreamBuilder<QuerySnapshot>(
-              stream: Provider.of<TicketData>(context, listen: false)
-                  .tickets
-                  // .where("used", isEqualTo: _index == 0 ? false : true)
-                  .where("userId",
-                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                  .snapshots(),
+          FutureBuilder<QuerySnapshot>(
+              future: _index == 0
+                  ? Provider.of<TicketData>(context, listen: false)
+                      .tickets
+                      .where("broadcastDate", isLessThan: DateTime.now())
+                      .where("userId",
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                      .orderBy("broadcastDate", descending: true)
+                      .get()
+                  : Provider.of<TicketData>(context, listen: false)
+                      .tickets
+                      .where("broadcastDate",
+                          isGreaterThanOrEqualTo: DateTime.now())
+                      .where("userId",
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                      .orderBy("broadcastDate", descending: true)
+                      .get(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator(color: Theme.of(context).colorScheme.secondary,);
+                  return Container(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(color: colors["cerulean-blue"],),
+                  );
                 } else if (snapshot.hasData) {
                   return Column(
-                    children: snapshot.data!.docs.map(
-                      (ticketDoc) {
-                        Ticket ticket = Ticket(
-                          id: ticketDoc.get("id"),
-                          createdDate: ticketDoc.get("createdDate").toDate(),
-                          broadcastDate:
-                              ticketDoc.get("broadcastDate").toDate(),
-                          cinema: ticketDoc.get("cinema"),
-                          movieId: ticketDoc.get("movieId"),
-                          used: ticketDoc.get("used"),
-                          userId: ticketDoc.get("userId"),
-                        );
-
-                        bool used =
-                            ticket.broadcastDate.isAfter(DateTime.now());
-
-                        if (used && _index == 1) {
-                          return TicketTile(ticket: ticket);
-                        } 
-                        return TicketTile(ticket: ticket);
-                        
-                      },
-                    ).toList(),
+                    children: snapshot.data!.docs
+                        .map(
+                          (ticketDoc) => TicketTile(
+                            ticket: Ticket.fromJson(
+                                ticketDoc.data() as Map<String, dynamic>),
+                          ),
+                        )
+                        .toList(),
                   );
                 }
 
