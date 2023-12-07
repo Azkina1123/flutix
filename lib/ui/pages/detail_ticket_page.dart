@@ -51,10 +51,7 @@ class DetailTicket extends StatelessWidget {
                                   width: 400,
                                   height: 280,
                                   margin: const EdgeInsets.only(
-                                      left: 40,
-                                      right: 40,
-                                      bottom: 0,
-                                      top: 10),
+                                      left: 40, right: 40, bottom: 0, top: 10),
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage(
@@ -63,9 +60,8 @@ class DetailTicket extends StatelessWidget {
                                               (movie?.img ?? ""),
                                         ),
                                         fit: BoxFit.cover),
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondary,
+                                    // color:
+                                    //     Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(20),
@@ -76,13 +72,9 @@ class DetailTicket extends StatelessWidget {
                                   width: 400,
                                   height: 280,
                                   margin: const EdgeInsets.only(
-                                      left: 40,
-                                      right: 40,
-                                      bottom: 0,
-                                      top: 0),
+                                      left: 40, right: 40, bottom: 0, top: 0),
                                   decoration: const BoxDecoration(
-                                    color:
-                                        Color.fromARGB(255, 242, 238, 238),
+                                    // color: Color.fromARGB(255, 242, 238, 238),
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(20),
                                       bottomRight: Radius.circular(20),
@@ -103,16 +95,14 @@ class DetailTicket extends StatelessWidget {
                                         const SizedBox(height: 20),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text(
                                               "Cinema",
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                             // SizedBox(width: 40),
@@ -121,8 +111,7 @@ class DetailTicket extends StatelessWidget {
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                           ],
@@ -130,29 +119,25 @@ class DetailTicket extends StatelessWidget {
                                         const SizedBox(height: 6),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text(
                                               "Date & Time",
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                             // SizedBox(width: 16),
                                             Text(
                                               // "03 Sepetember 2023",
                                               DateFormat(' dd MMMM yyyy')
-                                                  .format(
-                                                      ticket.broadcastDate),
+                                                  .format(ticket.broadcastDate),
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                           ],
@@ -162,13 +147,12 @@ class DetailTicket extends StatelessWidget {
                                               MainAxisAlignment.end,
                                           children: [
                                             Text(
-                                              DateFormat('hh:mm').format(
-                                                  ticket.broadcastDate),
+                                              DateFormat('hh:mm')
+                                                  .format(ticket.broadcastDate),
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                           ],
@@ -176,16 +160,14 @@ class DetailTicket extends StatelessWidget {
                                         const SizedBox(height: 6),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text(
                                               "Seat",
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                             // SizedBox(width: 194),
@@ -194,8 +176,7 @@ class DetailTicket extends StatelessWidget {
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                           ],
@@ -203,16 +184,14 @@ class DetailTicket extends StatelessWidget {
                                         const SizedBox(height: 6),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text(
                                               "Studio",
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                             // SizedBox(width: 162),
@@ -221,8 +200,7 @@ class DetailTicket extends StatelessWidget {
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                           ],
@@ -230,8 +208,7 @@ class DetailTicket extends StatelessWidget {
                                         const SizedBox(height: 6),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text(
                                               "ID Order",
@@ -247,8 +224,7 @@ class DetailTicket extends StatelessWidget {
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
                                                 fontSize: 18,
-                                                fontWeight:
-                                                    FontWeight.normal,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                             ),
                                           ],
@@ -267,18 +243,12 @@ class DetailTicket extends StatelessWidget {
                                   width: 400,
                                   height: 70,
                                   margin: const EdgeInsets.only(
-                                      left: 40,
-                                      right: 40,
-                                      bottom: 90,
-                                      top: 0),
+                                      left: 40, right: 40, bottom: 90, top: 0),
                                   decoration: BoxDecoration(
                                     image: const DecorationImage(
-                                      image:
-                                          AssetImage("assets/barcode.png"),
+                                      image: AssetImage("assets/barcode3.png"),
                                       fit: BoxFit.fill,
                                     ),
-                                    color: const Color.fromARGB(
-                                        255, 242, 238, 238),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),

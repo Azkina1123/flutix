@@ -94,4 +94,16 @@ class UserData extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void calcBalance(String email, int calcValue) async {
+    QuerySnapshot snapshot =
+        await _users.where("email", isEqualTo: email).get();
+    final userList = snapshot.docs;
+
+    users
+        .doc(userList[0].id)
+        .update({'balance': calcValue + userList[0].get('balance')});
+
+    notifyListeners();
+  }
 }
