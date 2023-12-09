@@ -29,8 +29,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   List<String> selectGenres = [];
 
-  // handleSubmit() async {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,15 +39,15 @@ class _UserProfilePageState extends State<UserProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 25, bottom: 25, left: 25),
+              padding: const EdgeInsets.only(top: 25, bottom: 25, left: 25),
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios_new_rounded, size: 24),
+                icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 25, bottom: 30, left: 55),
               child: Row(
                 children: [
@@ -70,7 +68,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               width: width(context) - 30,
               padding: const EdgeInsets.only(left: 30),
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -80,7 +78,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 itemCount: genreName.length,
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 55, bottom: 5, left: 55),
               child: Text(
                 "Select Language",
@@ -97,7 +95,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               width: width(context),
               padding: const EdgeInsets.only(left: 25),
               child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 children: [
                   Container(
@@ -289,21 +287,27 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         try {
-                          final List<String> selectedGenres = selectGenres;
-                          final selectedLanguage = selectLanguage;
+                          Provider.of<UserData>(context, listen: false).genres = selectGenres;
+                          Provider.of<UserData>(context, listen: false).language = selectLanguage;
+                          // final List<String> selectedGenres = selectGenres;
+                          // final selectedLanguage = selectLanguage;
 
                           btnSkip == true
                               ? selectLanguage = "English"
                               : selectLanguage = selectLanguage;
 
                           setState(() => loading = true);
+
                           await AutServices.signUp(widget.email, widget.password, widget.name,
-                              selectedGenres, selectedLanguage, widget.profilePath);
+                              Provider.of<UserData>(context, listen: false).genres,
+                              Provider.of<UserData>(context, listen: false).language, widget.profilePath);
+
                           setState(() => loading = false);
+
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SuccessAccountPage(),
+                              builder: (context) => const SuccessAccountPage(),
                             ),
                           );
 
@@ -321,7 +325,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                 strokeWidth: 2,
                               ),
                             )
-                          : Text(
+                          : const Text(
                               "Next",
                               style: TextStyle(
                                   fontSize: 14, fontFamily: 'Raleway'),

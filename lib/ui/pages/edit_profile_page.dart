@@ -26,33 +26,42 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String confPassword = "";
   String imageUrl = "";
 
-  final TextEditingController _emailController = new TextEditingController();
-  final TextEditingController _fullNameController = new TextEditingController();
-  final TextEditingController _passwordController = new TextEditingController();
-  final TextEditingController _confPasswordController = new TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _fullNameController.dispose();
+    _passwordController.dispose();
+    _confPasswordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final snackBarPass = SnackBar(
-      content: Text("Confirm Password Must Be Same"),
-      duration: Duration(seconds: 3),
-      padding: EdgeInsets.all(10),
+      content: const Text("Confirm Password Must Be Same"),
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(10),
       backgroundColor: Theme.of(context).colorScheme.error,
     );
 
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: EdgeInsets.only(top: 5, left: 5),
+          padding: const EdgeInsets.only(top: 5, left: 5),
           child: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new_rounded, size: 24),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 5),
+        title: const Padding(
+          padding: EdgeInsets.only(top: 5),
           child: Text("Edit Profile"),
         ),
       ),
@@ -85,7 +94,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   setState(() async {
                     imageUrl = await referenceImageToUpload.getDownloadURL();
                   });
-                } catch (e) {}
+                } catch (e) {
+                  print(e);
+                }
               },
               child: imageUrl != ""
                   ? Container(
@@ -121,19 +132,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: TextBox(title: "Full Name", type: 5, controller: _fullNameController, readOnly: true),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 35),
-            child: TextBox(title: "Email Address", type: 1, readOnly: false, hintText: widget.email),
+            padding: const EdgeInsets.only(top: 35),
+            child: TextBox(title: "Email Address", type: 1, controller: _emailController , readOnly: false, hintText: widget.email),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 35),
+            padding: const EdgeInsets.only(top: 35),
             child: TextBox(title: "Password", type: 2, controller: _passwordController, readOnly: false),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 35),
+            padding: const EdgeInsets.only(top: 35),
             child: TextBox(title: "Confirm Password", type: 3, controller: _confPasswordController, readOnly: false),
           ),
         ],
@@ -146,11 +157,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
           onPressed: () {
             setState(() async {
               try {
-                email = Provider.of<UserData>(context, listen: false).email;
-                newFullName =
-                    Provider.of<UserData>(context, listen: false).fullName;
-                confPassword =
-                    Provider.of<UserData>(context, listen: false).confPassword;
+                //masih dalam tahap perbaikan...
+
+                Provider.of<UserData>(context, listen: false).fullName = _fullNameController.value.text;
+                Provider.of<UserData>(context, listen: false).password;
+                
+                // newFullName =
+                // confPassword =
                 confPassword ==
                             Provider.of<UserData>(context, listen: false)
                                 .password &&
@@ -167,6 +180,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               if (validatePass == true){
                 UserCredential result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
                     email: widget.email, password: password);
+
                 User1 user = result.user!.convertToUser(
                     email: widget.email,
                     name: newFullName,
@@ -175,12 +189,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     selectedLanguage: widget.language, profilePicture: widget.profilePicture);
                   
                   setState(() => loading = true);
+
                   UserService.updateUser(user);
+                  
                   setState(() => loading = false);
+                  // ignore: use_build_context_synchronously
+                  
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ProfilePage()));
+                          builder: (context) => const ProfilePage()));
                   } else {
                       ScaffoldMessenger.of(context).showSnackBar(snackBarPass);
                   }

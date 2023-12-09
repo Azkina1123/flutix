@@ -10,6 +10,9 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   bool loading = false;
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +26,13 @@ class _SignInPageState extends State<SignInPage> {
               style: TextStyle(fontSize: 40, fontFamily: 'Raleway'),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 90),
-            child: TextBox(title: "Email Address", type: 1, readOnly: false, hintText: "Type Here"),
+          Padding(
+            padding: const EdgeInsets.only(top: 90),
+            child: TextBox(title: "Email Address", type: 1, controller: _emailController, readOnly: true, hintText: "Type Here"),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 35),
-            child: TextBox(title: "Password", type: 2, readOnly: false),
+          Padding(
+            padding: const EdgeInsets.only(top: 35),
+            child: TextBox(title: "Password", type: 2, controller: _passwordController, readOnly: false),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, top: 75, right: 35),

@@ -82,9 +82,9 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
             },
           ),
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: const Text(
+        title: const Padding(
+          padding: EdgeInsets.only(top: 5),
+          child: Text(
             "Select Seat",
             style: TextStyle(
               fontFamily: 'Raleway',
@@ -96,7 +96,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Stack(
             children: [
               Container(
@@ -288,7 +288,7 @@ class _PilihBangkuPageState extends State<PilihBangkuPage> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 30, right: 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
