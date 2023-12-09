@@ -136,8 +136,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
             child: TextBox(title: "Full Name", type: 5, controller: _fullNameController, readOnly: true),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 35),
-            child: TextBox(title: "Email Address", type: 1, controller: _emailController , readOnly: false, hintText: widget.email),
+            padding: EdgeInsets.only(top: 35),
+            child: TextBox(title: "Email Address", type: 1, controller: _emailController, readOnly: false, hintText: widget.email),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 35),

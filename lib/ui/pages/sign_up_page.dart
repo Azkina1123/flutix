@@ -150,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
-            child: TextBox(title: "Email Address", type: 1, controller: _emailController, readOnly: true, hintText: "Type Here"),
+            child: TextBox(title: "Email Address", type: 1, controller: _emailController, readOnly: false, hintText: "Type Here"),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
@@ -178,6 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ListTileControlAffinity.leading, //  <-- leading Checkbox
             ),
           ),
+          const Padding(padding: EdgeInsets.only(top: 65))
         ],
       ),
       bottomSheet: Container(

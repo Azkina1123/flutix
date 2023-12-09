@@ -9,8 +9,13 @@ class AutServices {
   static get user1 => null;
 
   // Metode signUp digunakan untuk mendaftarkan pengguna baru.
-  static Future<void> signUp(String email, String password, String name,
-      List<String> selectedGenres, String selectedLanguage, String profilePicture) async {
+  static Future<void> signUp(
+      String email,
+      String password,
+      String name,
+      List<String> selectedGenres,
+      String selectedLanguage,
+      String profilePicture) async {
     try {
       // Mencoba membuat pengguna baru dengan email dan password.
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -23,7 +28,8 @@ class AutServices {
           name: name,
           // password: password,
           selectedGenres: selectedGenres,
-          selectedLanguage: selectedLanguage, profilePicture: profilePicture);
+          selectedLanguage: selectedLanguage,
+          profilePicture: profilePicture);
 
       // Memperbarui informasi pengguna ke layanan UserService.
       await UserService.updateUser(user1);
@@ -32,6 +38,26 @@ class AutServices {
     }
   }
 
+  static Future<String> signIn(String email, String password) async {
+    // Mencoba untuk masuk (sign in) dengan email dan password yang diberikan.
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      if (e.code == "invalid-credential") {
+        return "Your Email or Password is Incorrect.";
+      } else if(e.code == "too-many-requests"){
+        return "Too Many Login Requests Detected, Try Again Later.";
+      } else if(e.code == "invalid-email") {
+        return "Invalid Email Format.";
+      } else {
+        return "An Unknown Error Occurred, Try Again Later.";
+      }
+    }
+    return "";
+  }
+
+  /*
   // Metode signIn digunakan untuk mengotentikasi pengguna yang sudah terdaftar.
   static Future<User1?> signIn(String email, String password) async {
     try {
@@ -44,14 +70,19 @@ class AutServices {
       return user1;
     } on FirebaseAuthException catch (e) {
       // Email tidak ditemukan
-      if (e.code == 'user-not-found') {
-        // Password Salah
-      } else if (e.code == 'wrong-password') {}
+      print(e.code);
+      if (e.code == 'invalid-credential') {
+        print("test");
+      
+      } else if (e.code == 'wrong-password') {
+
+
+      }
     }
 
     return null;
   }
-
+  */
 }
 
 // Kelas SignInSignUpResult digunakan untuk menyimpan hasil sign-in atau sign-up.

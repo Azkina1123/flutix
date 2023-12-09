@@ -3,12 +3,13 @@ part of 'widgets.dart';
 class TextBox extends StatefulWidget {
   final String title;
   final int type;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final bool readOnly;
   final String? hintText;
+  final Function()? onch;
 
   const TextBox(
-      {super.key, required this.title, required this.type, this.controller, required this.readOnly, this.hintText});
+      {super.key, required this.title, required this.type, required this.controller, required this.readOnly, this.hintText, this.onch});
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -18,9 +19,9 @@ class _TextBoxState extends State<TextBox> {
   @override
   Widget build(BuildContext context) {
     return widget.type == 1
-        ? EmailTextBox(title: widget.title, controllerTextField: widget.controller, readOnly: widget.readOnly, hintText: widget.hintText!)
+        ? EmailTextBox(title: widget.title, controllerTextField: widget.controller, readOnly: widget.readOnly, hintText: widget.hintText!, onch: widget.onch)
         : widget.type == 2
-            ? PasswordTextBox(title: widget.title, controllerTextField: widget.controller)
+            ? PasswordTextBox(title: widget.title, controllerTextField: widget.controller, onch: widget.onch)
             : widget.type == 3
                 ? ConfPasswordTextBox(title: widget.title, controllerTextField: widget.controller)
                 : (widget.type == 4 && widget.controller != null)
@@ -135,8 +136,9 @@ class EmailTextBox extends StatefulWidget {
   final TextEditingController? controllerTextField;
   final bool readOnly;
   final String hintText;
+  final Function()? onch;
 
-  const EmailTextBox({super.key, required this.title, this.controllerTextField, required this.readOnly, required this.hintText});
+  const EmailTextBox({super.key, required this.title, this.controllerTextField, required this.readOnly, required this.hintText, this.onch});
 
   @override
   State<EmailTextBox> createState() => _EmailTextBoxState();
@@ -188,12 +190,13 @@ class _EmailTextBoxState extends State<EmailTextBox> {
             child: TextFormField(
               controller: widget.controllerTextField!,
               keyboardType: TextInputType.emailAddress,
-              enabled: widget.readOnly,
+              enabled: !widget.readOnly,
               onChanged: (value) {
                 setState(() {
                   emailCheck = EmailValidator.validate(widget.controllerTextField!.text);
                   textVal = widget.controllerTextField!.text;
                   Provider.of<UserData>(context, listen: false).email = textVal;
+                  widget.onch;
                 });
               },
               decoration: InputDecoration(
@@ -237,8 +240,9 @@ class _EmailTextBoxState extends State<EmailTextBox> {
 class PasswordTextBox extends StatefulWidget {
   final String title;
   final TextEditingController? controllerTextField;
+  final Function()? onch;
 
-  const PasswordTextBox({super.key, required this.title, this.controllerTextField});
+  const PasswordTextBox({super.key, required this.title, this.controllerTextField, this.onch});
 
   @override
   State<PasswordTextBox> createState() => _PasswordTextBoxState();
@@ -303,6 +307,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                   onTap: () {
                     setState(() {
                       press = !press;
+                      widget.onch;
                     });
                   },
                   child: Icon(press

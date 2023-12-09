@@ -9,7 +9,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   bool loading = false;
-
+  String error = "Test";
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -28,14 +28,40 @@ class _SignInPageState extends State<SignInPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 90),
-            child: TextBox(title: "Email Address", type: 1, controller: _emailController, readOnly: true, hintText: "Type Here"),
+            child: TextBox(
+              title: "Email Address",
+              type: 1,
+              controller: _emailController,
+              readOnly: false,
+              hintText: "Type Here",
+              onch: () {
+                error = "";
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 35),
-            child: TextBox(title: "Password", type: 2, controller: _passwordController, readOnly: false),
+            child: TextBox(
+              title: "Password",
+              type: 2,
+              controller: _passwordController,
+              readOnly: false,
+              hintText: "Type Here",
+              onch: () {
+                error = "";
+              },
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 35, top: 75, right: 35),
+            padding: const EdgeInsets.only(left: 35, top: 10),
+            child: Text(
+              error,
+              style: TextStyle(
+                  fontSize: 16, color: Theme.of(context).colorScheme.onError),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, top: 40, right: 35),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -45,25 +71,53 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   TextButton(
                       onPressed: () {
+                        if (_emailController.text == "" ||
+                            _passwordController.text == "") {
+                          setState(() {
+                            error = "";
+                          });
+                          return;
+                        }
+
                         AutServices.signIn(
-                                Provider.of<UserData>(context, listen: false)
-                                    .email,
-                                Provider.of<UserData>(context, listen: false)
-                                    .password)
+                                _emailController.text, _passwordController.text)
+                            .then((value) {
+                          if (value == "") {
+                            Provider.of<UserData>(context, listen: false)
+                                    .email ==
+                                _emailController.text;
+                            Provider.of<UserData>(context, listen: false)
+                                    .password ==
+                                _passwordController.text;
+                            Provider.of<PageData>(context, listen: false)
+                                .changeMenu(0);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainPage()));
+                          } else {
+                            setState(() {
+                              error = value;
+                            });
+                          }
+                        });
+
+                        /*
+                        AutServices.signIn(
+                                _emailController.text,
+                                _passwordController.text)
                             .then((User1? user1) async {
                           if (user1 == null) {
                             return;
                           }
-                          print(Provider.of<UserData>(context, listen: false)
-                              .email + "<<< EMAILLLL");
-
                           Provider.of<PageData>(context, listen: false)
                               .changeMenu(0);
                           await Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => MainPage()));
-                        }).catchError((e) => print(e));
+                        });
+                      */
                       },
                       child: Container(
                         decoration: const BoxDecoration(

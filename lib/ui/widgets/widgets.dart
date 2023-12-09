@@ -23,3 +23,4 @@ part 'cast_photo.dart';
 part 'text_field.dart';
 part 'seat_button.dart';
 part 'order_tile.dart';
+part 'snackbar.dart';
