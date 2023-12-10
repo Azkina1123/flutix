@@ -69,10 +69,10 @@ class SuccessTopUpPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 TextButton(
-                  child: const Text("Back to Home",
+                  child: Text("Back to Home",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onPrimary,
                           fontSize: 18,
                           fontFamily: 'Raleway')),
                   onPressed: () {
