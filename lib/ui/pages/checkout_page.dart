@@ -292,8 +292,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                               "RP.  ${(snapshot.hasData) ? snapshot.data!.balance.toString() : "0"}",
                                               style: TextStyle(
                                                   color: topUp
-                                                      ? Colors.red
-                                                      : Colors.black,
+                                                      ? Colors.black
+                                                      : Colors.red,
                                                   fontSize: 25,
                                                   fontWeight: FontWeight.bold),
                                             );
@@ -301,7 +301,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: 108),
+                                const SizedBox(width: 100),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
                                   child: ElevatedButton(
@@ -390,8 +390,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       }
                                     },
                                     child: topUp
-                                        ? const Text("Top Up Now")
-                                        : const Text("Pay Now >"),
+                                        ? const Text("Play Now >")
+                                        : const Text("Top Up Now"),
                                   ),
                                 ),
                               ],
