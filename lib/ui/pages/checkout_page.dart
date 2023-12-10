@@ -273,6 +273,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         "Your Balance",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
+                                          color: Colors.black,
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -300,7 +301,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: 90),
+                                const SizedBox(width: 108),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
                                   child: ElevatedButton(

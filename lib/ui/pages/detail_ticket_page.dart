@@ -9,7 +9,10 @@ class DetailTicket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    lightMode = true;
+    // lightMode = true;
+    bool lightMode =
+        Provider.of<ThemeModeData>(context, listen: false).lightMode;
+    String color = lightMode ? "black" : "white";
 
     return Scaffold(
       appBar: AppBar(
@@ -60,8 +63,8 @@ class DetailTicket extends StatelessWidget {
                                               (movie?.img ?? ""),
                                         ),
                                         fit: BoxFit.cover),
-                                    // color:
-                                    //     Theme.of(context).colorScheme.secondary,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(20),
@@ -71,10 +74,12 @@ class DetailTicket extends StatelessWidget {
                                 Container(
                                   width: 400,
                                   height: 290,
-                                  margin: const EdgeInsets.only(
+                                  margin: EdgeInsets.only(
                                       left: 40, right: 40, bottom: 0, top: 0),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     // color: Color.fromARGB(255, 242, 238, 238),
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(20),
                                       bottomRight: Radius.circular(20),
@@ -88,6 +93,7 @@ class DetailTicket extends StatelessWidget {
                                         const SizedBox(height: 20),
                                         Text(
                                           movie?.title ?? "",
+                                          textAlign: TextAlign.center,
                                           style: const TextStyle(
                                               fontSize: 24,
                                               fontWeight: FontWeight.bold),
@@ -105,7 +111,6 @@ class DetailTicket extends StatelessWidget {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                             ),
-                                            // SizedBox(width: 40),
                                             Text(
                                               ticket.cinema,
                                               textAlign: TextAlign.right,
@@ -129,9 +134,7 @@ class DetailTicket extends StatelessWidget {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                             ),
-                                            // SizedBox(width: 16),
                                             Text(
-                                              // "03 Sepetember 2023",
                                               DateFormat(' dd MMMM yyyy')
                                                   .format(ticket.broadcastDate),
                                               textAlign: TextAlign.right,
@@ -233,9 +236,9 @@ class DetailTicket extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const Divider(
-                                  color: Colors.black,
-                                  thickness: 1,
+                                Divider(
+                                  color:
+                                      lightMode ? Colors.black : Colors.white,
                                   indent: 48.0,
                                   endIndent: 48.0,
                                 ),
@@ -243,13 +246,13 @@ class DetailTicket extends StatelessWidget {
                                     ? Container(
                                         width: 400,
                                         height: 70,
-                                        margin: const EdgeInsets.only(
+                                        margin: EdgeInsets.only(
                                             left: 40,
                                             right: 40,
                                             bottom: 90,
                                             top: 0),
                                         decoration: BoxDecoration(
-                                          image: const DecorationImage(
+                                          image: DecorationImage(
                                             image: AssetImage(
                                                 "assets/barcode.png"),
                                             fit: BoxFit.fill,
@@ -261,13 +264,13 @@ class DetailTicket extends StatelessWidget {
                                     : Container(
                                         width: 400,
                                         height: 70,
-                                        margin: const EdgeInsets.only(
+                                        margin: EdgeInsets.only(
                                             left: 40,
                                             right: 40,
                                             bottom: 90,
                                             top: 0),
                                         decoration: BoxDecoration(
-                                          image: const DecorationImage(
+                                          image: DecorationImage(
                                             image: AssetImage(
                                                 "assets/barcode2.png"),
                                             fit: BoxFit.fill,
@@ -278,7 +281,6 @@ class DetailTicket extends StatelessWidget {
                                       ),
                               ],
                             );
-                            // print(movie!.id.toString() + "<<<<<<<<<<<");
                           }
                           return Container(
                             alignment: Alignment.center,
