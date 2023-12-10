@@ -69,6 +69,7 @@ class SuccessCheckoutPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 18, fontFamily: 'Raleway')),
                   onPressed: () {
+                    Provider.of<TicketData>(context, listen: false).seats.clear();
                     Provider.of<PageData>(context, listen: false).changeMenu(0);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainPage()));

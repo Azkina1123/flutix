@@ -44,17 +44,18 @@ class TicketData extends ChangeNotifier {
     return newTicket;
   }
 
-  
+  Future<Ticket> getSeats() async {
+    QuerySnapshot snapshot = await _tickets
+    // .doc()
+    // .orderBy('seats')
+    .get();
+    
+    final seatList = snapshot.docs;
 
-  // Future<Ticket> getTickets(String userId) async {
-  //   QuerySnapshot snapshot = await _tickets.where("id", isEqualTo: id).get();
-  //   final ticketList = snapshot.docs;
+    Ticket seats =
+        Ticket.fromJson(seatList[0].data() as Map<String, dynamic>);
+    print(seats.toString() + "<<<<<<");
 
-  //   Ticket newTicket =
-  //       Ticket.fromJson(ticketList[0].data() as Map<String, dynamic>);
-  //   print(newTicket.id.toString() + "<<<<<<");
-  //   return newTicket;
-  // }
-
-
+    return seats;
+  }
 }

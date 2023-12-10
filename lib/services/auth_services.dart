@@ -33,8 +33,16 @@ class AutServices {
 
       // Memperbarui informasi pengguna ke layanan UserService.
       await UserService.updateUser(user1);
+    } on FirebaseAuthException catch (e){
+      if (e.code == 'weak-password'){
+        print("Your password should be at least 6 characters.");
+      } else if (e.code == 'email-already-in-use'){
+        print("The email address is already in use by another account.");
+      } else if (e.code == 'invalid-email'){
+        print("email address is not valid.");
+      }
     } catch (e) {
-      // Menangani kesalahan yang mungkin terjadi saat pendaftaran.
+      print(e);
     }
   }
 

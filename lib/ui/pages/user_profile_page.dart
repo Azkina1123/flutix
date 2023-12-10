@@ -19,6 +19,7 @@ class UserProfilePage extends StatefulWidget {
 class _UserProfilePageState extends State<UserProfilePage> {
   String selectLanguage = "";
   bool press = false;
+  bool selectedBtn = true;
   bool btnSkip = false;
   bool loading = false;
   String genres = "";
@@ -43,6 +44,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24),
                 onPressed: () {
+                  setState(() {
+                    selectedBtn = false;
+                    Provider.of<UserData>(context, listen: false).genres.clear();
+                  });
                   Navigator.pop(context);
                 },
               ),
@@ -287,10 +292,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         try {
-                          Provider.of<UserData>(context, listen: false).genres = selectGenres;
                           Provider.of<UserData>(context, listen: false).language = selectLanguage;
-                          // final List<String> selectedGenres = selectGenres;
-                          // final selectedLanguage = selectLanguage;
 
                           btnSkip == true
                               ? selectLanguage = "English"
@@ -310,6 +312,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
                               builder: (context) => const SuccessAccountPage(),
                             ),
                           );
+
+                          Provider.of<UserData>(context, listen: false).genres.clear();
 
                           // newUser
                         } catch (e) {

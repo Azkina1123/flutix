@@ -3,7 +3,12 @@ part of "widgets.dart";
 class GenreButton extends StatefulWidget {
   String genre;
   bool pressed;
-  GenreButton({super.key, required this.genre, required this.pressed});
+  
+  GenreButton(
+      {super.key,
+      required this.genre,
+      required this.pressed,
+      });
 
   @override
   State<GenreButton> createState() => _GenreButtonState();
@@ -21,13 +26,11 @@ class _GenreButtonState extends State<GenreButton> {
           setState(() {
             press = !press;
 
-            press == true
-                ? Provider.of<UserData>(context, listen: false)
-                    .genres
-                    .add(widget.genre)
-                : Provider.of<UserData>(context, listen: false)
-                    .genres
-                    .remove(widget.genre);
+            press == true ?
+              Provider.of<UserData>(context, listen: false).genres.add(widget.genre)
+              : Provider.of<UserData>(context, listen: false).genres.remove(widget.genre);
+
+            print(Provider.of<UserData>(context, listen: false).genres);
           });
         },
         child: Container(

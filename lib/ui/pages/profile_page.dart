@@ -84,14 +84,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => EditProfilePage(
-                                              name: _user!.name,
-                                              email: _user!.email,
-                                              profilePicture:
-                                                  _user!.profilePicture,
-                                              genre: _user!.selectedGenres,
-                                              language:
-                                                  _user!.selectedLanguage),
+                                          builder: (context) =>
+                                              EditProfilePage(
+                                                id: _user!.docId,
+                                                email: _user!.email,
+                                                name: _user!.name,
+                                                balance: _user!.balance,
+                                                genre: _user!.selectedGenres,
+                                                language: _user!.selectedLanguage,
+                                                profilePicture: _user!.profilePicture
+                                                ),
                                         ));
                                   },
                                 ),

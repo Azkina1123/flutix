@@ -21,6 +21,20 @@ class SuccessAccountPage extends StatelessWidget {
             ),
             Column(
               children: [
+                Provider.of<UserData>(context, listen: false).profilePicture == "" ?
+                Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: lightMode ? colors["cinder"]! : colors["soapstone"]!,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/profile-grey.png"),
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                )
+                :
                 Container(
                   width: 150,
                   height: 150,

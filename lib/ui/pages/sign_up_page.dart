@@ -13,6 +13,11 @@ class _SignUpPageState extends State<SignUpPage> {
   bool validatePass = false;
   bool loading = false;
 
+  bool emailVal = false;
+  bool fullNameVal = false;
+  bool passwordVal = false;
+  bool confPasswordVal = false;
+
   String fullName = "";
   String email = "";
   String password = "";
@@ -30,22 +35,30 @@ class _SignUpPageState extends State<SignUpPage> {
     super.initState();
     _emailController.addListener(() {
       setState(() {
-        Provider.of<UserData>(context, listen: false).email = _emailController.value.text;
+        Provider.of<UserData>(context, listen: false).email =
+            _emailController.value.text;
+        emailVal = _emailController.value.text.isNotEmpty;
       });
     });
     _fullNameController.addListener(() {
       setState(() {
-        Provider.of<UserData>(context, listen: false).email = _fullNameController.value.text;
+        Provider.of<UserData>(context, listen: false).email =
+            _fullNameController.value.text;
+        fullNameVal = _fullNameController.value.text.isNotEmpty;
       });
     });
     _passwordController.addListener(() {
       setState(() {
-        Provider.of<UserData>(context, listen: false).email = _passwordController.value.text;
+        Provider.of<UserData>(context, listen: false).email =
+            _passwordController.value.text;
+        passwordVal = _passwordController.value.text.isNotEmpty;
       });
     });
     _confPasswordController.addListener(() {
       setState(() {
-        Provider.of<UserData>(context, listen: false).email = _confPasswordController.value.text;
+        Provider.of<UserData>(context, listen: false).email =
+            _confPasswordController.value.text;
+        confPasswordVal = _confPasswordController.value.text.isNotEmpty;
       });
     });
   }
@@ -63,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
       content: const Text("Please Agree Privacy Policy"),
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.all(10),
-      backgroundColor: Colors.amber.shade300,
+      backgroundColor: Theme.of(context).colorScheme.error,
     );
 
     final snackBarPassAndPP = SnackBar(
@@ -146,19 +159,36 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: TextBox(title: "Full Name", type: 5, controller: _fullNameController, readOnly: false),
+            child: TextBox(
+                title: "Full Name",
+                type: 5,
+                controller: _fullNameController,
+                readOnly: false),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
-            child: TextBox(title: "Email Address", type: 1, controller: _emailController, readOnly: false, hintText: "Type Here"),
+            child: TextBox(
+                title: "Email Address",
+                type: 1,
+                controller: _emailController,
+                readOnly: true,
+                hintText: "Type Here"),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
-            child: TextBox(title: "Password", type: 2, controller: _passwordController, readOnly: false),
+            child: TextBox(
+                title: "Password",
+                type: 2,
+                controller: _passwordController,
+                readOnly: false),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25),
-            child: TextBox(title: "Confirm Password", type: 2, controller: _confPasswordController, readOnly: false),
+            child: TextBox(
+                title: "Confirm Password",
+                type: 3,
+                controller: _confPasswordController,
+                readOnly: false),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 25),
@@ -187,13 +217,12 @@ class _SignUpPageState extends State<SignUpPage> {
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor:
-              // emptyValue == false
-              _fullNameController.text.isEmpty && _emailController.text.isEmpty && _passwordController.text.isEmpty &&
-                  _confPasswordController.text.isEmpty && checkedValue == false
-                  ?
-              MaterialStateProperty.all(Theme.of(context).colorScheme.secondary)
-              : MaterialStateProperty.all(colors["cerulean-blue"]),
+            backgroundColor: emptyValue == false &&
+                    validatePass == false &&
+                    checkedValue == false
+                ? MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.secondary)
+                : MaterialStateProperty.all(colors["cerulean-blue"]),
           ),
           onPressed: () {
             setState(() {
@@ -204,43 +233,45 @@ class _SignUpPageState extends State<SignUpPage> {
               Provider.of<UserData>(context, listen: false).confPassword = _confPasswordController.value.text;
               Provider.of<UserData>(context, listen: false).profilePicture = imageUrl;
 
-              // _emailController.dispose();
-              // _fullNameController.dispose();
-              // _passwordController.dispose();
-              // _confPasswordController.dispose();
+              email = Provider.of<UserData>(context, listen: false).email;
+              fullName = Provider.of<UserData>(context, listen: false).fullName;
+              password = Provider.of<UserData>(context, listen: false).password;
+              confPassword = Provider.of<UserData>(context, listen: false).confPassword;
+              profilePicture = Provider.of<UserData>(context, listen: false).profilePicture;
 
-              Provider.of<UserData>(context, listen: false).confPassword == Provider.of<UserData>(context, listen: false) .password &&
-              Provider.of<UserData>(context, listen: false).confPassword != "" && Provider.of<UserData>(context, listen: false).password != "" ?
-                validatePass = !validatePass
-                : validatePass = false;
+              confPassword == password && confPassword != "" && password != ""
+                  ? validatePass = !validatePass
+                  : validatePass = false;
 
-              _fullNameController.text.isEmpty && _emailController.text.isEmpty && _passwordController.text.isEmpty &&
-                  _confPasswordController.text.isEmpty && checkedValue == false ?
-              emptyValue = !emptyValue
-              : emptyValue = false;
+              !emailVal && !fullNameVal && !passwordVal && !confPasswordVal
+                  ? emptyValue = !emptyValue
+                  : emptyValue = false;
 
-              if (validatePass == true && checkedValue == true){
+              if (emptyValue = true && validatePass == true && checkedValue == true) {
                 setState(() => loading = false);
 
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => UserProfilePage(
-                      email: Provider.of<UserData>(context, listen: false).email,
-                      name: Provider.of<UserData>(context, listen: false).fullName,
-                      password: Provider.of<UserData>(context, listen: false).password,
-                      profilePath: Provider.of<UserData>(context, listen: false).profilePicture,
-                      ),
+                      email: email,
+                      name: fullName,
+                      password: password,
+                      profilePath: profilePicture,
                     ),
-                  );
-              } else if (validatePass == true && checkedValue == false){
+                  ),
+                );
+              }
+
+              if (validatePass == true && checkedValue == false) {
                 ScaffoldMessenger.of(context).showSnackBar(snackBarPrivacyPolice);
 
-              } else if (validatePass == false && checkedValue == true){
+              } else if (validatePass == false && checkedValue == true) {
                 ScaffoldMessenger.of(context).showSnackBar(snackBarPass);
 
-              } else if (validatePass == false && checkedValue == false){
-                ScaffoldMessenger.of(context).showSnackBar(snackBarPassAndPP);
+              } else if (validatePass == false && checkedValue == false) {
+                ScaffoldMessenger.of(context).showSnackBar(snackBarPass);
+                ScaffoldMessenger.of(context).showSnackBar(snackBarPrivacyPolice);
               }
             });
           },

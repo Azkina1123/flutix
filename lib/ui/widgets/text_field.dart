@@ -41,19 +41,8 @@ class NormalTextBox extends StatefulWidget {
 }
 
 class _NormalTextBoxState extends State<NormalTextBox> {
-  bool txtFieldVal = false;
   bool active = false;
   String textVal = "";
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controllerTextField!.addListener(() {
-      setState(() {
-        txtFieldVal = widget.controllerTextField!.text.isNotEmpty;
-      });
-    });
-  }
 
   @override
   void dispose() {
@@ -150,16 +139,6 @@ class _EmailTextBoxState extends State<EmailTextBox> {
   String textVal = "";
 
   @override
-  void initState() {
-    super.initState();
-    widget.controllerTextField!.addListener(() {
-      setState(() {
-        emailVal = widget.controllerTextField!.text.isNotEmpty;
-      });
-    });
-  }
-
-  @override
   void dispose() {
     super.dispose();
     widget.controllerTextField!.dispose();
@@ -190,7 +169,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
             child: TextFormField(
               controller: widget.controllerTextField!,
               keyboardType: TextInputType.emailAddress,
-              enabled: !widget.readOnly,
+              enabled: widget.readOnly,
               onChanged: (value) {
                 setState(() {
                   emailCheck = EmailValidator.validate(widget.controllerTextField!.text);
@@ -249,20 +228,9 @@ class PasswordTextBox extends StatefulWidget {
 }
 
 class _PasswordTextBoxState extends State<PasswordTextBox> {
-  bool passVal = false;
   bool press = true;
   bool errorText = false;
   String textVal = "";
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controllerTextField!.addListener(() {
-      setState(() {
-        passVal = widget.controllerTextField!.text.isNotEmpty;
-      });
-    });
-  }
 
   @override
   void dispose() {
@@ -319,15 +287,6 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                   fontFamily: 'Raleway',
                   color: lightMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSecondary,
                 ),
-                // membuat kondisi jika email dan password tidak sesuai
-                // *silahkan disesuaikan
-                // errorText: errorText == true
-                //     ? Provider.of<UserData>(context, listen: false)
-                //                 .validatePass ==
-                //             true
-                //         ? "Your Email or Password is Wrong"
-                //         : null
-                //     : null,
               ),
               obscureText: press ? true : false,
               textAlignVertical: TextAlignVertical.center,
@@ -364,19 +323,8 @@ class ConfPasswordTextBox extends StatefulWidget {
 }
 
 class _ConfPasswordTextBoxState extends State<ConfPasswordTextBox> {
-  bool passVal = false;
   bool press = true;
   String textVal = "";
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controllerTextField!.addListener(() {
-      setState(() {
-        passVal = widget.controllerTextField!.text.isNotEmpty;
-      });
-    });
-  }
 
   @override
   void dispose() {
