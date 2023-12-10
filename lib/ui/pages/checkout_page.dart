@@ -291,7 +291,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             return Text(
                                               "RP.  ${(snapshot.hasData) ? snapshot.data!.balance.toString() : "0"}",
                                               style: TextStyle(
-                                                  color: topUp
+                                                  // color: topUp
+                                                  //     ? Colors.red
+                                                  //     : Colors.black,
+                                                  color: (snapshot.hasData &&
+                                                          balance >= totalbayar)
                                                       ? Colors.black
                                                       : Colors.red,
                                                   fontSize: 25,
@@ -320,6 +324,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             },
                                           ),
                                         );
+                                        return;
                                       } else {
                                         CollectionReference checkoutCollection =
                                             FirebaseFirestore.instance
@@ -390,8 +395,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       }
                                     },
                                     child: topUp
-                                        ? const Text("Play Now >")
-                                        : const Text("Top Up Now"),
+                                        ? const Text("Top Up Now")
+                                        : const Text("Play Now >"),
                                   ),
                                 ),
                               ],
