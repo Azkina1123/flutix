@@ -47,7 +47,7 @@ class AutServices {
       if (e.code == "invalid-credential") {
         return "Your Email or Password is Incorrect.";
       } else if(e.code == "too-many-requests"){
-        return "Too Many Login Requests Detected, Try Again Later.";
+        return "Too Many Login Attempt, Try Again Later.";
       } else if(e.code == "invalid-email") {
         return "Invalid Email Format.";
       } else {

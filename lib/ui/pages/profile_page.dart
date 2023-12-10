@@ -38,7 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Theme.of(context).colorScheme.secondary,
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                image: NetworkImage(_user?.profilePicture ?? ""),
+                                image:
+                                    NetworkImage(_user?.profilePicture ?? ""),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -83,8 +84,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              EditProfilePage(name: _user!.name, email: _user!.email, profilePicture: _user!.profilePicture, genre: _user!.selectedGenres, language: _user!.selectedLanguage),
+                                          builder: (context) => EditProfilePage(
+                                              name: _user!.name,
+                                              email: _user!.email,
+                                              profilePicture:
+                                                  _user!.profilePicture,
+                                              genre: _user!.selectedGenres,
+                                              language:
+                                                  _user!.selectedLanguage),
                                         ));
                                   },
                                 ),
@@ -180,6 +187,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Provider.of<UserData>(context,
                                             listen: false)
                                         .password = "";
+                                    Navigator.popUntil(
+                                        context,
+                                        ModalRoute.withName(
+                                            Navigator.defaultRouteName));
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

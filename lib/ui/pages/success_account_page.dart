@@ -52,8 +52,7 @@ class SuccessAccountPage extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {
-                          Provider.of<PageData>(context, listen: false)
-                              .changeMenu(0);
+                          Provider.of<ErrorText>(context, listen: false).errorChange("");
                           Navigator.popUntil(context,
                               ModalRoute.withName(Navigator.defaultRouteName));
 

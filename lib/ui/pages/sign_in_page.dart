@@ -8,8 +8,6 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  bool loading = false;
-  String error = "Test";
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -35,7 +33,7 @@ class _SignInPageState extends State<SignInPage> {
               readOnly: false,
               hintText: "Type Here",
               onch: () {
-                error = "";
+                Provider.of<ErrorText>(context, listen: false).errorChange("");
               },
             ),
           ),
@@ -48,17 +46,21 @@ class _SignInPageState extends State<SignInPage> {
               readOnly: false,
               hintText: "Type Here",
               onch: () {
-                error = "";
+                Provider.of<ErrorText>(context, listen: false).errorChange("");
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, top: 10),
-            child: Text(
-              error,
-              style: TextStyle(
-                  fontSize: 16, color: Theme.of(context).colorScheme.onError),
-            ),
+          Consumer<ErrorText>(
+            builder: (context, text, child) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 35, top: 10),
+                child: Text(
+                  text.errorText,
+                  style: TextStyle(
+                      fontSize: 16, color: Theme.of(context).colorScheme.onError),
+                ),
+              );
+            }
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, top: 40, right: 35),
@@ -74,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
                         if (_emailController.text == "" ||
                             _passwordController.text == "") {
                           setState(() {
-                            error = "";
+                            Provider.of<ErrorText>(context, listen: false).errorChange("");
                           });
                           return;
                         }
@@ -97,27 +99,10 @@ class _SignInPageState extends State<SignInPage> {
                                     builder: (context) => MainPage()));
                           } else {
                             setState(() {
-                              error = value;
+                              Provider.of<ErrorText>(context, listen: false).errorChange(value);
                             });
                           }
                         });
-
-                        /*
-                        AutServices.signIn(
-                                _emailController.text,
-                                _passwordController.text)
-                            .then((User1? user1) async {
-                          if (user1 == null) {
-                            return;
-                          }
-                          Provider.of<PageData>(context, listen: false)
-                              .changeMenu(0);
-                          await Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MainPage()));
-                        });
-                      */
                       },
                       child: Container(
                         decoration: const BoxDecoration(

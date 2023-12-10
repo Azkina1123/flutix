@@ -196,7 +196,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
                   emailCheck = EmailValidator.validate(widget.controllerTextField!.text);
                   textVal = widget.controllerTextField!.text;
                   Provider.of<UserData>(context, listen: false).email = textVal;
-                  widget.onch;
+                  widget.onch?.call();
                 });
               },
               decoration: InputDecoration(
@@ -307,7 +307,7 @@ class _PasswordTextBoxState extends State<PasswordTextBox> {
                   onTap: () {
                     setState(() {
                       press = !press;
-                      widget.onch;
+                      widget.onch?.call();
                     });
                   },
                   child: Icon(press

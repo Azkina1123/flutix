@@ -22,6 +22,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => UserData()),
         ChangeNotifierProvider(create: (context) => TopUpSelectionData()),
         ChangeNotifierProvider(create: (context) => OrderDataProvider()),
+        ChangeNotifierProvider(create: (context) => ErrorText())
       ],
       child: const MyApp(),
     ),
