@@ -14,8 +14,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User1? user;
-    Future<List<Movie>> nowPlaying = Provider.of<MovieData>(context).nowPlaying;
-    Future<List<Movie>> comingSoon = Provider.of<MovieData>(context).comingSoon;
     lightMode = true;
 
     return Scaffold(
@@ -48,15 +46,15 @@ class HomePage extends StatelessWidget {
                   ),
                   Text(
                     user?.name ?? "",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
-                      // color: lightMode ? colors["cinder"] : colors["soapstone"],
+                      fontFamily: "Raleway",
                     ),
                   ),
                 ],
               );
 
-              return Text("Loading...");
+              return const Text("Loading...");
             }),
       ),
 
@@ -80,10 +78,12 @@ class HomePage extends StatelessWidget {
             // NOW PLAYING =====================================================
             Container(
               padding: const EdgeInsets.all(20),
-              child: Text(
+              child: const Text(
                 "Now Playing",
                 style: TextStyle(
                   fontSize: 20,
+                  fontFamily: "Raleway",
+                  fontStyle: FontStyle.italic,
                 ),
               ),
             ),
@@ -92,7 +92,7 @@ class HomePage extends StatelessWidget {
               height: 265,
               padding: const EdgeInsets.only(left: 20),
               child: FutureBuilder<List<Movie>>(
-                future: nowPlaying,
+                future: Provider.of<MovieData>(context).nowPlaying,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
@@ -119,10 +119,12 @@ class HomePage extends StatelessWidget {
             // CATEGORY =====================================================
             Container(
               padding: const EdgeInsets.all(20),
-              child: Text(
+              child: const Text(
                 "Category",
                 style: TextStyle(
                   fontSize: 20,
+                                    fontFamily: "Raleway",
+                  fontStyle: FontStyle.italic,
                 ),
               ),
             ),
@@ -142,16 +144,18 @@ class HomePage extends StatelessWidget {
             // COMING SOON =====================================================
             Container(
               padding: const EdgeInsets.all(20),
-              child: Text(
+              child: const Text(
                 "Coming Soon",
                 style: TextStyle(
                   fontSize: 20,
+                                    fontFamily: "Raleway",
+                  fontStyle: FontStyle.italic,
                 ),
               ),
             ),
 
             FutureBuilder<List<Movie>>(
-              future: comingSoon,
+              future: Provider.of<MovieData>(context).comingSoon,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
@@ -186,7 +190,9 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 20,
                     color: lightMode ? colors["cinder"] : colors["soapstone"],
-                    fontStyle: FontStyle.italic),
+                    fontStyle: FontStyle.italic,
+                                      fontFamily: "Raleway",
+                    ),
               ),
             ),
 

@@ -22,6 +22,7 @@ class _MyTicketPageState extends State<MyTicketPage> {
           "My Ticket",
           style: TextStyle(
             fontSize: 24,
+            fontFamily: "Raleway",
           ),
         ),
       ),
@@ -49,7 +50,10 @@ class _MyTicketPageState extends State<MyTicketPage> {
                     ),
                     child: const Text(
                       "New",
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 18,
+                        fontFamily: "Raleway",
+                      ),
+                      
                     ),
                   )),
               SizedBox(
@@ -68,7 +72,10 @@ class _MyTicketPageState extends State<MyTicketPage> {
                         ? Colors.white
                         : Theme.of(context).colorScheme.onSecondary,
                   ),
-                  child: const Text("Used"),
+                  child: const Text("Used", style: TextStyle(
+                    fontSize: 18,
+                      fontFamily: "Raleway",
+                    ),),
                 ),
               ),
             ],

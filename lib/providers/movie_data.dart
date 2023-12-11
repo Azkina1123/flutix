@@ -9,13 +9,13 @@ class MovieData extends ChangeNotifier {
     return _imgDir;
   }
 
-  final Future<List<Movie>> _nowPlaying = ApiServices.getNowPlaying(5);
+  final Future<List<Movie>> _nowPlaying = ApiServices.getNowPlaying(8);
   
   Future<List<Movie>> get nowPlaying {
     return _nowPlaying;
   }
   
-  final Future<List<Movie>> _comingSoon = ApiServices.getComingSoon(5);
+  final Future<List<Movie>> _comingSoon = ApiServices.getComingSoon(8);
   Future<List<Movie>> get comingSoon {
     return _comingSoon;
   }

@@ -49,14 +49,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Text(
                             _user?.name ?? "",
-                            style: const TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 18, fontFamily: "Raleway",
+                            ),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                           Text(
                             _user?.email ?? "",
-                            style: const TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 18, fontFamily: "Raleway",
+                            ),
                           ),
                           const SizedBox(
                             height: 30,
@@ -78,7 +80,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   title: const Text(
                                     "Edit Profile",
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 18, fontFamily: "Raleway",
+                                    ),
                                   ),
                                   onTap: () {
                                     Navigator.push(
@@ -109,7 +112,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   title: const Text(
                                     "My Wallet",
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 18, fontFamily: "Raleway",
+                                    ),
                                   ),
                                   onTap: () {
                                     Navigator.push(
@@ -131,7 +135,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   title: const Text(
                                     "Help",
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 18, fontFamily: "Raleway",
+                                    ),
                                   ),
                                   onTap: () {},
                                 ),
@@ -147,7 +152,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   title: const Text(
                                     "Change Language",
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 18, fontFamily: "Raleway",
+                                    ),
                                   ),
                                   onTap: () {},
                                 ),
@@ -163,7 +169,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   title: const Text(
                                     "Rate Flutix",
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 18, fontFamily: "Raleway",
+                                    ),
                                   ),
                                   onTap: () {},
                                 ),
@@ -179,7 +186,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   title: const Text(
                                     "Log Out",
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 18, fontFamily: "Raleway",
+                                    ),
                                   ),
                                   onTap: () {
                                     FirebaseAuth.instance.signOut();

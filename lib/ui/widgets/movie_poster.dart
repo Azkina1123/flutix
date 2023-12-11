@@ -69,6 +69,7 @@ class _MoviePosterState extends State<MoviePoster> {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 16,
+                              fontFamily: "Raleway",
                             ),
                           ),
                         )

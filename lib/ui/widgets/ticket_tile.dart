@@ -42,24 +42,33 @@ class TicketTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            movie.title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: colors["dove-grey"]),
+                          SizedBox(
+                            width: width(context)-100-80,
+                            child: Text(
+                              movie.title,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: colors["dove-grey"],
+                                  fontFamily: "Raleway",
+                              ),
+                                  
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           Text(
                             DateFormat('EEE, dd MMMM yyyy').format(ticket.broadcastDate),
                             style:
-                                TextStyle(fontSize: 16, color: colors["dove-grey"]),
+                                TextStyle(fontSize: 18, color: colors["dove-grey"], fontFamily: "Oswald", fontWeight: FontWeight.w200
+                            ),
                           ),
                           Text(
                             ticket.cinema,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
-                                fontSize: 16,
-                                color: colors["dove-grey"]),
+                                fontSize: 18,
+                                color: colors["dove-grey"], fontFamily: "Raleway",
+                            ),
                           )
                         ],
                       ),
