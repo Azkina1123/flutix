@@ -48,13 +48,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    _fullNameController.addListener(() {
-      setState(() {
-        Provider.of<UserData>(context, listen: false).email =
-            _fullNameController.value.text;
-        fullNameVal = _fullNameController.value.text.isNotEmpty;
-      });
-    });
     _passwordController.addListener(() {
       setState(() {
         Provider.of<UserData>(context, listen: false).email =
@@ -205,8 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         margin: const EdgeInsets.only(bottom: 30),
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: emptyValue == false &&
-                    validatePass == false
+            backgroundColor: !passwordVal
                 ? MaterialStateProperty.all(
                     Theme.of(context).colorScheme.secondary)
                 : MaterialStateProperty.all(colors["cerulean-blue"]),
@@ -222,8 +214,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 newProfilePicture = Provider.of<UserData>(context, listen: false) .profilePicture;
                 password = _passwordController.value.text;
 
-                !fullNameVal && !passwordVal && !confPasswordVal
-                    ? emptyValue = !emptyValue
+                !passwordVal ? emptyValue = !emptyValue
                     : emptyValue = false;
                     
                 if (emptyValue == false) {
@@ -237,8 +228,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                   try {
                     await result!.reauthenticateWithCredential(credential).then((value) {
-                      
                     });
+                    newFullName == "" ? newFullName = widget.name : null;
                     
                     User1 user = result.convertToUser(
                         docId: widget.id,
