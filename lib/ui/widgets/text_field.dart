@@ -169,7 +169,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
             child: TextFormField(
               controller: widget.controllerTextField!,
               keyboardType: TextInputType.emailAddress,
-              enabled: widget.readOnly,
+              enabled: !widget.readOnly,
               onChanged: (value) {
                 setState(() {
                   emailCheck = EmailValidator.validate(widget.controllerTextField!.text);

@@ -170,7 +170,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 title: "Email Address",
                 type: 1,
                 controller: _emailController,
-                readOnly: false,
+                readOnly: true,
                 hintText: widget.email),
           ),
           Padding(

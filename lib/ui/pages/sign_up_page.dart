@@ -171,7 +171,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 title: "Email Address",
                 type: 1,
                 controller: _emailController,
-                readOnly: true,
+                readOnly: false,
                 hintText: "Type Here"),
           ),
           Padding(

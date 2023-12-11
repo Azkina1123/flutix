@@ -30,7 +30,7 @@ class _SignInPageState extends State<SignInPage> {
               title: "Email Address",
               type: 1,
               controller: _emailController,
-              readOnly: true,
+              readOnly: false,
               hintText: "Type Here",
               onch: () {
                 Provider.of<ErrorText>(context, listen: false).errorChange("");
