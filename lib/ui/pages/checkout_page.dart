@@ -394,9 +394,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         );
                                       }
                                     },
-                                    child: topUp
-                                        ? const Text("Top Up Now")
-                                        : const Text("Play Now >"),
+                                    child: Text((snapshot.hasData &&
+                                            balance >= totalbayar)
+                                        ? "Top Up Now"
+                                        : "Pay Now >"),
+                                    // child: (snapshot.hasData &&
+                                    //         balance >= totalbayar)
+                                    //     ? const Text("Play Now >")
+                                    //     : const Text("Top Up Now"),
                                   ),
                                 ),
                               ],
