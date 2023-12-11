@@ -150,7 +150,7 @@ class DetailTicket extends StatelessWidget {
                                               MainAxisAlignment.end,
                                           children: [
                                             Text(
-                                              DateFormat('hh:mm')
+                                              DateFormat('hh:mm a')
                                                   .format(ticket.broadcastDate),
                                               textAlign: TextAlign.right,
                                               style: const TextStyle(
