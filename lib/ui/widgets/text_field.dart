@@ -204,9 +204,7 @@ class _EmailTextBoxState extends State<EmailTextBox> {
                 ),
               ),
               style: TextStyle(
-                color: emailCheck == false
-                    ? Theme.of(context).colorScheme.error
-                    : Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
