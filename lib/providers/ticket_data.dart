@@ -44,7 +44,8 @@ class TicketData extends ChangeNotifier {
     return newTicket;
   }
 
-  Future<Ticket> getSeats() async {
+  Future<List> getSeats() async {
+    List seats = [];
     QuerySnapshot snapshot = await _tickets
     // .doc()
     // .orderBy('seats')
@@ -52,10 +53,19 @@ class TicketData extends ChangeNotifier {
     
     final seatList = snapshot.docs;
 
-    Ticket seats =
-        Ticket.fromJson(seatList[0].data() as Map<String, dynamic>);
-    print(seats.toString() + "<<<<<<");
+    // Ticket seats =
+    //     Ticket.fromJson(seatList[0].data() as Map<String, dynamic>);
 
-    return seats;
+  // for (final i in seatList){
+  //   seats
+  //   // .add(
+  //   //   seatList[i]
+  //   //   )
+  //   = seatList[i.get('seats')] as List
+  //   ;
+  // }
+  //   print(seats.toString() + "<<<<<<");
+
+    return seatList;
   }
 }

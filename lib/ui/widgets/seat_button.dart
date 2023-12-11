@@ -2,10 +2,12 @@ part of 'widgets.dart';
 
 class SeatButton extends StatefulWidget {
   String seat;
+  bool avail;
 
   SeatButton(
       {super.key,
       required this.seat,
+      required this.avail,
       });
 
   @override
@@ -14,7 +16,6 @@ class SeatButton extends StatefulWidget {
 
 class _SeatButtonState extends State<SeatButton> {
   bool press = false;
-  bool available = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,10 @@ class _SeatButtonState extends State<SeatButton> {
           press = !press;
 
           press == true ?
-          Provider.of<TicketData>(context, listen: false).seats.add(widget.seat)
-          : Provider.of<TicketData>(context, listen: false).seats.removeWhere((element) => element == widget.seat);
+            widget.avail == true ?
+              Provider.of<TicketData>(context, listen: false).seats.add(widget.seat)
+              : null
+            : Provider.of<TicketData>(context, listen: false).seats.removeWhere((element) => element == widget.seat);
         });
       },
       child: Padding(
@@ -49,7 +52,7 @@ class _SeatButtonState extends State<SeatButton> {
                 fontWeight: FontWeight.w300,
                   color: press == true
                       ? Theme.of(context).colorScheme.primary
-                      : available == true
+                      : widget.avail == true
                           ? Theme.of(context).colorScheme.onPrimary
                           : Theme.of(context).colorScheme.onSecondary),
               ),

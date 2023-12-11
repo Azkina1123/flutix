@@ -324,6 +324,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             },
                                           ),
                                         );
+                                        Provider.of<TicketData>( context, listen: false) .seats.clear();
                                         return;
                                       } else {
                                         CollectionReference checkoutCollection =
@@ -392,6 +393,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             },
                                           ),
                                         );
+                                        Provider.of<TicketData>( context, listen: false) .seats.clear();
                                       }
                                     },
                                     child: Text((snapshot.hasData &&
